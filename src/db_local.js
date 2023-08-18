@@ -1,4 +1,4 @@
-{
+export const db_local = {
 	"products": [
 		{
 			"name": "Двушка в центре Питера",
@@ -17,10 +17,10 @@
 			"publish-date": "1576773899132",
 			"category": "Недвижимость",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/apt_1_1.png",
-				"http://localhost:3000/db_dev/images_local/apt_1_2.png",
-				"http://localhost:3000/db_dev/images_local/apt_1_3.png",
-				"http://localhost:3000/db_dev/images_local/apt_1_4.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_1_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_1_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_1_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_1_4.png"
 			],
 			"filters": {
 				"type": "flat",
@@ -45,9 +45,9 @@
 			"publish-date": "1582418062833",
 			"category": "Недвижимость",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/apt_2_1.png",
-				"http://localhost:3000/db_dev/images_local/apt_2_2.png",
-				"http://localhost:3000/db_dev/images_local/apt_2_3.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_2_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_2_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_2_3.png"
 			],
 			"filters": {
 				"type": "flat",
@@ -72,13 +72,13 @@
 			"publish-date": "1592033220171",
 			"category": "Недвижимость",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/apt_3_1.png",
-				"http://localhost:3000/db_dev/images_local/apt_3_2.png",
-				"http://localhost:3000/db_dev/images_local/apt_3_3.png",
-				"http://localhost:3000/db_dev/images_local/apt_3_4.png",
-				"http://localhost:3000/db_dev/images_local/apt_3_5.png",
-				"http://localhost:3000/db_dev/images_local/apt_3_6.png",
-				"http://localhost:3000/db_dev/images_local/apt_3_7.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_3_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_3_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_3_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_3_4.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_3_5.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_3_6.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_3_7.png"
 			],
 			"filters": {
 				"type": "flat",
@@ -103,8 +103,8 @@
 			"publish-date": "1557122399389",
 			"category": "Недвижимость",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/apt_4_1.png",
-				"http://localhost:3000/db_dev/images_local/apt_4_2.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_4_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_4_2.png"
 			],
 			"filters": {
 				"type": "flat",
@@ -129,9 +129,9 @@
 			"publish-date": "1608220822265",
 			"category": "Недвижимость",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/apt_5_1.png",
-				"http://localhost:3000/db_dev/images_local/apt_5_2.png",
-				"http://localhost:3000/db_dev/images_local/apt_5_3.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_5_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_5_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_5_3.png"
 			],
 			"filters": {
 				"type": "apartment",
@@ -156,9 +156,9 @@
 			"publish-date": "1607852845183",
 			"category": "Недвижимость",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/apt_6_1.png",
-				"http://localhost:3000/db_dev/images_local/apt_6_2.png",
-				"http://localhost:3000/db_dev/images_local/apt_6_3.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_6_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_6_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/apt_6_3.png"
 			],
 			"filters": {
 				"type": "apartment",
@@ -183,13 +183,13 @@
 			"publish-date": "1606107354116",
 			"category": "Недвижимость",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/house_1_1.png",
-				"http://localhost:3000/db_dev/images_local/house_1_2.png",
-				"http://localhost:3000/db_dev/images_local/house_1_3.png",
-				"http://localhost:3000/db_dev/images_local/house_1_4.png",
-				"http://localhost:3000/db_dev/images_local/house_1_5.png",
-				"http://localhost:3000/db_dev/images_local/house_1_6.png",
-				"http://localhost:3000/db_dev/images_local/house_1_7.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_1_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_1_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_1_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_1_4.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_1_5.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_1_6.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_1_7.png"
 			],
 			"filters": {
 				"type": "house",
@@ -214,10 +214,10 @@
 			"publish-date": "1608189323184",
 			"category": "Недвижимость",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/house_2_1.png",
-				"http://localhost:3000/db_dev/images_local/house_2_2.png",
-				"http://localhost:3000/db_dev/images_local/house_2_3.png",
-				"http://localhost:3000/db_dev/images_local/house_2_4.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_2_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_2_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_2_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/house_2_4.png"
 			],
 			"filters": {
 				"type": "house",
@@ -242,12 +242,12 @@
 			"publish-date": "1541068467135",
 			"category": "Автомобиль",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/car_1_1.png",
-				"http://localhost:3000/db_dev/images_local/car_1_2.png",
-				"http://localhost:3000/db_dev/images_local/car_1_3.png",
-				"http://localhost:3000/db_dev/images_local/car_1_4.png",
-				"http://localhost:3000/db_dev/images_local/car_1_5.png",
-				"http://localhost:3000/db_dev/images_local/car_1_6.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_1_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_1_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_1_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_1_4.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_1_5.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_1_6.png"
 			],
 			"filters": {
 				"production-year": 2016,
@@ -272,13 +272,13 @@
 			"publish-date": "1589079707835",
 			"category": "Автомобиль",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/car_2_1.png",
-				"http://localhost:3000/db_dev/images_local/car_2_2.png",
-				"http://localhost:3000/db_dev/images_local/car_2_3.png",
-				"http://localhost:3000/db_dev/images_local/car_2_4.png",
-				"http://localhost:3000/db_dev/images_local/car_2_5.png",
-				"http://localhost:3000/db_dev/images_local/car_2_6.png",
-				"http://localhost:3000/db_dev/images_local/car_2_7.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_2_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_2_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_2_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_2_4.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_2_5.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_2_6.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_2_7.png"
 			],
 			"filters": {
 				"production-year": 2019,
@@ -303,9 +303,9 @@
 			"publish-date": "1577705155596",
 			"category": "Автомобиль",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/car_3_1.png",
-				"http://localhost:3000/db_dev/images_local/car_3_2.png",
-				"http://localhost:3000/db_dev/images_local/car_3_3.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_3_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_3_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_3_3.png"
 			],
 			"filters": {
 				"production-year": 2017,
@@ -330,9 +330,9 @@
 			"publish-date": "1524061214245",
 			"category": "Автомобиль",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/car_4_1.png",
-				"http://localhost:3000/db_dev/images_local/car_4_2.png",
-				"http://localhost:3000/db_dev/images_local/car_4_3.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_4_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_4_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_4_3.png"
 			],
 			"filters": {
 				"production-year": 2018,
@@ -357,9 +357,9 @@
 			"publish-date": "1566579599795",
 			"category": "Автомобиль",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/car_5_1.png",
-				"http://localhost:3000/db_dev/images_local/car_5_2.png",
-				"http://localhost:3000/db_dev/images_local/car_5_3.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_5_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_5_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/car_5_3.png"
 			],
 			"filters": {
 				"production-year": 2008,
@@ -384,10 +384,10 @@
 			"publish-date": "1578569567046",
 			"category": "Ноутбук",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/laptop_1_1.png",
-				"http://localhost:3000/db_dev/images_local/laptop_1_2.png",
-				"http://localhost:3000/db_dev/images_local/laptop_1_3.png",
-				"http://localhost:3000/db_dev/images_local/laptop_1_4.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_1_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_1_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_1_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_1_4.png"
 			],
 			"filters": {
 				"type": "-",
@@ -413,8 +413,8 @@
 			"publish-date": "1566890933376",
 			"category": "Ноутбук",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/laptop_2_1.png",
-				"http://localhost:3000/db_dev/images_local/laptop_2_2.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_2_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_2_2.png"
 			],
 			"filters": {
 				"type": "-",
@@ -440,12 +440,12 @@
 			"publish-date": "1595208829319",
 			"category": "Ноутбук",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/laptop_3_1.png",
-				"http://localhost:3000/db_dev/images_local/laptop_3_2.png",
-				"http://localhost:3000/db_dev/images_local/laptop_3_3.png",
-				"http://localhost:3000/db_dev/images_local/laptop_3_4.png",
-				"http://localhost:3000/db_dev/images_local/laptop_3_5.png",
-				"http://localhost:3000/db_dev/images_local/laptop_3_6.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_3_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_3_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_3_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_3_4.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_3_5.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_3_6.png"
 			],
 			"filters": {
 				"type": "home",
@@ -471,9 +471,9 @@
 			"publish-date": "1583035655304",
 			"category": "Ноутбук",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/laptop_4_1.png",
-				"http://localhost:3000/db_dev/images_local/laptop_4_2.png",
-				"http://localhost:3000/db_dev/images_local/laptop_4_3.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_4_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_4_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_4_3.png"
 			],
 			"filters": {
 				"type": "home",
@@ -499,9 +499,9 @@
 			"publish-date": "1607661945463",
 			"category": "Ноутбук",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/laptop_5_1.png",
-				"http://localhost:3000/db_dev/images_local/laptop_5_2.png",
-				"http://localhost:3000/db_dev/images_local/laptop_5_3.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_5_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_5_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/laptop_5_3.png"
 			],
 			"filters": {
 				"type": "ultrabook",
@@ -527,8 +527,8 @@
 			"publish-date": "1580770800663",
 			"category": "Фотоаппарат",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/cam_1_1.png",
-				"http://localhost:3000/db_dev/images_local/cam_1_2.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_1_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_1_2.png"
 			],
 			"filters": {
 				"type": "slr",
@@ -553,8 +553,8 @@
 			"publish-date": "1558596738466",
 			"category": "Фотоаппарат",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/cam_2_1.png",
-				"http://localhost:3000/db_dev/images_local/cam_2_2.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_2_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_2_2.png"
 			],
 			"filters": {
 				"type": "digital",
@@ -579,12 +579,12 @@
 			"publish-date": "1582638029924",
 			"category": "Фотоаппарат",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/cam_3_1.png",
-				"http://localhost:3000/db_dev/images_local/cam_3_2.png",
-				"http://localhost:3000/db_dev/images_local/cam_3_3.png",
-				"http://localhost:3000/db_dev/images_local/cam_3_4.png",
-				"http://localhost:3000/db_dev/images_local/cam_3_5.png",
-				"http://localhost:3000/db_dev/images_local/cam_3_6.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_3_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_3_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_3_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_3_4.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_3_5.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_3_6.png"
 			],
 			"filters": {
 				"type": "slr",
@@ -609,12 +609,12 @@
 			"publish-date": "1583228237313",
 			"category": "Фотоаппарат",
 			"photos": [
-				"http://localhost:3000/db_dev/images_local/cam_4_1.png",
-				"http://localhost:3000/db_dev/images_local/cam_4_2.png",
-				"http://localhost:3000/db_dev/images_local/cam_4_3.png",
-				"http://localhost:3000/db_dev/images_local/cam_4_4.png",
-				"http://localhost:3000/db_dev/images_local/cam_4_5.png",
-				"http://localhost:3000/db_dev/images_local/cam_4_6.png"
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_4_1.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_4_2.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_4_3.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_4_4.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_4_5.png",
+				"C:/repository/react.js/react_adv_site/src/db_dev/images_local/cam_4_6.png"
 			],
 			"filters": {
 				"type": "slr",
