@@ -30,7 +30,7 @@ export const Results = () => {
 					<div className="product__image-more-photo hidden">+2 фото</div>
 					<img
 						src="img/item1.jpg"
-						srcSet="img/item1-2x.jpg 2x"
+						srcSet="http://192.168.0.2/react-adv-site/images_local/house_1_1.png"
 						width="318"
 						height="220"
 						alt="Загородный дом с видом на озеро"
@@ -195,7 +195,9 @@ export const Results = () => {
 						<a href="/#">1-комнатная квартира в центре Питера</a>
 					</h3>
 					<div className="product__price">5 750 000 ₽</div>
-					<div className="product__address">Санкт-Петербург, Невский проспект</div>
+					<div className="product__address">
+						Санкт-Петербург, Невский проспект
+					</div>
 					<div className="product__date">5 часов назад</div>
 				</div>
 			</li>

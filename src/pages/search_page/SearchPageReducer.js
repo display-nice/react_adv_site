@@ -21,7 +21,8 @@ const SP_Slice = createSlice({
 			isLoading: true,
 			error: false
 		},	
-		itemsData: null,		
+		itemsData: null,
+		
 	},
 	reducers: {
 
