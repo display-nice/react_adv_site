@@ -1,11 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export const EstateFilter = () => {
+
+	const filterIsActive = useSelector((state) => state.Filters_Reducer.activeFilter.estate)
+	let filterVisibility = "filter__estate";
+	if (filterIsActive === false) filterVisibility += " hidden";
+
 	return (
-		<div className="filter__estate">
+		<div className={filterVisibility}>
 			<fieldset className="filter__type filter__type--estate">
 				<legend>Тип недвижимости</legend>
-				<ul className="filter__checkboxes-list filter__checkboxes-list--estate">
+				<ul className="filter__checkboxes-list filter__checkboxes-list--estate ">
 					<li className="filter__checkboxes-item">
 						<input
 							className="visually-hidden"

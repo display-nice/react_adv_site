@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Selector } from "./components/Selector";
+import { Selector } from "./components/Selector.tsx";
 import { CameraFilter } from "./components/CameraFilter";
 import { CarFilter } from "./components/CarFilter";
 import { EstateFilter } from "./components/EstateFilter";

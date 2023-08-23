@@ -1,10 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+// import { setActiveFilter } from "../FiltersReducer";
+import { setActiveFilter } from "./FiltersReducer";
 
 export const Selector = () => {
+	const dispatch = useDispatch();
+	const selectCategory = (e): void => {
+		dispatch(setActiveFilter(e.target.value))
+	}
+
 	return (
 		<div className="filter__select-wrapper">
 			<label htmlFor="categories">Категория товаров</label>
-			<select id="categories" name="categories">
+			<select id="categories" name="categories" onChange={selectCategory}>
 				<option value="all" defaultValue>
 					Все
 				</option>

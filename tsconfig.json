@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+	  "allowSyntheticDefaultImports": true,  
+	  "allowImportingTsExtensions": true,
+	  "moduleResolution": "node",
+	  "noEmit": true,
+	  "forceConsistentCasingInFileNames": true,
+	  "noFallthroughCasesInSwitch": true,
+	  "resolveJsonModule": true,
+	  "jsx": "react-jsx"
+	},
+	"include": ["src"]
+ }
