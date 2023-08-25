@@ -1,9 +1,12 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { initializePage } from "@search_page/SearchPageReducer";
+// import { initializePage } from "@search_page/SearchPageReducer";
+import { initializePage } from "./SearchPageReducer";
 
-import { Filters } from "@sp_modules/Filters/Filters";
+// import { Filters } from "@sp_modules/Filters/Filters.jsx";
+import { Filters } from "./modules/Filters/_Filters";
+
 import { Sorting } from "@sp_modules/Sorting/Sorting";
 import { Results } from "@sp_modules/Results";
 import { Popup } from "@sp_modules/Popup";

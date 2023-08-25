@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Selector } from "./components/Selector.tsx";
-import { CameraFilter } from "./components/CameraFilter";
-import { CarFilter } from "./components/CarFilter";
-import { EstateFilter } from "./components/EstateFilter";
-import { LaptopFilter } from "./components/LaptopFilter";
-import { RangeFilter } from "./components/RangeFilter";
+import { Selector } from "./Selector.tsx";
+import { CameraFilter } from "./CameraFilter";
+import { CarFilter } from "./CarFilter";
+import { EstateFilter } from "./EstateFilter";
+import { LaptopFilter } from "./LaptopFilter";
+import { RangeFilter } from "./RangeFilter";
 
 export const Filters = () => {
 	return (

@@ -7,9 +7,14 @@ import { SP_Services } from "./SearchPageServices";
 export const initializePage = createAsyncThunk(
 	"SearchPageReducer/initializePage",
 	async function () {
-		const SPServices = new SP_Services();
-		let itemsData = await SPServices.loadItemsData();
-		console.log(itemsData);
+		try {
+			const SPServices = new SP_Services();
+			let itemsData = await SPServices.loadItemsData();
+			console.log(itemsData);
+		}
+		catch (error) {
+			throw error
+		}
 		// return itemsData;
 	}
 );
@@ -27,16 +32,26 @@ const SP_Slice = createSlice({
 	reducers: {
 		
 	},
-	extraReducers: {
-		[initializePage.error]: (state) => {
-			state.page.error = true;
-			console.log('error');
-		},
-		[initializePage.fulfilled]: (state, action) => {
+	extraReducers: (builder) => {
+		builder.addCase(initializePage.fulfilled, (state, action) => {
 			state.itemsData = action.payload;
 			state.page.isLoading = false;
 			state.page.error = false;
-		},
+		});
+		builder.addCase(initializePage.rejected, (state, action) => {
+			state.page.error = true;
+			console.log('error');
+			// state.error = action.error.message; здесь можно получить доступ к сообщению об ошибке
+		});
+		// [initializePage.error]: (state) => {
+		// 	state.page.error = true;
+		// 	console.log('error');
+		// },
+		// [initializePage.fulfilled]: (state, action) => {
+		// 	state.itemsData = action.payload;
+		// 	state.page.isLoading = false;
+		// 	state.page.error = false;
+		// },
 	}
 
 })
