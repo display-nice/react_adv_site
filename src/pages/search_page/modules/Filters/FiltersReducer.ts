@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FiltersState {
 	activeFilter: {
@@ -74,12 +74,11 @@ const Filters_Slice = createSlice({
 	name: "FiltersSlice",
 	initialState,	
 	reducers: {
-		setActiveFilter(state, action): void {			
+		setActiveFilter(state, action: PayloadAction<string>): void {			
 			for (let key in state.activeFilter) {
 				if (key === action.payload) {
 					state.activeFilter[`${key}`] = true;
 				} else state.activeFilter[`${key}`] = false;
-				// console.log(`${key} = ${state.activeFilter[`${key}`]}`);
 			}
 		},		
 	},

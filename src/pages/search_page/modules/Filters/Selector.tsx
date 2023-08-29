@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-// import { setActiveFilter } from "../FiltersReducer";
 import { setActiveFilter } from "./FiltersReducer";
 
 export const Selector = () => {

@@ -1,10 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-// import { SP_Reducer } from "@search_page/SearchPageReducer.js";
-// import { Filters_Reducer } from "@sp_modules/Filters/FiltersReducer.tsx";
-
 import { SP_Reducer } from "./pages/search_page/SearchPageReducer.tsx";
-import { Filters_Reducer } from "./pages/search_page/modules/Filters/FiltersReducer"
+import { Filters_Reducer } from "./pages/search_page/modules/Filters/FiltersReducer.ts"
 
 // Для создания стора нужно обязательно предварительно провести combinereducers
 // Либо использовать запись ниже, передав в configureStore объект с одним редьюсером
@@ -16,3 +13,5 @@ export const store = configureStore({
 	}
 })
 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
