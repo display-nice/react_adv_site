@@ -1,8 +1,15 @@
 import React from "react";
+import { useAppSelector } from "@src/hook.ts";
 
 export const CarFilter = () => {
+
+	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.all)
+	const carsFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.cars)
+	let filterVisibility = "filter__car";
+	if (!carsFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
+
 	return (
-		<div className="filter__car">
+		<div className={filterVisibility}>
 			<div className="filter__select-wrapper">
 				<label htmlFor="resolution-video">Минимальный год выпуска</label>
 				<select id="car_year" name="car_year">

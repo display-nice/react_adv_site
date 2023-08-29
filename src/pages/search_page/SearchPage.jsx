@@ -15,7 +15,7 @@ import { Spinner } from "@sp_modules/Spinner/Spinner";
 const PageContent = () => {
 
 	// Если страница ещё загружается - то основной контент показан не будет
-	const pageIsLoading = useSelector((state) => state.SP_Reducer.page.isLoading);
+	const pageIsLoading = useSelector((state) => state.SearchPageReducer.page.isLoading);
 	if (pageIsLoading) {
 		return null;
 	}
@@ -53,7 +53,7 @@ const PageContent = () => {
 };
 
 export const SearchPage = () => {
-	const page = useSelector((state) => state.SP_Reducer.page);
+	const page = useSelector((state) => state.SearchPageReducer.page);
 	const dispatch = useDispatch();
 
 	// 1. Инициализация всей страницы

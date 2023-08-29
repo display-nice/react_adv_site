@@ -70,7 +70,7 @@ const initialState: FiltersState = {
 	},
 }
 
-const Filters_Slice = createSlice({
+const FiltersSlice = createSlice({
 	name: "FiltersSlice",
 	initialState,	
 	reducers: {
@@ -85,8 +85,8 @@ const Filters_Slice = createSlice({
 	extraReducers: {},
 });
 
-export const Filters_Reducer = Filters_Slice.reducer;
-export const {setActiveFilter} = Filters_Slice.actions;
+export const FiltersReducer = FiltersSlice.reducer;
+export const {setActiveFilter} = FiltersSlice.actions;
 
 
 // initialState: {

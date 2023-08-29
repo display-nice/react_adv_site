@@ -1,8 +1,15 @@
 import React from "react";
+import { useAppSelector } from "@src/hook.ts";
 
 export const CameraFilter = () => {
+
+	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.all)
+	const cameraFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.camera)
+	let filterVisibility = "filter__camera";
+	if (!cameraFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
+
 	return (
-		<div className="filter__camera">
+		<div className={filterVisibility}>
 			<fieldset className="filter__type filter__type--camera">
 				<legend>Тип фотоаппарата</legend>
 				<ul className="filter__checkboxes-list filter__checkboxes-list--camera">

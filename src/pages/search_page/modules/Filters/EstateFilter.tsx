@@ -1,11 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@src/hook.ts";
 
 export const EstateFilter = () => {
 
-	const filterIsActive = useSelector((state) => state.Filters_Reducer.activeFilter.estate)
+	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.all)
+	const estateFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.estate)
 	let filterVisibility = "filter__estate";
-	if (filterIsActive === false) filterVisibility += " hidden";
+	if (!estateFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
 
 	return (
 		<div className={filterVisibility}>

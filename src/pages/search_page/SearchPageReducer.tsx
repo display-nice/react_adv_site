@@ -19,7 +19,7 @@ export const initializePage = createAsyncThunk(
 	}
 );
 
-const SP_Slice = createSlice({
+const SearchPageSlice = createSlice({
 	name: 'SearchPageSlice',
 	initialState: {
 		page: {
@@ -56,5 +56,5 @@ const SP_Slice = createSlice({
 
 })
 
-export const SP_Reducer = SP_Slice.reducer;
+export const SearchPageReducer = SearchPageSlice.reducer;
 // export const {} = SP_Slice.actions;

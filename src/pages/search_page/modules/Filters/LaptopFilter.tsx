@@ -1,8 +1,15 @@
 import React from "react";
+import { useAppSelector } from "@src/hook.ts";
 
 export const LaptopFilter = () => {
+
+	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.all)
+	const laptopsFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.laptops)
+	let filterVisibility = "filter__laptop";
+	if (!laptopsFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
+
 	return (
-		<div className="filter__laptop">
+		<div className={filterVisibility}>
 			<fieldset className="filter__type filter__type--laptop">
 				<legend>Тип ноутбука</legend>
 				<ul className="filter__checkboxes-list filter__checkboxes-list--laptop-ram">
