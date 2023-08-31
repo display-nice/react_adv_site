@@ -1,41 +1,42 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface FiltersState {
-	activeFilter: {
-		'all': boolean,
-		'estate': boolean,
-		'laptops': boolean,
-		'camera': boolean,
-		'cars': boolean,
-	},
-	cameraFilter: {
-		cameraType: string, // possible values (string): mirror, digital, mirrorless
-		resolutionMatrix: string, // possible values (string): 1mp, 3mp, 5mp, 7mp, 10mp
-		resolutionVideo: string, // possible values (string): any, HD, Full HD, 4k, 5k
-	},
-	carFilter: {
-		minimalYear: string, // possible values (string): 1900, 1940, 1960, 1980, 2000
-		transmission: string, // possible values (string): any, mechanical, auto
-		bodyType: string, // possible values (string): sedan, universal, hatchback, jeep, cupe
-	},
-	laptopFilter: {
-		laptopType: string, // possible values (string): ultra, home, gaming
-		ramValue: string,  // possible values (string): any, 4gb, 8gb, 16gb
-		screenDiagonal: number,  // possible values (number): 13, 14, 15, 17
-		processorType: string,  // possible values (string): i3, i5, i7
-	},
-	estateFilter: {
-		estateType: string, // possible values (string): house, flat, apartments
-		minSquare: number, // possible values (number): any number
-		roomsQuantity: string, // possible values (string): any, 1, 2, 3, 4, 5+
-	},
-	rangeFilter: {
-		minPrice: number,
-		maxPrice: number,
-	},
-}
+// interface FiltersState {
+// 	activeFilter: {
+// 		'all': boolean,
+// 		'estate': boolean,
+// 		'laptops': boolean,
+// 		'camera': boolean,
+// 		'cars': boolean,
+// 	},
+// 	cameraFilter: {
+// 		cameraType: string, // possible values (string): mirror, digital, mirrorless
+// 		resolutionMatrix: string, // possible values (string): 1mp, 3mp, 5mp, 7mp, 10mp
+// 		resolutionVideo: string, // possible values (string): any, HD, Full HD, 4k, 5k
+// 	},
+// 	carFilter: {
+// 		minimalYear: string, // possible values (string): 1900, 1940, 1960, 1980, 2000
+// 		transmission: string, // possible values (string): any, mechanical, auto
+// 		bodyType: string, // possible values (string): sedan, universal, hatchback, jeep, cupe
+// 	},
+// 	laptopFilter: {
+// 		laptopType: string, // possible values (string): ultra, home, gaming
+// 		ramValue: string,  // possible values (string): any, 4gb, 8gb, 16gb
+// 		screenDiagonal: number,  // possible values (number): 13, 14, 15, 17
+// 		processorType: string,  // possible values (string): i3, i5, i7
+// 	},
+// 	estateFilter: {
+// 		estateType: string, // possible values (string): house, flat, apartments
+// 		minSquare: number, // possible values (number): any number
+// 		roomsQuantity: string, // possible values (string): any, 1, 2, 3, 4, 5+
+// 	},
+// 	rangeFilter: {
+// 		// minPrice: number,
+// 		// maxPrice: number,
+// 		// prices: number[]
+// 	},
+// }
 
-const initialState: FiltersState = {
+const initialState = {
 	activeFilter: {
 		'all': true,
 		'estate': false,
@@ -65,8 +66,11 @@ const initialState: FiltersState = {
 		roomsQuantity: '', // possible values (string): any, 1, 2, 3, 4, 5+
 	},
 	rangeFilter: {
-		minPrice: 0,
-		maxPrice: 0,
+		// prices: [2, 200],
+		// prices: [9000, 30000000],
+		minPrice: 2,
+		maxPrice: 200,
+		selectedPrices: [2, 200]
 	},
 }
 
@@ -80,13 +84,17 @@ const FiltersSlice = createSlice({
 					state.activeFilter[`${key}`] = true;
 				} else state.activeFilter[`${key}`] = false;
 			}
-		},		
+		},
+		setRangeSliderValue(state, action: PayloadAction<number[]>): void {
+			state.rangeFilter.selectedPrices = action.payload;
+			console.log(state.rangeFilter.selectedPrices)
+		}
 	},
 	extraReducers: {},
 });
 
 export const FiltersReducer = FiltersSlice.reducer;
-export const {setActiveFilter} = FiltersSlice.actions;
+export const {setActiveFilter, setRangeSliderValue} = FiltersSlice.actions;
 
 
 // initialState: {

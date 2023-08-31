@@ -5,7 +5,7 @@ import { CameraFilter } from "./CameraFilter";
 import { CarFilter } from "./CarFilter";
 import { EstateFilter } from "./EstateFilter";
 import { LaptopFilter } from "./LaptopFilter";
-import { RangeFilter } from "./RangeFilter";
+import { RangeFilter } from "./RangeFilter/RangeFilter";
 
 export const Filters = () => {
 	return (

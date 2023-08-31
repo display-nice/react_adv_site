@@ -14,8 +14,6 @@
   margin-bottom: 17px;
 }
 
-
-
 .filter fieldset {
   margin-left: 0;
   margin-right: 0;
@@ -23,7 +21,6 @@
   padding: 0;
   border: none;
 }
-
 
 .filter label,
 .filter legend {
@@ -487,16 +484,19 @@ margin-bottom: 22px;
 }
 
 .filter__range {
-  padding-left: 16px;
-  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* padding-left: 16px;
+  padding-right: 16px; */
 }
 
-.filter__range label {
+/* .filter__range label {
   margin-left: -16px;
-}
+} */
 
-/*.filter__category-filters {*/
-/*  position: fixed;*/
-/*  z-index: 100;*/
-/*  width: 345px;*/
-/*}*/
+/* .filter__category-filters {
+  position: fixed;
+  z-index: 100;
+  width: 345px;
+} */
