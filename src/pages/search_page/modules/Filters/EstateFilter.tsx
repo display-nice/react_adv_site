@@ -10,11 +10,13 @@ export const EstateFilter = () => {
 	let filterVisibility = "filter__estate";
 	if (!estateFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";		
 
+	// Минимальная площадь
 	const minSquare = useAppSelector(state => state.FiltersReducer.estateFilter.minSquare)
 	const changeMinSquare = (e) => {
 		dispatch(setMinSquare(e.target.value));
 	}
 
+	// Тип недвижимости
 	const estTypes = useAppSelector((state) => state.FiltersReducer.estateFilter.estTypes);	
 	const changeEstateType = (e) => {
 		dispatch(setEstateType(e.target.value));
@@ -37,9 +39,9 @@ export const EstateFilter = () => {
 		)
 	})
 
+	// Количество комнат
 	const roomsQuantity = useAppSelector((state) => state.FiltersReducer.estateFilter.roomsQuantity);
 	const changeRoomQuantity = (e) => {
-		e.preventDefault();
 		dispatch(setRoomQuantity(e.target.value))
 	}
 	const roomsQuantityBtns = roomsQuantity.map((item) => {
@@ -52,7 +54,7 @@ export const EstateFilter = () => {
 					value={item.value}
 					id={`${item.value + '_room'}`}
 					checked={item.checked === true ? true : false}
-					onClick={changeRoomQuantity}
+					onChange={changeRoomQuantity}
 				/>
 				<label htmlFor={`${item.value + '_room'}`}>{item.text}</label>
 			</li>

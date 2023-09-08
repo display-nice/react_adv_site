@@ -36,11 +36,19 @@ interface FiltersState {
 	},
 }
 
+type filterParam = {	
+	filter: string,
+	type: string,
+	name: string,
+	value: string,
+	checked?: boolean
+}
+
 const initialState = {
 	activeFilter: {
 		'all': false,
-		'estate': true,
-		'laptops': false,
+		'estate': false,
+		'laptops': true,
 		'camera': false,
 		'cars': false,
 	},
@@ -55,10 +63,29 @@ const initialState = {
 		bodyType: "sedan", // possible values (string): sedan, universal, hatchback, jeep, cupe
 	},
 	laptopFilter: {
-		laptopType: '', // possible values: (string): ultra, home, gaming
-		ramValue: "any", // possible values (string): any, 4gb, 8gb, 16gb
-		screenDiagonal: 13, // possible values (number): 13, 14, 15, 17
-		processorType: "i3", // possible values (string): i3, i5, i7
+		laptopType: [
+			{name: "laptopType", text: 'Ультрабук', value: 'ultra', checked: false},
+			{name: "laptopType", text: 'Домашний ноутбук', value: 'home', checked: false},
+			{name: "laptopType", text: 'Игровой ноутбук', value: 'gaming', checked: false}
+		],
+		laptopRamValue: [
+			{name: 'laptopRamValue', text: 'Любой', value: 'any', checked: true},
+			{name: 'laptopRamValue', text: '4 Гб', value: '4gb', checked: false},
+			{name: 'laptopRamValue', text: '8 Гб', value: '8gb', checked: false},
+			{name: 'laptopRamValue', text: '16 Гб', value: '16gb', checked: false},
+		],
+		laptopDiagonal: [
+			{name: 'laptopDiagonal', text: 'Любая', value: 'any', checked: true},
+			{name: 'laptopDiagonal', text: '13″', value: '13in', checked: false},
+			{name: 'laptopDiagonal', text: '14″', value: '14in', checked: false},
+			{name: 'laptopDiagonal', text: '15″', value: '15in', checked: false},
+			{name: 'laptopDiagonal', text: '17″', value: '16in', checked: false},
+		],
+		laptopProcType: [
+			{name: 'laptopProcType', text: 'Intel Core i3', value: 'i3', checked: false},
+			{name: 'laptopProcType', text: 'Intel Core i5', value: 'i5', checked: false},
+			{name: 'laptopProcType', text: 'Intel Core i7', value: 'i7', checked: false},
+		],
 	},
 	estateFilter: {
 		estTypes: [
@@ -112,10 +139,24 @@ const FiltersSlice = createSlice({
 			})
 			// console.log(state.estateFilter.roomsQuantity.map(item => ({ ...item })));
 		},
-
+		setFilterParams(state, action: PayloadAction<filterParam>):void {
+			const {filter, type, name, value} = action.payload;
+			switch (type) {
+				case 'checkbox':
+					const i = state[`${filter}`][`${name}`].findIndex(item => item.value === value);
+					state[`${filter}`][`${name}`][i].checked = !state[`${filter}`][`${name}`][i].checked;
+					break;
+				case 'radio':
+					// console.log('need to work this up');
+					state[`${filter}`][`${name}`].map(item => {
+						item.value === value ? item.checked = true : item.checked = false
+					})
+					break;
+			}
+		}
 	},
 	extraReducers: {},
 });
 
 export const FiltersReducer = FiltersSlice.reducer;
-export const {setActiveFilter, setRangeSliderValue, setMinSquare, setEstateType, setRoomQuantity} = FiltersSlice.actions;
+export const {setActiveFilter, setRangeSliderValue, setMinSquare, setEstateType, setRoomQuantity, setFilterParams} = FiltersSlice.actions;
