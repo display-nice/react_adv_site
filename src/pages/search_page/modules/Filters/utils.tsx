@@ -1,12 +1,24 @@
+// ------------- DESCRIPTION --------------
+// ulCrafter's incoming parameters:
+// items: array of objects from state, like this:
+// laptopType: [
+// 	{name: "laptopType", text: 'Ультрабук', value: 'ultra', checked: false},
+// 	{name: "laptopType", text: 'Домашний ноутбук', value: 'home', checked: false},
+// 	{name: "laptopType", text: 'Игровой ноутбук', value: 'gaming', checked: false}
+// ]
+// inputType: "checkbox" or "radio"
+// filter: name of the filter in state, one of this:
+// cameraFilter, carFilter, laptopFilter, estateFilter
+// ulClass: special css class for <ul> tag.
+// eventHandler: function to handle events.
+
 export const ulCrafter = (items, inputType, filter, ulClasses, eventHandler) => {
 
 	let liClasses;
 	switch (inputType) {
 		case 'checkbox':
-			// ulClass = "filter__checkboxes-list"; break;
 			liClasses = "filter__checkboxes-item"; break;
 		case 'radio':
-			// ulClass = "filter__checkboxes-list"; break;
 			liClasses = "filter__radiobuttons-item"; break;
 	}
 
@@ -34,13 +46,3 @@ export const ulCrafter = (items, inputType, filter, ulClasses, eventHandler) => 
 		</ul>
 	)
 }
-
-// items: array of objects from state, like this:
-// laptopType: [
-// 	{name: "laptop-type", text: 'Ультрабук', value: 'ultra', checked: false},
-// 	{name: "laptop-type", text: 'Домашний ноутбук', value: 'home', checked: false},
-// 	{name: "laptop-type", text: 'Игровой ноутбук', value: 'gaming', checked: false}
-// ]
-// type: "checkbox", "radio"
-// ulClass: special css class for <ul> tag.
-// eventHandler: function to handle events.

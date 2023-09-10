@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Selector } from "./Selector";
+import { ProductCategoryFilter } from "./ProductCategoryFilter";
 import { CameraFilter } from "./CameraFilter";
 import { CarFilter } from "./CarFilter";
 import { EstateFilter } from "./EstateFilter";
@@ -10,7 +10,7 @@ import { RangeFilter } from "./RangeFilter/RangeFilter";
 export const Filters = () => {
 	return (
 		<form className="filter__form" action="#" method="post">
-			<Selector/>
+			<ProductCategoryFilter/>
 			<RangeFilter/>
 			<EstateFilter/>
 			<CameraFilter/>

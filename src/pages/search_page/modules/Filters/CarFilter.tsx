@@ -3,8 +3,8 @@ import { useAppSelector } from "@src/hook.ts";
 
 export const CarFilter = () => {
 
-	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.all)
-	const carsFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.cars)
+	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.productCategoryFilter.activeCategory.all)
+	const carsFilterIsActive = useAppSelector((state) => state.FiltersReducer.productCategoryFilter.activeCategory.cars)
 	let filterVisibility = "filter__car";
 	if (!carsFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
 

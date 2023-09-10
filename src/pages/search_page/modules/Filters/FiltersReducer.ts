@@ -45,12 +45,26 @@ type filterParam = {
 }
 
 const initialState = {
-	activeFilter: {
-		'all': false,
-		'estate': false,
-		'laptops': true,
-		'camera': false,
-		'cars': false,
+	productCategoryFilter: {
+		categories: [
+			{name: 'productCategories', text: 'Все', value: 'all', checked: false},
+			{name: 'productCategories', text: 'Недвижимость', value: 'estate', checked: false},
+			{name: 'productCategories', text: 'Ноутбуки', value: 'laptops', checked: true},
+			{name: 'productCategories', text: 'Фотоаппараты', value: 'cameras', checked: false},
+			{name: 'productCategories', text: 'Автомобили', value: 'cars', checked: false},
+			// {name: 'productCategories', text: 'Все', value: 'all'},
+			// {name: 'productCategories', text: 'Недвижимость', value: 'estate'},
+			// {name: 'productCategories', text: 'Ноутбуки', value: 'laptops'},
+			// {name: 'productCategories', text: 'Фотоаппараты', value: 'cameras'},
+			// {name: 'productCategories', text: 'Автомобили', value: 'cars'},
+		],
+		activeCategory: {
+			'all': false,
+			'estate': false,
+			'laptops': true,
+			'cameras': false,
+			'cars': false,
+		},
 	},
 	cameraFilter: {
 		cameraType: '', // possible values: null, (string): mirror, digital, mirrorless
@@ -114,12 +128,14 @@ const FiltersSlice = createSlice({
 	name: "FiltersSlice",
 	initialState,	
 	reducers: {
-		setActiveFilter(state, action: PayloadAction<string>): void {			
-			for (let key in state.activeFilter) {
-				if (key === action.payload) {
-					state.activeFilter[`${key}`] = true;
-				} else state.activeFilter[`${key}`] = false;
+		setActiveCategory(state, action: PayloadAction<string>): void {			
+			for (let key in state.productCategoryFilter.activeCategory) {
+				if (key === action.payload) state.productCategoryFilter.activeCategory[`${key}`] = true; 
+				else state.productCategoryFilter.activeCategory[`${key}`] = false;
 			}
+			state.productCategoryFilter.categories.map(cat => {
+				cat.value === action.payload ? cat.checked = true : cat.checked = false;
+			})
 		},
 		setRangeSliderValue(state, action: PayloadAction<number[]>): void {
 			state.rangeFilter.selectedPrices = action.payload;
@@ -159,4 +175,4 @@ const FiltersSlice = createSlice({
 });
 
 export const FiltersReducer = FiltersSlice.reducer;
-export const {setActiveFilter, setRangeSliderValue, setMinSquare, setEstateType, setRoomQuantity, setFilterParams} = FiltersSlice.actions;
+export const {setActiveCategory, setRangeSliderValue, setMinSquare, setEstateType, setRoomQuantity, setFilterParams} = FiltersSlice.actions;

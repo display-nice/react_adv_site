@@ -3,8 +3,8 @@ import { useAppSelector } from "@src/hook.ts";
 
 export const CameraFilter = () => {
 
-	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.all)
-	const cameraFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.camera)
+	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.productCategoryFilter.activeCategory.all)
+	const cameraFilterIsActive = useAppSelector((state) => state.FiltersReducer.productCategoryFilter.activeCategory.cameras)
 	let filterVisibility = "filter__camera";
 	if (!cameraFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
 

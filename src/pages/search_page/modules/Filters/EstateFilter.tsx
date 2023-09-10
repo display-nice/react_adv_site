@@ -5,8 +5,8 @@ export const EstateFilter = () => {
 	const dispatch = useAppDispatch();
 	
 	// Видимость
-	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.all)
-	const estateFilterIsActive = useAppSelector((state) => state.FiltersReducer.activeFilter.estate)
+	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.productCategoryFilter.activeCategory.all)
+	const estateFilterIsActive = useAppSelector((state) => state.FiltersReducer.productCategoryFilter.activeCategory.estate)
 	let filterVisibility = "filter__estate";
 	if (!estateFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";		
 
