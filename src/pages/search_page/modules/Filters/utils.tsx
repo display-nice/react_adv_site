@@ -1,16 +1,16 @@
 // ------------- DESCRIPTION --------------
 // ulCrafter's incoming parameters:
-// items: array of objects from state, like this:
-// laptopType: [
-// 	{name: "laptopType", text: 'Ультрабук', value: 'ultra', checked: false},
-// 	{name: "laptopType", text: 'Домашний ноутбук', value: 'home', checked: false},
-// 	{name: "laptopType", text: 'Игровой ноутбук', value: 'gaming', checked: false}
-// ]
-// inputType: "checkbox" or "radio"
-// filter: name of the filter in state, one of this:
-// cameraFilter, carFilter, laptopFilter, estateFilter
-// ulClass: special css class for <ul> tag.
-// eventHandler: function to handle events.
+// 1. items: array of objects from state, like this:
+// 	laptopType: [
+// 		{name: "laptopType", text: 'Ультрабук', value: 'ultra', checked: false},
+// 		{name: "laptopType", text: 'Домашний ноутбук', value: 'home', checked: false},
+// 		{name: "laptopType", text: 'Игровой ноутбук', value: 'gaming', checked: false}
+// 	]
+// 2. inputType: "checkbox" or "radio"
+// 3. filter: name of the filter in state, one of this:
+// 	cameraFilter, carFilter, laptopFilter, estateFilter
+// 4. ulClass: special css class for <ul> tag.
+// 5. eventHandler: function to handle events.
 
 export const ulCrafter = (items, inputType, filter, ulClasses, eventHandler) => {
 

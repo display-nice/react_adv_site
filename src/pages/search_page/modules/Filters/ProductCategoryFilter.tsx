@@ -10,7 +10,6 @@ export const ProductCategoryFilter = () => {
 	const productCategories = useAppSelector(
 		(state) => state.FiltersReducer.productCategoryFilter.categories
 	);
-	// const activeCategory = useAppSelector((state) => state.FiltersReducer.productCategoryFilter.activeCategory).map()
 	const selectCrafter = () => {
 		const options = productCategories.map((cat) => (
 			<option
