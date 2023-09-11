@@ -1,15 +1,15 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setMinSquare, setFilterParams } from "./FiltersReducer";
+import { setMinSquare, setUlParams } from "./FiltersReducer";
 import { ulCrafter } from "./utils";
 
 export const EstateFilter = () => {
 	const dispatch = useAppDispatch();
-	const changeFilterParams = (e) => {
+	const changeUlParams = (e) => {
 		dispatch(
-			setFilterParams({
-				filter: e.target.dataset.filter,
+			setUlParams({
 				type: e.target.type,
-				name: e.target.name,
+				filter: e.target.dataset.filter,
+				subfilter: e.target.dataset.subfilter,				
 				value: e.target.value,
 			})
 		);
@@ -32,25 +32,27 @@ export const EstateFilter = () => {
 	};
 
 	// Тип недвижимости
-	const estateType = useAppSelector((state) => state.FiltersReducer.estateFilter.estateType);
+	const estateTypeData = useAppSelector((state) => state.FiltersReducer.estateFilter.estateType);
 	const estateTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--estate ";
 	const estateTypeBtns = ulCrafter(
-		estateType,
 		"checkbox",
 		"estateFilter",
+		"estateType",
+		estateTypeData,
 		estateTypeUlClasses,
-		changeFilterParams
+		changeUlParams
 	);
 
 	// Количество комнат
-	const roomsQuantity = useAppSelector((state) => state.FiltersReducer.estateFilter.roomsQuantity);
+	const roomsQuantityData = useAppSelector((state) => state.FiltersReducer.estateFilter.roomsQuantity);
 	const roomsQuantityUlClasses = "filter__ram-list";
 	const roomsQuantityBtns = ulCrafter(
-		roomsQuantity,
 		"radio",
 		"estateFilter",
+		"roomsQuantity",
+		roomsQuantityData,
 		roomsQuantityUlClasses,
-		changeFilterParams
+		changeUlParams
 	);
 
 	return (

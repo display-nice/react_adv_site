@@ -36,80 +36,119 @@ interface FiltersState {
 	};
 }
 
-type filterParam = {
-	filter: string;
+type filterParams = {
 	type: string;
-	name: string;
+	filter: string;
+	subfilter: string;
 	value: string;
 	checked?: boolean;
 };
 
+type selectParams = {
+	filter: string;
+	subfilter: string;
+	value: string;
+	checked?: boolean;
+}
+
 const initialState = {
 	productCategoryFilter: {
 		categories: [
-			{ name: "productCategories", text: "Все", value: "all", checked: false },
-			{ name: "productCategories", text: "Недвижимость", value: "estate", checked: true },
+			{ name: "productCategories", text: "Все", value: "all", checked: true },
+			{ name: "productCategories", text: "Недвижимость", value: "estate", checked: false },
 			{ name: "productCategories", text: "Ноутбуки", value: "laptops", checked: false },
 			{ name: "productCategories", text: "Фотоаппараты", value: "cameras", checked: false },
 			{ name: "productCategories", text: "Автомобили", value: "cars", checked: false },
 		],
 		activeCategory: {
-			all: false,
-			estate: true,
+			all: true,
+			estate: false,
 			laptops: false,
 			cameras: false,
 			cars: false,
 		},
 	},
 	cameraFilter: {
-		cameraType: "", // possible values: null, (string): mirror, digital, mirrorless
-		resolutionMatrix: "1mp", // possible values (string): 1mp, 3mp, 5mp, 7mp, 10mp
-		resolutionVideo: "any", // possible values (string): any, HD, Full HD, 4k, 5k
+		cameraType: [
+			{value: 'mirror', checked: false, text: 'Зеркальный'},
+			{value: 'digital', checked: false, text: 'Цифровой'},
+			{value: 'mirrorless', checked: false, text: 'Беззеркальный'},
+		],
+		resolutionMatrix: [
+			{value: '1mp', checked: false, text: '1 МП'},
+			{value: '3mp', checked: false, text: '3 МП'},
+			{value: '5mp', checked: false, text: '5 МП'},
+			{value: '7mp', checked: false, text: '7 МП'},
+			{value: '10mp', checked: false, text: '10 МП'},
+		],
+		resolutionVideo: [
+			{value: 'any', checked: false, text: 'Любое'},
+			{value: 'HD', checked: false, text: 'HD'},
+			{value: 'FullHD', checked: false, text: 'Full HD'},
+			{value: '4K', checked: false, text: '4K'},
+			{value: '5K', checked: false, text: '5K'},
+		],
 	},
 	carFilter: {
-		minimalYear: "1900", // possible values (string): 1900, 1940, 1960, 1980, 2000
-		transmission: "any", // possible values (string): any, mechanical, auto
-		bodyType: "sedan", // possible values (string): sedan, universal, hatchback, jeep, cupe
+		minimalYear: [
+			{value: '1900', checked: true, get text() {return this.value}},
+			{value: '1940', checked: false, get text() {return this.value}},
+			{value: '1960', checked: false, get text() {return this.value}},
+			{value: '1980', checked: false, get text() {return this.value}},
+			{value: '2000', checked: false, get text() {return this.value}},
+		],
+		transmission: [
+			{value: 'any', checked: false, text: 'Любая'},
+			{value: 'mechanical', checked: false, text: 'Механика'},
+			{value: 'auto', checked: false, text: 'Автомат'},
+		],
+		bodyType: [
+			{value: 'sedan', checked: false, text: 'Седан'},
+			{value: 'universal', checked: false, text: 'Универсал'},
+			{value: 'hatchback', checked: false, text: 'Хэтчбэк'},
+			{value: 'jeep', checked: false, text: 'Внедорожник'},
+			{value: 'cupe', checked: false, text: 'Купэ'},
+		],
 	},
 	laptopFilter: {
 		laptopType: [
-			{ name: "laptopType", text: "Ультрабук", value: "ultra", checked: false },
-			{ name: "laptopType", text: "Домашний ноутбук", value: "home", checked: false },
-			{ name: "laptopType", text: "Игровой ноутбук", value: "gaming", checked: false },
+			{ value: "ultra", checked: false, text: "Ультрабук", },
+			{ value: "home", checked: false, text: "Домашний ноутбук", },
+			{ value: "gaming", checked: false, text: "Игровой ноутбук", },
 		],
 		laptopRamValue: [
-			{ name: "laptopRamValue", text: "Любой", value: "any", checked: true },
-			{ name: "laptopRamValue", text: "4 Гб", value: "4gb", checked: false },
-			{ name: "laptopRamValue", text: "8 Гб", value: "8gb", checked: false },
-			{ name: "laptopRamValue", text: "16 Гб", value: "16gb", checked: false },
+			{ value: "any", checked: true, text: "Любой", },
+			{ value: "4gb", checked: false, text: "4 Гб", },
+			{ value: "8gb", checked: false, text: "8 Гб", },
+			{ value: "16gb", checked: false, text: "16 Гб", },
 		],
 		laptopDiagonal: [
-			{ name: "laptopDiagonal", text: "Любая", value: "any", checked: true },
-			{ name: "laptopDiagonal", text: "13″", value: "13in", checked: false },
-			{ name: "laptopDiagonal", text: "14″", value: "14in", checked: false },
-			{ name: "laptopDiagonal", text: "15″", value: "15in", checked: false },
-			{ name: "laptopDiagonal", text: "17″", value: "16in", checked: false },
+			{ value: "any", checked: true, text: "Любая", },
+			{ value: "13in", checked: false, text: "13″",  },
+			{ value: "14in", checked: false, text: "14″", },
+			{ value: "15in", checked: false, text: "15″", },
+			{ value: "16in", checked: false, text: "17″", },
 		],
 		laptopProcType: [
-			{ name: "laptopProcType", text: "Intel Core i3", value: "i3", checked: false },
-			{ name: "laptopProcType", text: "Intel Core i5", value: "i5", checked: false },
-			{ name: "laptopProcType", text: "Intel Core i7", value: "i7", checked: false },
+			{ value: "i3", checked: false, text: "Intel Core i3", },
+			{ value: "i5", checked: false, text: "Intel Core i5", },
+			{ value: "i7", checked: false, text: "Intel Core i7", },
 		],
 	},
 	estateFilter: {
 		estateType: [
-			{ name: "estateType", text: "Дом", value: "house", checked: false },
-			{ name: "estateType", text: "Квартира", value: "flat", checked: false },
-			{ name: "estateType", text: "Апартаменты", value: "apartments", checked: false },
+			{ value: "house", checked: false, text: "Дом", },
+			{ value: "flat", checked: false, text: "Квартира", },
+			{ value: "apartments", checked: false, text: "Апартаменты", },
 		],
 		minSquare: 0,
 		roomsQuantity: [
-			{ name: "roomsQuantity", text: "Любое", value: "any", checked: false },
-			{ name: "roomsQuantity", text: "1", value: "one", checked: false },
-			{ name: "roomsQuantity", text: "2", value: "two", checked: false },
-			{ name: "roomsQuantity", text: "3", value: "three", checked: false },
-			{ name: "roomsQuantity", text: "4", value: "four", checked: false },
-			{ name: "roomsQuantity", text: "5+", value: "fivemore", checked: false },
+			{ value: "any", checked: false, text: "Любое", },
+			{ value: "one", checked: false, text: "1", },
+			{ value: "two", checked: false, text: "2", },
+			{ value: "three", checked: false, text: "3", },
+			{ value: "four", checked: false, text: "4", },
+			{ value: "fivemore", checked: false, text: "5+", },
 		],
 	},
 	rangeFilter: {
@@ -139,24 +178,31 @@ const FiltersSlice = createSlice({
 		setMinSquare(state, action: PayloadAction<number>): void {
 			state.estateFilter.minSquare = action.payload;
 		},
-		setFilterParams(state, action: PayloadAction<filterParam>): void {
-			const { filter, type, name, value } = action.payload;
-			switch (type) {
+		setUlParams(state, action: PayloadAction<filterParams>): void {
+			const { type, filter, subfilter, value } = action.payload;
+			// console.log('setUlParams incoming data: ' + type, filter, subfilter, value);
+			switch (type) {							
 				case "checkbox":
-					const i = state[`${filter}`][`${name}`].findIndex((item) => item.value === value);
-					state[`${filter}`][`${name}`][i].checked = !state[`${filter}`][`${name}`][i].checked;
+					const i = state[`${filter}`][`${subfilter}`].findIndex((item) => item.value === value);
+					state[`${filter}`][`${subfilter}`][i].checked = !state[`${filter}`][`${subfilter}`][i].checked;
 					break;
 				case "radio":
-					state[`${filter}`][`${name}`].map((item) => {
+					state[`${filter}`][`${subfilter}`].map((item) => {
 						item.value === value ? (item.checked = true) : (item.checked = false);
 					});
 					break;
 			}
 		},
+		setSelectParams(state, action: PayloadAction<selectParams>): void {
+			const { filter, subfilter, value } = action.payload;			
+			state[`${filter}`][`${subfilter}`].map((item) => {
+				item.value === value ? (item.checked = true) : (item.checked = false);
+			});
+		}
 	},
 	extraReducers: {},
 });
 
 export const FiltersReducer = FiltersSlice.reducer;
-export const { setActiveCategory, setRangeSliderValue, setMinSquare, setFilterParams } =
+export const { setActiveCategory, setRangeSliderValue, setMinSquare, setUlParams, setSelectParams } =
 	FiltersSlice.actions;
