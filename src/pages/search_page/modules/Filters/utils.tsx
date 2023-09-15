@@ -50,7 +50,7 @@ export const selectCrafter = (filter, subfilter, data, eventHandler) => {
 		<option
 			key={subfilter + "_" + item.value + "_key"}
 			id={`${subfilter + "_" + item.value}`}
-			selected={item.checked === true ? true : false}
+			defaultValue={item.checked === true ? item.value : false}
 			value={item.value}
 			data-filter={filter}
 			data-subfilter={subfilter}

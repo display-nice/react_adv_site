@@ -14,7 +14,7 @@ export const Sorting = () => {
 								name="sorting-order"
 								value="popular"
 								id="sort-popular"
-								checked
+								// checked (это вызывало ошибку в консоли)
 							/>
 							<label htmlFor="sort-popular">Популярные</label>
 						</li>

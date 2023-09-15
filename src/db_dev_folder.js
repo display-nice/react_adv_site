@@ -1,4 +1,4 @@
-export const db_local = {
+export const db_dev_folder = {
 	"products": [
 		{
 			"name": "Двушка в центре Питера",

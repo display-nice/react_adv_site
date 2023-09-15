@@ -9,13 +9,13 @@ export const initializePage = createAsyncThunk(
 	async function () {
 		try {
 			const SPServices = new SP_Services();
-			let itemsData = await SPServices.loadItemsData();
-			console.log(itemsData);
+			let productsData = await SPServices.loadItemsData();
+			return productsData;
 		}
 		catch (error) {
 			throw error
 		}
-		// return itemsData;
+		// return productsData;
 	}
 );
 
@@ -26,7 +26,7 @@ const SearchPageSlice = createSlice({
 			isLoading: true,
 			error: false
 		},	
-		itemsData: null,
+		productsData: null,
 		
 	},
 	reducers: {
@@ -34,9 +34,10 @@ const SearchPageSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(initializePage.fulfilled, (state, action) => {
-			state.itemsData = action.payload;
+			state.productsData = action.payload;
 			state.page.isLoading = false;
 			state.page.error = false;
+			console.log(state.productsData);
 		});
 		builder.addCase(initializePage.rejected, (state, action) => {
 			state.page.error = true;
@@ -48,7 +49,7 @@ const SearchPageSlice = createSlice({
 		// 	console.log('error');
 		// },
 		// [initializePage.fulfilled]: (state, action) => {
-		// 	state.itemsData = action.payload;
+		// 	state.productsData = action.payload;
 		// 	state.page.isLoading = false;
 		// 	state.page.error = false;
 		// },

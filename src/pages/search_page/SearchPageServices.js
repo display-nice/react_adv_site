@@ -1,5 +1,4 @@
-// import { db_local } from "../../../db_local.js";
-import { db_local } from "../../db_local.js";
+import { db_dev_folder } from "../../db_dev_folder.js";
 
 export class SP_Services {	
 	loadItemsData = async () => {
@@ -10,6 +9,6 @@ export class SP_Services {
 		// return await response.json();
 		
 		// тестовая локальная база данных, чтобы не кошмарить сервер при разработке
-		return db_local;
+		return db_dev_folder;
 	};
 };
