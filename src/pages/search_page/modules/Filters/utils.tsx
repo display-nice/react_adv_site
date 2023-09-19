@@ -73,3 +73,7 @@ export const selectCrafter = (filter, subfilter, data, eventHandler) => {
 		</>
 	);
 };
+
+export const dbAdapter = () => {
+	
+}

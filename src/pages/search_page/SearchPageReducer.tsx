@@ -54,7 +54,6 @@ const SearchPageSlice = createSlice({
 		// 	state.page.error = false;
 		// },
 	}
-
 })
 
 export const SearchPageReducer = SearchPageSlice.reducer;

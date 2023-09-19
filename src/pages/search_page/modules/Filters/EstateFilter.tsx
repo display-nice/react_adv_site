@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setMinSquare, setUlParams } from "./FiltersReducer";
+import { setMinSquare, setUlParams, getActiveCategory } from "./FiltersReducer";
 import { ulCrafter } from "./utils";
 
 export const EstateFilter = () => {
@@ -16,17 +16,13 @@ export const EstateFilter = () => {
 	};
 
 	// Видимость
-	const allFilterIsActive = useAppSelector(
-		(state) => state.FiltersReducer.productCategoryFilter.activeCategory.all
-	);
-	const estateFilterIsActive = useAppSelector(
-		(state) => state.FiltersReducer.productCategoryFilter.activeCategory.estate
-	);
-	let filterVisibility = "filter__estate";
-	if (!estateFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
+	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter)
+	const activeFilter = getActiveCategory(prodCatFilter)
+	let filterClasses = "filter__estate";
+	if (activeFilter[0] !== 'estateFilter' && activeFilter[0] !== 'all' ) filterClasses += " hidden";
 
 	// Минимальная площадь
-	const minSquare = useAppSelector((state) => state.FiltersReducer.estateFilter.minSquare);
+	const minSquare = Number(useAppSelector((state) => state.FiltersReducer.estateFilter.minSquare[0].value));
 	const changeMinSquare = (e) => {
 		dispatch(setMinSquare(e.target.value));
 	};
@@ -56,7 +52,7 @@ export const EstateFilter = () => {
 	);
 
 	return (
-		<div className={filterVisibility}>
+		<div className={filterClasses}>
 			<fieldset className="filter__type filter__type--estate">
 				<legend>Тип недвижимости</legend>
 				{estateTypeBtns}

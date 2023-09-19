@@ -8,7 +8,7 @@ import { initializePage } from "./SearchPageReducer";
 import { Filters } from "./modules/Filters/_Filters";
 
 import { Sorting } from "@sp_modules/Sorting/Sorting";
-import { Results } from "@sp_modules/Results";
+import { CardList } from "@sp_modules/CardList";
 import { Popup } from "@sp_modules/Popup";
 import { Spinner } from "@sp_modules/Spinner/Spinner";
 
@@ -44,7 +44,7 @@ const PageContent = () => {
 							на&nbsp;«Показать избранные»
 						</p>
 					</div>
-					<Results />
+					<CardList />
 				</section>
 				<Popup/>
 			</div>

@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setUlParams } from "./FiltersReducer";
+import { setUlParams, getActiveCategory } from "./FiltersReducer";
 import { ulCrafter } from "./utils";
 
 export const LaptopFilter = () => {
@@ -17,12 +17,10 @@ export const LaptopFilter = () => {
 	
 
 	// Видимость
-	const allFilterIsActive = useAppSelector((state) => state.FiltersReducer.productCategoryFilter.activeCategory.all);
-	const laptopsFilterIsActive = useAppSelector(
-		(state) => state.FiltersReducer.productCategoryFilter.activeCategory.laptops
-	);	
-	let filterVisibility = "filter__laptop";
-	if (!laptopsFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
+	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter)
+	const activeFilter = getActiveCategory(prodCatFilter)
+	let filterClasses = "filter__laptop";
+	if (activeFilter[0] !== 'laptopFilter' && activeFilter[0] !== 'all' ) filterClasses += " hidden";
 
 	// Тип ноутбука
 	const laptopTypeData = useAppSelector((state) => state.FiltersReducer.laptopFilter.laptopType);
@@ -79,7 +77,7 @@ export const LaptopFilter = () => {
 	);
 
 	return (
-		<div className={filterVisibility}>
+		<div className={filterClasses}>
 			<fieldset className="filter__type filter__type--laptop">
 				<legend>Тип ноутбука</legend>
 				{laptopTypeCheckboxes}

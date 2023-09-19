@@ -9,9 +9,11 @@ export const ProductCategoryFilter = () => {
 	};
 
 	const prodCatData = useAppSelector(
-		(state) => state.FiltersReducer.productCategoryFilter.categories
+		(state) => state.FiltersReducer.prodCatFilter.categories
 	);
-	const prodCatFilter = selectCrafter('productCategoryFilter', 'categories', prodCatData, selectCategory)
+	const prodCatFilter = selectCrafter('prodCatFilter', 'categories', prodCatData, selectCategory)
+
+	
 	
 	return (
 		<div className="filter__select-wrapper">

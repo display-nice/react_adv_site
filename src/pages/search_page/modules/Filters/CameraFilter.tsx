@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setUlParams, setSelectParams } from "./FiltersReducer";
+import { setUlParams, setSelectParams, getActiveCategory } from "./FiltersReducer";
 import { ulCrafter, selectCrafter } from "./utils";
 
 export const CameraFilter = () => {
@@ -27,14 +27,10 @@ export const CameraFilter = () => {
 	};
 
 	// Видимость
-	const allFilterIsActive = useAppSelector(
-		(state) => state.FiltersReducer.productCategoryFilter.activeCategory.all
-	);
-	const cameraFilterIsActive = useAppSelector(
-		(state) => state.FiltersReducer.productCategoryFilter.activeCategory.cameras
-	);
-	let filterVisibility = "filter__camera";
-	if (!cameraFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
+	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter)
+	const activeFilter = getActiveCategory(prodCatFilter)
+	let filterClasses = "filter__camera";
+	if (activeFilter[0] !== 'cameraFilter' && activeFilter[0] !== 'all' ) filterClasses += " hidden";
 
 	// Тип фотоаппарата
 	const cameraTypeData = useAppSelector((state) => state.FiltersReducer.cameraFilter.cameraType);
@@ -69,7 +65,7 @@ export const CameraFilter = () => {
 	);
 
 	return (
-		<div className={filterVisibility}>
+		<div className={filterClasses}>
 			<fieldset className="filter__type filter__type--camera">
 				<legend>Тип фотоаппарата</legend>
 				{cameraTypeFilter}

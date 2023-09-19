@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 
 interface FiltersState {
 	activeFilter: {
@@ -52,110 +52,114 @@ type selectParams = {
 }
 
 const initialState = {
-	productCategoryFilter: {
-		categories: [
-			{ name: "productCategories", text: "Все", value: "all", checked: true },
-			{ name: "productCategories", text: "Недвижимость", value: "estate", checked: false },
-			{ name: "productCategories", text: "Ноутбуки", value: "laptops", checked: false },
-			{ name: "productCategories", text: "Фотоаппараты", value: "cameras", checked: false },
-			{ name: "productCategories", text: "Автомобили", value: "cars", checked: false },
-		],
-		activeCategory: {
-			all: true,
-			estate: false,
-			laptops: false,
-			cameras: false,
-			cars: false,
-		},
+	activeCategory: {
+		all: true,
+		estate: false,
+		laptops: false,
+		cameras: false,
+		cars: false,
 	},
-	cameraFilter: {
-		cameraType: [
-			{value: 'mirror', checked: false, text: 'Зеркальный'},
-			{value: 'digital', checked: false, text: 'Цифровой'},
-			{value: 'mirrorless', checked: false, text: 'Беззеркальный'},
-		],
-		resolutionMatrix: [
-			{value: '1mp', checked: false, text: '1 МП'},
-			{value: '3mp', checked: false, text: '3 МП'},
-			{value: '5mp', checked: false, text: '5 МП'},
-			{value: '7mp', checked: false, text: '7 МП'},
-			{value: '10mp', checked: false, text: '10 МП'},
-		],
-		resolutionVideo: [
-			{value: 'any', checked: false, text: 'Любое'},
-			{value: 'HD', checked: false, text: 'HD'},
-			{value: 'FullHD', checked: false, text: 'Full HD'},
-			{value: '4K', checked: false, text: '4K'},
-			{value: '5K', checked: false, text: '5K'},
-		],
-	},
-	carFilter: {
-		minimalYear: [
-			{value: '1900', checked: true, get text() {return this.value}},
-			{value: '1940', checked: false, get text() {return this.value}},
-			{value: '1960', checked: false, get text() {return this.value}},
-			{value: '1980', checked: false, get text() {return this.value}},
-			{value: '2000', checked: false, get text() {return this.value}},
-		],
-		transmission: [
-			{value: 'any', checked: false, text: 'Любая'},
-			{value: 'mechanical', checked: false, text: 'Механика'},
-			{value: 'auto', checked: false, text: 'Автомат'},
-		],
-		bodyType: [
-			{value: 'sedan', checked: false, text: 'Седан'},
-			{value: 'universal', checked: false, text: 'Универсал'},
-			{value: 'hatchback', checked: false, text: 'Хэтчбэк'},
-			{value: 'jeep', checked: false, text: 'Внедорожник'},
-			{value: 'cupe', checked: false, text: 'Купэ'},
-		],
-	},
-	laptopFilter: {
-		laptopType: [
-			{ value: "ultra", checked: false, text: "Ультрабук", },
-			{ value: "home", checked: false, text: "Домашний ноутбук", },
-			{ value: "gaming", checked: false, text: "Игровой ноутбук", },
-		],
-		laptopRamValue: [
-			{ value: "any", checked: true, text: "Любой", },
-			{ value: "4gb", checked: false, text: "4 Гб", },
-			{ value: "8gb", checked: false, text: "8 Гб", },
-			{ value: "16gb", checked: false, text: "16 Гб", },
-		],
-		laptopDiagonal: [
-			{ value: "any", checked: true, text: "Любая", },
-			{ value: "13in", checked: false, text: "13″",  },
-			{ value: "14in", checked: false, text: "14″", },
-			{ value: "15in", checked: false, text: "15″", },
-			{ value: "16in", checked: false, text: "17″", },
-		],
-		laptopProcType: [
-			{ value: "i3", checked: false, text: "Intel Core i3", },
-			{ value: "i5", checked: false, text: "Intel Core i5", },
-			{ value: "i7", checked: false, text: "Intel Core i7", },
-		],
-	},
-	estateFilter: {
-		estateType: [
-			{ value: "house", checked: false, text: "Дом", },
-			{ value: "flat", checked: false, text: "Квартира", },
-			{ value: "apartments", checked: false, text: "Апартаменты", },
-		],
-		minSquare: 0,
-		roomsQuantity: [
-			{ value: "any", checked: false, text: "Любое", },
-			{ value: "one", checked: false, text: "1", },
-			{ value: "two", checked: false, text: "2", },
-			{ value: "three", checked: false, text: "3", },
-			{ value: "four", checked: false, text: "4", },
-			{ value: "fivemore", checked: false, text: "5+", },
-		],
-	},
+	
 	rangeFilter: {
 		minPrice: 2,
 		maxPrice: 200,
 		selectedPrices: [2, 200],
 	},
+
+	prodCatFilter: {
+		categories: [
+			{ value: 'Все', forFilter: "all", checked: true, text: "Все", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: "Недвижимость", forFilter: "estateFilter", checked: false, text: "Недвижимость", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: 'Ноутбук', forFilter: "laptopFilter", checked: false, text: "Ноутбуки", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: 'Фотоаппарат', forFilter: "cameraFilter", checked: false, text: "Фотоаппараты", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: 'Автомобиль', forFilter: "carFilter", checked: false, text: "Автомобили", filter: 'prodCatFilter', subfilter: 'categories'},
+		],		
+	},
+	cameraFilter: {
+		cameraType: [
+			{value: 'mirror', checked: false, text: 'Зеркальный', filter: 'cameraFilter', subfilter: 'cameraType'},
+			{value: 'digital', checked: false, text: 'Цифровой', filter: 'cameraFilter', subfilter: 'cameraType'},
+			{value: 'mirrorless', checked: false, text: 'Беззеркальный', filter: 'cameraFilter', subfilter: 'cameraType'},
+		],
+		resolutionMatrix: [
+			{value: '1mp', checked: false, text: '1 МП', filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '3mp', checked: false, text: '3 МП', filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '5mp', checked: false, text: '5 МП', filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '7mp', checked: false, text: '7 МП', filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '10mp', checked: false, text: '10 МП', filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+		],
+		resolutionVideo: [
+			{value: 'any', checked: false, text: 'Любое', filter: 'cameraFilter', subfilter: 'resolutionVideo'},
+			{value: 'HD', checked: false, text: 'HD', filter: 'cameraFilter', subfilter: 'resolutionVideo'},
+			{value: 'FullHD', checked: false, text: 'Full HD', filter: 'cameraFilter', subfilter: 'resolutionVideo'},
+			{value: '4K', checked: false, text: '4K', filter: 'cameraFilter', subfilter: 'resolutionVideo'},
+			{value: '5K', checked: false, text: '5K', filter: 'cameraFilter', subfilter: 'resolutionVideo'},
+		],
+	},
+	carFilter: {
+		minimalYear: [
+			{value: '1900', checked: true, get text() {return this.value}, filter: 'carFilter', subfilter: 'minimalYear'},
+			{value: '1940', checked: false, get text() {return this.value}, filter: 'carFilter', subfilter: 'minimalYear'},
+			{value: '1960', checked: false, get text() {return this.value}, filter: 'carFilter', subfilter: 'minimalYear'},
+			{value: '1980', checked: false, get text() {return this.value}, filter: 'carFilter', subfilter: 'minimalYear'},
+			{value: '2000', checked: false, get text() {return this.value}, filter: 'carFilter', subfilter: 'minimalYear'},
+		],
+		transmission: [
+			{value: 'any', checked: false, text: 'Любая', filter: 'carFilter', subfilter: 'transmission'},
+			{value: 'mechanic', checked: false, text: 'Механика', filter: 'carFilter', subfilter: 'transmission'},
+			{value: 'auto', checked: false, text: 'Автомат', filter: 'carFilter', subfilter: 'transmission'},
+		],
+		bodyType: [
+			{value: 'sedan', checked: false, text: 'Седан', filter: 'carFilter', subfilter: 'bodyType'},
+			{value: 'universal', checked: false, text: 'Универсал', filter: 'carFilter', subfilter: 'bodyType'},
+			{value: 'hatchback', checked: false, text: 'Хэтчбэк', filter: 'carFilter', subfilter: 'bodyType'},
+			{value: 'suv', checked: false, text: 'Внедорожник', filter: 'carFilter', subfilter: 'bodyType'},
+			{value: 'cupe', checked: false, text: 'Купэ', filter: 'carFilter', subfilter: 'bodyType'},
+		],
+	},
+	laptopFilter: {
+		laptopType: [
+			{ value: "ultra", checked: false, text: "Ультрабук", filter: 'laptopFilter', subfilter: 'laptopType'},
+			{ value: "home", checked: false, text: "Домашний ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
+			{ value: "gaming", checked: false, text: "Игровой ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
+		],
+		laptopRamValue: [
+			{ value: "any", checked: true, text: "Любой", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
+			{ value: "4gb", checked: false, text: "4 Гб", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
+			{ value: "8gb", checked: false, text: "8 Гб", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
+			{ value: "16gb", checked: false, text: "16 Гб", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
+		],
+		laptopDiagonal: [
+			{ value: "any", checked: true, text: "Любая", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "13in", checked: false, text: "13″",  filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "14in", checked: false, text: "14″", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "15in", checked: false, text: "15″", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "16in", checked: false, text: "17″", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+		],
+		laptopProcType: [
+			{ value: "i3", checked: false, text: "Intel Core i3", filter: 'laptopFilter', subfilter: 'laptopProcType'},
+			{ value: "i5", checked: false, text: "Intel Core i5", filter: 'laptopFilter', subfilter: 'laptopProcType'},
+			{ value: "i7", checked: false, text: "Intel Core i7", filter: 'laptopFilter', subfilter: 'laptopProcType'},
+		],
+	},
+	estateFilter: {
+		estateType: [
+			{ value: "house", checked: false, text: "Дом", filter: 'estateFilter', subfilter: 'estateType'},
+			{ value: "flat", checked: false, text: "Квартира", filter: 'estateFilter', subfilter: 'estateType'},
+			{ value: "apartments", checked: false, text: "Апартаменты", filter: 'estateFilter', subfilter: 'estateType'},
+		],
+		minSquare: [
+			{value: "0", checked: true, text: '0', filter: 'estateFilter', subfilter: 'minSquare'}
+		],
+		roomsQuantity: [
+			{ value: "any", checked: false, text: "Любое", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "one", checked: false, text: "1", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "two", checked: false, text: "2", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "three", checked: false, text: "3", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "four", checked: false, text: "4", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "fivemore", checked: false, text: "5+", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+		],
+	},	
 };
 
 const FiltersSlice = createSlice({
@@ -163,11 +167,11 @@ const FiltersSlice = createSlice({
 	initialState,
 	reducers: {
 		setActiveCategory(state, action: PayloadAction<string>): void {
-			for (let key in state.productCategoryFilter.activeCategory) {
-				if (key === action.payload) state.productCategoryFilter.activeCategory[`${key}`] = true;
-				else state.productCategoryFilter.activeCategory[`${key}`] = false;
+			for (let key in state.activeCategory) {
+				if (key === action.payload) state.activeCategory[`${key}`] = true;
+				else state.activeCategory[`${key}`] = false;
 			}
-			state.productCategoryFilter.categories.map((cat) => {
+			state.prodCatFilter.categories.map((cat) => {
 				cat.value === action.payload ? (cat.checked = true) : (cat.checked = false);
 			});
 		},
@@ -176,26 +180,29 @@ const FiltersSlice = createSlice({
 			// console.log(state.rangeFilter.selectedPrices)
 		},
 		setMinSquare(state, action: PayloadAction<number>): void {
-			state.estateFilter.minSquare = action.payload;
+			// state.estateFilter.minSquare = action.payload;
 		},
 		setUlParams(state, action: PayloadAction<filterParams>): void {
 			const { type, filter, subfilter, value } = action.payload;
+			const path = state[`${filter}`][`${subfilter}`];
 			// console.log('setUlParams incoming data: ' + type, filter, subfilter, value);
 			switch (type) {							
 				case "checkbox":
-					const i = state[`${filter}`][`${subfilter}`].findIndex((item) => item.value === value);
-					state[`${filter}`][`${subfilter}`][i].checked = !state[`${filter}`][`${subfilter}`][i].checked;
+					const index = path.findIndex((item) => item.value === value);
+					const item = path[index];
+					item.checked = !item.checked;
 					break;
 				case "radio":
-					state[`${filter}`][`${subfilter}`].map((item) => {
+					path.map((item) => {
 						item.value === value ? (item.checked = true) : (item.checked = false);
 					});
 					break;
 			}
 		},
 		setSelectParams(state, action: PayloadAction<selectParams>): void {
-			const { filter, subfilter, value } = action.payload;			
-			state[`${filter}`][`${subfilter}`].map((item) => {
+			const { filter, subfilter, value } = action.payload;
+			const path = state[`${filter}`][`${subfilter}`];
+			path.map((item) => {
 				item.value === value ? (item.checked = true) : (item.checked = false);
 			});
 		}
@@ -206,3 +213,81 @@ const FiltersSlice = createSlice({
 export const FiltersReducer = FiltersSlice.reducer;
 export const { setActiveCategory, setRangeSliderValue, setMinSquare, setUlParams, setSelectParams } =
 	FiltersSlice.actions;
+
+export function getActiveCategory(prodCatFilter) {
+	const selectedCtg = prodCatFilter['categories'].findIndex((item) => item.checked === true);
+	const forFilter = prodCatFilter['categories'][selectedCtg].forFilter;
+	const value = prodCatFilter['categories'][selectedCtg].value;
+	return [forFilter, value]
+};
+
+export const getCheckedFilters = createSelector(
+	(state) => state.FiltersReducer.prodCatFilter,
+	(state) => state.FiltersReducer.cameraFilter,
+	(state) => state.FiltersReducer.carFilter,
+	(state) => state.FiltersReducer.laptopFilter,
+	(state) => state.FiltersReducer.estateFilter,
+   (prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter) => {
+		const filters = {prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter}
+		let chosenSubfilters;
+		let checkedItems = [];
+
+		console.log('Начало работы');
+		const activeFilter = getActiveCategory(prodCatFilter);
+		console.log('activeFilter: ', activeFilter);
+		checkedItems.push({category: activeFilter[1]})
+
+		if (activeFilter[0] === 'all') {
+			chosenSubfilters = filters;
+		} else {
+			chosenSubfilters = filters[activeFilter[0]]
+		}
+		console.log('chosenSubfilters: ', chosenSubfilters);
+
+		const getCheckedItems = (subfilter) => {
+			// console.log('subfilter:', subfilter);
+			for (let index in subfilter) {
+				let item = subfilter[index];
+				if (item.checked === true) checkedItems.push(item)
+				// console.log(subfilter[index]['checked']);
+			}		
+		}
+		
+		Object.values(chosenSubfilters).forEach(subfilter => {
+			getCheckedItems(subfilter);			
+		});
+		console.log('checkedItems в итоге:', checkedItems);
+
+		// далее здесь нужно обработать rangeSlider
+		// итоговый результат упаковать в (подумать) и вернуть из функции
+		// затем оно будет использовано для поиска по базе данных
+
+
+		return checkedItems
+	}
+)
+
+// export const getCheckedFilters2 = createSelector(
+// 	state => state.FiltersReducer,
+// 	filters => {
+// 		// console.log(filters);
+// 		//   Создаем массив из всех фильтров с checked: true
+// 	  let checkedFilters = [];
+	
+// 	  // Функция для добавления фильтров с checked: true в массив
+// 	  const addCheckedFilters = (filter) => {
+// 		 for (const key in filter) {
+// 			if (filter.hasOwnProperty(key) && filter[key].checked) {
+// 			  checkedFilters.push(filter[key]);
+// 			}
+// 		 }
+// 	  };
+ 
+// 	  // Получаем все фильтры из состояния и вызываем addCheckedFilters для каждого
+// 	  Object.values(filters).forEach(filter => {
+// 		 addCheckedFilters(filter);
+// 	  });
+ 
+// 	  return checkedFilters;
+// 	}
+//  );

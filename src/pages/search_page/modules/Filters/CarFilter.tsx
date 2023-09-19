@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setUlParams, setSelectParams } from "./FiltersReducer";
+import { setUlParams, setSelectParams, getActiveCategory } from "./FiltersReducer";
 import { ulCrafter, selectCrafter } from "./utils";
 
 export const CarFilter = () => {
@@ -27,14 +27,10 @@ export const CarFilter = () => {
 	};
 
 	// Видимость
-	const allFilterIsActive = useAppSelector(
-		(state) => state.FiltersReducer.productCategoryFilter.activeCategory.all
-	);
-	const carsFilterIsActive = useAppSelector(
-		(state) => state.FiltersReducer.productCategoryFilter.activeCategory.cars
-	);
-	let filterVisibility = "filter__car";
-	if (!carsFilterIsActive && !allFilterIsActive) filterVisibility += " hidden";
+	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter)
+	const activeFilter = getActiveCategory(prodCatFilter)
+	let filterClasses = "filter__car";
+	if (activeFilter[0] !== 'carFilter' && activeFilter[0] !== 'all' ) filterClasses += " hidden";
 
 	// Минимальный год выпуска
 	const minYearData = useAppSelector((state) => state.FiltersReducer.carFilter.minimalYear);
@@ -70,7 +66,7 @@ export const CarFilter = () => {
 	);
 
 	return (
-		<div className={filterVisibility}>
+		<div className={filterClasses}>
 			<div className="filter__select-wrapper">
 				<legend>Минимальный год выпуска</legend>
 				{minimalYearFilter}
