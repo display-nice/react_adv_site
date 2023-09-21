@@ -149,7 +149,7 @@ const initialState = {
 			{ value: "apartments", checked: false, text: "Апартаменты", filter: 'estateFilter', subfilter: 'estateType'},
 		],
 		minSquare: [
-			{value: "0", checked: true, text: '0', filter: 'estateFilter', subfilter: 'minSquare'}
+			{value: '', checked: true, filter: 'estateFilter', subfilter: 'minSquare'}
 		],
 		roomsQuantity: [
 			{ value: "any", checked: false, text: "Любое", filter: 'estateFilter', subfilter: 'roomsQuantity'},
@@ -180,7 +180,8 @@ const FiltersSlice = createSlice({
 			// console.log(state.rangeFilter.selectedPrices)
 		},
 		setMinSquare(state, action: PayloadAction<number>): void {
-			// state.estateFilter.minSquare = action.payload;
+			console.log(String(action.payload));
+			state.estateFilter.minSquare[0].value = String(action.payload);
 		},
 		setUlParams(state, action: PayloadAction<filterParams>): void {
 			const { type, filter, subfilter, value } = action.payload;
@@ -229,39 +230,36 @@ export const getCheckedFilters = createSelector(
 	(state) => state.FiltersReducer.estateFilter,
    (prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter) => {
 		const filters = {prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter}
-		let chosenSubfilters;
+		let chosenFilters;
 		let checkedItems = [];
 
 		console.log('Начало работы');
 		const activeFilter = getActiveCategory(prodCatFilter);
 		console.log('activeFilter: ', activeFilter);
 		checkedItems.push({category: activeFilter[1]})
-
+				
 		if (activeFilter[0] === 'all') {
-			chosenSubfilters = filters;
+			chosenFilters = filters;
+			Object.values(chosenFilters).forEach((filter: Record<string, any>) => {
+				for (let index in filter) {					
+					filter[index].forEach(item => {
+						if (item.checked === true) checkedItems.push(item)
+					})
+				}
+			});
 		} else {
-			chosenSubfilters = filters[activeFilter[0]]
+			chosenFilters = filters[activeFilter[0]]
+			Object.values(chosenFilters).forEach((filter: Record<string, any>) => {
+				for (let index in filter) {
+					if (filter[index].checked === true) checkedItems.push(filter[index])					
+				}
+			});
 		}
-		console.log('chosenSubfilters: ', chosenSubfilters);
-
-		const getCheckedItems = (subfilter) => {
-			// console.log('subfilter:', subfilter);
-			for (let index in subfilter) {
-				let item = subfilter[index];
-				if (item.checked === true) checkedItems.push(item)
-				// console.log(subfilter[index]['checked']);
-			}		
-		}
-		
-		Object.values(chosenSubfilters).forEach(subfilter => {
-			getCheckedItems(subfilter);			
-		});
 		console.log('checkedItems в итоге:', checkedItems);
 
 		// далее здесь нужно обработать rangeSlider
 		// итоговый результат упаковать в (подумать) и вернуть из функции
 		// затем оно будет использовано для поиска по базе данных
-
 
 		return checkedItems
 	}

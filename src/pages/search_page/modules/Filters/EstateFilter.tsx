@@ -22,9 +22,14 @@ export const EstateFilter = () => {
 	if (activeFilter[0] !== 'estateFilter' && activeFilter[0] !== 'all' ) filterClasses += " hidden";
 
 	// Минимальная площадь
-	const minSquare = Number(useAppSelector((state) => state.FiltersReducer.estateFilter.minSquare[0].value));
+	let minSquare = Number(useAppSelector((state) => state.FiltersReducer.estateFilter.minSquare[0].value));
+	let minSquareValue;
+	if (minSquare == 0) {
+		minSquareValue = '';
+	} 
 	const changeMinSquare = (e) => {
-		dispatch(setMinSquare(e.target.value));
+		const newValue = Number(e.target.value)
+		dispatch(setMinSquare(newValue));
 	};
 
 	// Тип недвижимости
@@ -67,7 +72,7 @@ export const EstateFilter = () => {
 					id="square"
 					name="min-square"
 					min="0"
-					value={minSquare}
+					value={minSquare || ''}					
 					placeholder="0"
 				/>
 			</div>

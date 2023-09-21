@@ -11,8 +11,7 @@ import { useAppSelector } from "@src/hook";
 import { getCheckedFilters } from "./FiltersReducer";
 
 export const Filters = () => {
-	const productsData = useAppSelector(state => state.SearchPageReducer.productsData);
-	// const filteredData = useAppSelector(getCheckedFilters);
+	const productsData = useAppSelector(state => state.SearchPageReducer.productsData);	
 	const checkedFilters = useAppSelector(getCheckedFilters);
 
 	const performSearch = () => {		
@@ -31,22 +30,20 @@ export const Filters = () => {
 		// console.log(checkedFilters[0]['category']);
 		// console.log(checkedFilters['category']);
 
-		let founds = [];
-		productsData.products.forEach(item => {
-			console.log(item['category']);
-			if (item['category'] === checkedFilters[0]['category']) {
-				founds.push(item)
-			}
-		})
-		return founds;
+		// let founds = [];
+		// productsData.products.forEach(item => {
+		// 	console.log(item['category']);
+		// 	if (item['category'] === checkedFilters[0]['category']) {
+		// 		founds.push(item)
+		// 	}
+		// })
+		// return founds;
 	}
 
 	const handleClick = (e) => {
 		e.preventDefault();
 		const results = performSearch()
 		console.log(results);
-		// console.log('checkedFilters:');
-		// console.log(checkedFilters);
 	};
 
 	return (
