@@ -19,7 +19,7 @@ const PageContent = () => {
 	if (pageIsLoading) {
 		return null;
 	}
-
+	
 	return (
 		<section className="onlineshop-app">
 			<h1 className="visually-hidden">Главная</h1>

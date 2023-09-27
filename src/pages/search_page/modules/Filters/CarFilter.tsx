@@ -27,27 +27,20 @@ export const CarFilter = () => {
 	};
 
 	// Видимость
-	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter)
-	const activeFilter = getActiveCategory(prodCatFilter)
+	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
+	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__car";
-	if (activeFilter[0] !== 'carFilter' && activeFilter[0] !== 'all' ) filterClasses += " hidden";
+	if (activeFilter[0] !== "carFilter" && activeFilter[0] !== "all") filterClasses += " hidden";
 
 	// Минимальный год выпуска
 	const minYearData = useAppSelector((state) => state.FiltersReducer.carFilter.minimalYear);
-	const minimalYearFilter = selectCrafter(
-		"carFilter",
-		"minimalYear",
-		minYearData,
-		changeSelectParams
-	);
+	const minimalYearFilter = selectCrafter(minYearData, changeSelectParams);
 
 	// Коробка передач
 	const transmissionData = useAppSelector((state) => state.FiltersReducer.carFilter.transmission);
 	const transFilterUlClasses = "filter__radiobuttons-list";
 	const transmissionFilter = ulCrafter(
 		"radio",
-		"carFilter",
-		"transmission",
 		transmissionData,
 		transFilterUlClasses,
 		changeUlParams
@@ -56,14 +49,7 @@ export const CarFilter = () => {
 	// Тип кузова
 	const bodyTypeData = useAppSelector((state) => state.FiltersReducer.carFilter.bodyType);
 	const bodyTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--car-body";
-	const bodyTypeFilter = ulCrafter(
-		"checkbox",
-		"carFilter",
-		"bodyType",
-		bodyTypeData,
-		bodyTypeUlClasses,
-		changeUlParams
-	);
+	const bodyTypeFilter = ulCrafter("checkbox", bodyTypeData, bodyTypeUlClasses, changeUlParams);
 
 	return (
 		<div className={filterClasses}>
@@ -77,7 +63,7 @@ export const CarFilter = () => {
 			</fieldset>
 			<fieldset className="filter__type filter__type--car-body">
 				<legend>Тип кузова</legend>
-				{bodyTypeFilter}				
+				{bodyTypeFilter}
 			</fieldset>
 		</div>
 	);

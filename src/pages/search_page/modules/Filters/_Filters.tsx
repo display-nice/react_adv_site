@@ -11,11 +11,11 @@ import { useAppSelector } from "@src/hook";
 import { getCheckedFilters } from "./FiltersReducer";
 
 export const Filters = () => {
-	const productsData = useAppSelector(state => state.SearchPageReducer.productsData);	
+	const productsData = useAppSelector((state) => state.SearchPageReducer.productsData);
 	const checkedFilters = useAppSelector(getCheckedFilters);
 
-	const performSearch = () => {		
-		// function adapterFDB(activeFilter) {			
+	const performSearch = () => {
+		// function adapterFDB(activeFilter) {
 		// 	const filterToCtg = {
 		// 		all: 'Все',
 		// 		estateFilter: "Недвижимость",
@@ -30,30 +30,55 @@ export const Filters = () => {
 		// console.log(checkedFilters[0]['category']);
 		// console.log(checkedFilters['category']);
 
-		// let founds = [];
-		// productsData.products.forEach(item => {
-		// 	console.log(item['category']);
-		// 	if (item['category'] === checkedFilters[0]['category']) {
-		// 		founds.push(item)
-		// 	}
+		// Смотрим активные категории, по которым будем искать объявление
+		const allCtgList = ["Недвижимость", "Ноутбуки", "Фотоаппараты", "Автомобили"];
+		let categories;
+		if (checkedFilters[0]["category"] === "Все") {
+			categories = allCtgList;
+		} else categories = checkedFilters[0]["category"];
+
+		// checkedFilters.forEach(item => {
+
 		// })
-		// return founds;
-	}
+
+		// Для каждой активной категории готовим список активных фильтров
+		// и переводим его на язык базы данных
+		// в итоге получаем объект с точными параметрами для поиска:
+		// категория, filters
+		// let etalon = [{ category: "Недвижимость", type: ["flat"], area: 20, "rooms-count": 2 }];
+		
+
+		// productsData.products.forEach((item) => {
+		// 	switch (item.category) {
+		// 		case "Недвижимость":
+		// 			const area = item.filters.area
+		// 			if (
+		// 				etalon[0]["type"].includes(item.filters.type) &&
+		// 				item.filters.area >= etalon[0]["area"] &&
+		// 				item.filters["rooms-count"] == etalon[0]["rooms-count"]
+		// 			) {
+		// 				console.log(item);
+		// 			}
+		// 	}
+		// });
+		
+	};
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		const results = performSearch()
-		console.log(results);
+		performSearch();
+		// const results = performSearch();
+		// console.log(results);
 	};
 
 	return (
 		<form className="filter__form" action="#" method="post">
-			<ProductCategoryFilter/>
-			<RangeFilter/>
-			<EstateFilter/>
-			<CameraFilter/>
-			<LaptopFilter/>
-			<CarFilter/>
+			<ProductCategoryFilter />
+			<RangeFilter />
+			<EstateFilter />
+			<CameraFilter />
+			<LaptopFilter />
+			<CarFilter />
 			<button onClick={handleClick} className="button filter__button" type="submit">
 				Показать
 			</button>

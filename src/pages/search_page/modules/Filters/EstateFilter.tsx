@@ -9,48 +9,43 @@ export const EstateFilter = () => {
 			setUlParams({
 				type: e.target.type,
 				filter: e.target.dataset.filter,
-				subfilter: e.target.dataset.subfilter,				
+				subfilter: e.target.dataset.subfilter,
 				value: e.target.value,
 			})
 		);
 	};
 
 	// Видимость
-	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter)
-	const activeFilter = getActiveCategory(prodCatFilter)
+	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
+	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__estate";
-	if (activeFilter[0] !== 'estateFilter' && activeFilter[0] !== 'all' ) filterClasses += " hidden";
+	if (activeFilter[0] !== "estateFilter" && activeFilter[0] !== "all") filterClasses += " hidden";
 
 	// Минимальная площадь
-	let minSquare = Number(useAppSelector((state) => state.FiltersReducer.estateFilter.minSquare[0].value));
+	let minSquare = Number(
+		useAppSelector((state) => state.FiltersReducer.estateFilter.minSquare[0].value)
+	);
 	let minSquareValue;
 	if (minSquare == 0) {
-		minSquareValue = '';
-	} 
+		minSquareValue = "";
+	}
 	const changeMinSquare = (e) => {
-		const newValue = Number(e.target.value)
+		const newValue = Number(e.target.value);
 		dispatch(setMinSquare(newValue));
 	};
 
 	// Тип недвижимости
 	const estateTypeData = useAppSelector((state) => state.FiltersReducer.estateFilter.estateType);
 	const estateTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--estate ";
-	const estateTypeBtns = ulCrafter(
-		"checkbox",
-		"estateFilter",
-		"estateType",
-		estateTypeData,
-		estateTypeUlClasses,
-		changeUlParams
-	);
+	const estateTypeBtns = ulCrafter("checkbox", estateTypeData, estateTypeUlClasses, changeUlParams);
 
 	// Количество комнат
-	const roomsQuantityData = useAppSelector((state) => state.FiltersReducer.estateFilter.roomsQuantity);
+	const roomsQuantityData = useAppSelector(
+		(state) => state.FiltersReducer.estateFilter.roomsQuantity
+	);
 	const roomsQuantityUlClasses = "filter__ram-list";
 	const roomsQuantityBtns = ulCrafter(
 		"radio",
-		"estateFilter",
-		"roomsQuantity",
 		roomsQuantityData,
 		roomsQuantityUlClasses,
 		changeUlParams
@@ -72,7 +67,7 @@ export const EstateFilter = () => {
 					id="square"
 					name="min-square"
 					min="0"
-					value={minSquare || ''}					
+					value={minSquare || ""}
 					placeholder="0"
 				/>
 			</div>

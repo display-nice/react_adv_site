@@ -8,17 +8,13 @@ export const ProductCategoryFilter = () => {
 		dispatch(setActiveCategory(e.target.value));
 	};
 
-	const prodCatData = useAppSelector(
-		(state) => state.FiltersReducer.prodCatFilter.categories
-	);
-	const prodCatFilter = selectCrafter('prodCatFilter', 'categories', prodCatData, selectCategory)
+	const prodCatData = useAppSelector((state) => state.FiltersReducer.prodCatFilter.categories);
+	const prodCatFilter = selectCrafter(prodCatData, selectCategory);
 
-	
-	
 	return (
 		<div className="filter__select-wrapper">
 			<legend>Категория товаров</legend>
-			{prodCatFilter}			
+			{prodCatFilter}
 		</div>
 	);
 };

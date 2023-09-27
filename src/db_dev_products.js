@@ -1,4 +1,4 @@
-export const db_dev_folder = {
+export const db_dev_products = {
 	"products": [
 		{
 			"name": "Двушка в центре Питера",

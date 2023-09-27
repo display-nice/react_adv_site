@@ -5,48 +5,40 @@ import { ulCrafter } from "./utils";
 export const LaptopFilter = () => {
 	const dispatch = useAppDispatch();
 	const changeUlParams = (e) => {
+		console.log('type', e.target.type);
+		console.log('filter', e.target.dataset.filter);
+		console.log('subfilter', e.target.name);
+		console.log('value', e.target.value);
 		dispatch(
 			setUlParams({
 				type: e.target.type,
 				filter: e.target.dataset.filter,
-				subfilter: e.target.name,
+				subfilter: e.target.dataset.subfilter,
 				value: e.target.value,
 			})
 		);
 	};
-	
 
 	// Видимость
-	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter)
-	const activeFilter = getActiveCategory(prodCatFilter)
+	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
+	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__laptop";
-	if (activeFilter[0] !== 'laptopFilter' && activeFilter[0] !== 'all' ) filterClasses += " hidden";
+	if (activeFilter[0] !== "laptopFilter" && activeFilter[0] !== "all") filterClasses += " hidden";
 
 	// Тип ноутбука
 	const laptopTypeData = useAppSelector((state) => state.FiltersReducer.laptopFilter.laptopType);
 	const laptopTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--laptop-ram";
-	const laptopTypeCheckboxes = ulCrafter(		
-		"checkbox",		
-		"laptopFilter",
-		"laptopType",
+	const laptopTypeCheckboxes = ulCrafter(
+		"checkbox",
 		laptopTypeData,
 		laptopTypeUlClasses,
 		changeUlParams
 	);
 
 	// Минимальный объем оперативной памяти
-	const laptopRamData = useAppSelector(
-		(state) => state.FiltersReducer.laptopFilter.laptopRamValue
-	);
+	const laptopRamData = useAppSelector((state) => state.FiltersReducer.laptopFilter.laptopRamValue);
 	const laptopRamUlClasses = "filter__radiobuttons-list";
-	const laptopRamButtons = ulCrafter(
-		"radio",
-		"laptopFilter",
-		"laptopRamValue",
-		laptopRamData,
-		laptopRamUlClasses,
-		changeUlParams
-	);
+	const laptopRamButtons = ulCrafter("radio", laptopRamData, laptopRamUlClasses, changeUlParams);
 
 	// Минимальная диагональ экрана
 	const laptopDiagonalData = useAppSelector(
@@ -55,8 +47,6 @@ export const LaptopFilter = () => {
 	const laptopDiagonalUlClasses = "filter__radiobuttons-list";
 	const laptopDiagonalButtons = ulCrafter(
 		"radio",
-		"laptopFilter",
-		"laptopDiagonal",
 		laptopDiagonalData,
 		laptopDiagonalUlClasses,
 		changeUlParams
@@ -69,8 +59,6 @@ export const LaptopFilter = () => {
 	const laptopProcTypeClasses = "filter__checkboxes-list filter__checkboxes-list--laptop-processor";
 	const laptopProcTypeButtons = ulCrafter(
 		"checkbox",
-		"laptopFilter",
-		"laptopProcType",
 		laptopProcTypeData,
 		laptopProcTypeClasses,
 		changeUlParams

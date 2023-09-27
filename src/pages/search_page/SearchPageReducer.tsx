@@ -27,6 +27,7 @@ const SearchPageSlice = createSlice({
 			error: false
 		},	
 		productsData: null,
+		productsFilteredData: null,
 		
 	},
 	reducers: {
