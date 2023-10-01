@@ -15,53 +15,12 @@ export const Filters = () => {
 	const checkedFilters = useAppSelector(getCheckedFilters);
 
 	const performSearch = () => {
-		// function adapterFDB(activeFilter) {
-		// 	const filterToCtg = {
-		// 		all: 'Все',
-		// 		estateFilter: "Недвижимость",
-		// 		laptopFilter: "Ноутбук",
-		// 		cameraFilter: "Фотоаппарат",
-		// 		carFilter: "Автомобиль",
-		// 	}
-		// 	let category = filterToCtg[activeFilter[0]]
-		// 	return category
-		// }
-		// const category = adapterFDB(checkedFilters)
-		// console.log(checkedFilters[0]['category']);
-		// console.log(checkedFilters['category']);
-
 		// Смотрим активные категории, по которым будем искать объявление
 		const allCtgList = ["Недвижимость", "Ноутбуки", "Фотоаппараты", "Автомобили"];
 		let categories;
 		if (checkedFilters[0]["category"] === "Все") {
 			categories = allCtgList;
-		} else categories = checkedFilters[0]["category"];
-
-		// checkedFilters.forEach(item => {
-
-		// })
-
-		// Для каждой активной категории готовим список активных фильтров
-		// и переводим его на язык базы данных
-		// в итоге получаем объект с точными параметрами для поиска:
-		// категория, filters
-		// let etalon = [{ category: "Недвижимость", type: ["flat"], area: 20, "rooms-count": 2 }];
-		
-
-		// productsData.products.forEach((item) => {
-		// 	switch (item.category) {
-		// 		case "Недвижимость":
-		// 			const area = item.filters.area
-		// 			if (
-		// 				etalon[0]["type"].includes(item.filters.type) &&
-		// 				item.filters.area >= etalon[0]["area"] &&
-		// 				item.filters["rooms-count"] == etalon[0]["rooms-count"]
-		// 			) {
-		// 				console.log(item);
-		// 			}
-		// 	}
-		// });
-		
+		} else categories = checkedFilters[0]["category"];		
 	};
 
 	const handleClick = (e) => {

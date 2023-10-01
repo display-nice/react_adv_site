@@ -30,7 +30,7 @@ export const CarFilter = () => {
 	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
 	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__car";
-	if (activeFilter[0] !== "carFilter" && activeFilter[0] !== "all") filterClasses += " hidden";
+	if (activeFilter[0] !== "carFilter" || activeFilter[0] === "all") filterClasses += " hidden";
 
 	// Минимальный год выпуска
 	const minYearData = useAppSelector((state) => state.FiltersReducer.carFilter.minimalYear);

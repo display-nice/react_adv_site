@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 
+import { dbAdapter } from "./utils";
 // import { inputs_data } from './inputsData.js'
 
 interface FiltersState {
@@ -53,27 +54,17 @@ type selectParams = {
 	checked?: boolean;
 }
 
-const initialState = {
-	
-	activeCategory: {
-		all: true,
-		estate: false,
-		laptops: false,
-		cameras: false,
-		cars: false,
-	},
-	
+const initialState = {	
 	rangeFilter: {
 		minPrice: 2,
 		maxPrice: 200,
 		selectedPrices: [2, 200],
 	},
-
 	prodCatFilter: {
 		categories: [
 			{ value: 'Все', forFilter: "all", checked: false, text: "Все", filter: 'prodCatFilter', subfilter: 'categories'},
-			{ value: "Недвижимость", forFilter: "estateFilter", checked: true, text: "Недвижимость", filter: 'prodCatFilter', subfilter: 'categories'},
-			{ value: 'Ноутбук', forFilter: "laptopFilter", checked: false, text: "Ноутбуки", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: "Недвижимость", forFilter: "estateFilter", checked: false, text: "Недвижимость", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: 'Ноутбук', forFilter: "laptopFilter", checked: true, text: "Ноутбуки", filter: 'prodCatFilter', subfilter: 'categories'},
 			{ value: 'Фотоаппарат', forFilter: "cameraFilter", checked: false, text: "Фотоаппараты", filter: 'prodCatFilter', subfilter: 'categories'},
 			{ value: 'Автомобиль', forFilter: "carFilter", checked: false, text: "Автомобили", filter: 'prodCatFilter', subfilter: 'categories'},
 		],		
@@ -101,11 +92,11 @@ const initialState = {
 	},
 	carFilter: {
 		minimalYear: [
-			{value: '1900', checked: true, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
+			{value: '1900', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
 			{value: '1940', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
 			{value: '1960', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
 			{value: '1980', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
-			{value: '2000', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
+			{value: '2000', checked: true, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
 		],
 		transmission: [
 			{value: 'any', checked: false, text: 'Любая', category: "Автомобиль", filter: 'carFilter', subfilter: 'transmission'},
@@ -152,12 +143,12 @@ const initialState = {
 			{ value: "apartment", checked: true, text: "Апартаменты", category: "Недвижимость", filter: 'estateFilter', subfilter: 'estateType'},
 		],
 		minSquare: [
-			{value: '', checked: true, filter: 'estateFilter', subfilter: 'minSquare'}
+			{value: '', checked: true, category: "Недвижимость", filter: 'estateFilter', subfilter: 'minSquare'}
 		],
 		roomsQuantity: [
 			{ value: "any", checked: false, text: "Любое", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
 			{ value: "one", checked: false, text: "1", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
-			{ value: "two", checked: true, text: "2", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "two", checked: false, text: "2", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
 			{ value: "three", checked: false, text: "3", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
 			{ value: "four", checked: false, text: "4", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
 			{ value: "fivemore", checked: false, text: "5+", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
@@ -169,11 +160,7 @@ const FiltersSlice = createSlice({
 	name: "FiltersSlice",
 	initialState,
 	reducers: {
-		setActiveCategory(state, action: PayloadAction<string>): void {
-			for (let key in state.activeCategory) {
-				if (key === action.payload) state.activeCategory[`${key}`] = true;
-				else state.activeCategory[`${key}`] = false;
-			}
+		setActiveCategory(state, action: PayloadAction<string>): void {			
 			state.prodCatFilter.categories.map((cat) => {
 				cat.value === action.payload ? (cat.checked = true) : (cat.checked = false);
 			});
@@ -183,7 +170,7 @@ const FiltersSlice = createSlice({
 			// console.log(state.rangeFilter.selectedPrices)
 		},
 		setMinSquare(state, action: PayloadAction<number>): void {
-			console.log(String(action.payload));
+			// console.log(String(action.payload));
 			state.estateFilter.minSquare[0].value = String(action.payload);
 		},
 		setUlParams(state, action: PayloadAction<filterParams>): void {
@@ -192,14 +179,13 @@ const FiltersSlice = createSlice({
 			// console.log('setUlParams incoming data: ' + type, filter, subfilter, value);
 			switch (type) {							
 				case "checkbox":
-					console.log('path:', path);
 					const index = path.findIndex((item) => item.value === value);
 					const item = path[index];
 					item.checked = !item.checked;
 					break;
 				case "radio":
 					path.map((item) => {
-						item.value === value ? (item.checked = true) : (item.checked = false);
+						item.value === value ? (item.checked = true) : (item.checked = false);						
 					});
 					break;
 			}
@@ -227,12 +213,8 @@ export function getActiveCategory(prodCatFilter) {
 };
 
 export const getCheckedFilters = createSelector(
-	(state) => state.FiltersReducer.prodCatFilter,
-	(state) => state.FiltersReducer.cameraFilter,
-	(state) => state.FiltersReducer.carFilter,
-	(state) => state.FiltersReducer.laptopFilter,
-	(state) => state.FiltersReducer.estateFilter,
-   (prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter) => {
+	(state) => ({ ...state.FiltersReducer }),
+	({ prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter }) => {
 		const filters = {prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter}
 		let chosenFilters;
 		let checkedItems = [];
@@ -244,14 +226,15 @@ export const getCheckedFilters = createSelector(
 		
 		// Проходимся по всему стейту и выбираем только выбранные записи (в которых checked = true).
 		if (activeFilter[0] === 'all') {
-			chosenFilters = filters;
-			Object.values(chosenFilters).forEach((filter: Record<string, any>) => {
-				for (let index in filter) {					
-					filter[index].forEach(item => {
-						if (item.checked === true) checkedItems.push(item)
-					})
-				}
-			});
+			// chosenFilters = filters;
+			// Object.values(chosenFilters).forEach((filter: Record<string, any>) => {
+			// 	for (let index in filter) {					
+			// 		filter[index].forEach(item => {
+			// 			if (item.checked === true) checkedItems.push(item)
+			// 		})
+			// 	}
+			// });
+			console.log('Активен фильтр "Все", ничего не делаем');
 		} else {
 			chosenFilters = filters[activeFilter[0]]
 			Object.values(chosenFilters).forEach((filter: Record<string, any>) => {
@@ -261,65 +244,51 @@ export const getCheckedFilters = createSelector(
 				}
 			});
 		}
-		console.log('checkedItems в итоге:', checkedItems);
+		// console.log('checkedItems:', checkedItems);
 
 		// Преобразовываем выбранные пользователем элементы фильтров в более удобный для фильтрации вид
 		// filtersData в итоге будет заполнена выбранными элементами и передана дальше для фильтрации с её помощью
 		// если элемент не выбран пользователем, то он имеет значение пустой строки ''
 		let filtersData = [
-			{category: "Недвижимость", estateType: [], area: 20, "rooms-count": 2 },
-			{category: "Ноутбук", laptopType: [], laptopRamValue: 4, laptopDiagonal: 13, laptopProcType: [] },
-			{category: "Фотоаппарат", cameraType: [], resolutionMatrix: 14.2, resolutionVideo: 2 },
-			{category: "Автомобиль", bodyType: [], minimalYear: 2016, transmission: "auto" }
-		];
-		const multiSelects = ['estateType', 'laptopType', 'laptopProcType', 'cameraType', 'bodyType']
+			{category: "Недвижимость", estateType: [], minSquare: '', roomsQuantity: '' },
+			{category: "Ноутбук", laptopType: [], laptopRamValue: '', laptopDiagonal: '', laptopProcType: [] },
+			{category: "Фотоаппарат", cameraType: [], resolutionMatrix: '', resolutionVideo: '' },
+			{category: "Автомобиль", bodyType: [], minimalYear: '', transmission: '' }
+		];		
 		
+		// 2. Все value выбранных объектов checkedItems, относящиеся к чекбоксам, 
+		// перепаковываются в массивы в соотв. категории filtersData (например estateType)
+		const checkboxes = ['estateType', 'laptopType', 'laptopProcType', 'cameraType', 'bodyType']
 		checkedItems.forEach(item => {
-			if (multiSelects.includes(item.subfilter)) {				
+			if (checkboxes.includes(item.subfilter)) {				
 				filtersData.forEach(obj => {
 					if(obj.category === item.category) {
 						obj[item.subfilter].push(item.value)
 					} 
 				})
-			}
+			} 
+			else {
+				// 3. Заполняются остальные свойства объекта filtersData
+				filtersData.forEach(elem => {
+					if(elem.category === item.category) {
+						elem[item.subfilter] = item.value;
+					}
+				})
+			}			
 		})
-		console.log('Выбранные галочки в недвижимости:', filtersData[0].estateType);
-		console.log('Выбранные галочки в ноутбуках:', filtersData[1].laptopType, filtersData[1].laptopProcType);
-		console.log('Выбранные галочки в фотоаппаратах:', filtersData[2].cameraType);
-		console.log('Выбранные галочки в автомобилях:', filtersData[3].bodyType);
-		// const multiSelects: any = {
-		// 	estateType: [],
-		// 	laptopType: [],
-		// 	laptopProcType: [],
-		// 	cameraType: [],
-		// 	bodyType: []
-		// }
-		
 
+		const result = filtersData.filter(obj => obj.category === activeFilter[1])
+		console.log('filtersData:', filtersData);
+		console.log('result', result);
+		// Проверить на каждом элементе, что алгоритм ведёт себя правильно
 
 		// далее здесь нужно обработать rangeSlider
 		// итоговый результат упаковать в (подумать) и вернуть из функции
 		// затем оно будет использовано для поиска по базе данных
 
-		return checkedItems
+		// return result
 	}
 )
-
-// const adapter = {
-// 	estateType: "type",
-// 	roomsQuantity: "rooms-count",
-// 	minSquare: "area",
-// 	laptopType: "type",
-// 	laptopRamValue: "ram-value",
-// 	laptopDiagonal: "screen-size",				
-// 	laptopProcType: "cpu-type",
-// 	cameraType: "type",
-// 	resolutionMatrix: "matrix-resolution",
-// 	resolutionVideo: "supporting",
-// 	bodyType: "body-type",
-// 	minimalYear: "production-year",
-// 	transmission: "transmisson",
-// }
 
 // let filtersData = [
 // 	{category: "Недвижимость", type: ["", "", ""], area: 20, "rooms-count": 2 },
@@ -327,13 +296,3 @@ export const getCheckedFilters = createSelector(
 // 	{category: "Фотоаппарат", type: ["", "", ""], "matrix-resolution": 14.2, "supporting": 2 },
 // 	{category: "Автомобиль", "body-type": ["", "", ""], "production-year": 2016, "transmission": "auto" }
 // ];
-
-// const adaptItems = (item) => {
-// 	const adapter = {
-// 		estateType: "type",				
-// 		laptopType: "type",			
-// 		laptopProcType: "cpu-type",
-// 		cameraType: "type",
-// 		bodyType: "body-type",
-// 	}
-// }

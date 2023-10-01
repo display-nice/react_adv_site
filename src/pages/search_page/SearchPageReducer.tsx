@@ -38,11 +38,11 @@ const SearchPageSlice = createSlice({
 			state.productsData = action.payload;
 			state.page.isLoading = false;
 			state.page.error = false;
-			console.log(state.productsData);
+			// console.log(state.productsData);
 		});
 		builder.addCase(initializePage.rejected, (state, action) => {
 			state.page.error = true;
-			console.log('error');
+			console.log('initializePage.rejected error');
 			// state.error = action.error.message; здесь можно получить доступ к сообщению об ошибке
 		});
 		// [initializePage.error]: (state) => {

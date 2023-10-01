@@ -25,7 +25,8 @@ export const RangeFilter = () => {
 
 	return (		
 		<div className="filter__range">
-			<label htmlFor="range">Цена, ₽</label>
+			{/* <label htmlFor="range">Цена, ₽</label> */}
+			<div>Цена, ₽</div>
 			<input type="text" id="sampleSlider" style={{'display': 'none'}}/>			
 			<div className="rs-tooltip-container">
 				<div className="rs-tooltip">от {selectedPrices[0]}</div>
