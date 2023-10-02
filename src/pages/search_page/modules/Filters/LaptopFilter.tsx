@@ -19,7 +19,7 @@ export const LaptopFilter = () => {
 	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
 	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__laptop";
-	if (activeFilter[0] !== "laptopFilter" || activeFilter[0] === "all") filterClasses += " hidden";
+	if (activeFilter !== "Ноутбук" || activeFilter === "Все") filterClasses += " hidden";
 
 	// Тип ноутбука
 	const laptopTypeData = useAppSelector((state) => state.FiltersReducer.laptopFilter.laptopType);

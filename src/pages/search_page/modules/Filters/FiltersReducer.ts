@@ -55,7 +55,7 @@ type selectParams = {
 }
 
 const initialState = {	
-	rangeFilter: {
+	priceFilter: {
 		minPrice: 2,
 		maxPrice: 200,
 		selectedPrices: [2, 200],
@@ -166,7 +166,7 @@ const FiltersSlice = createSlice({
 			});
 		},
 		setRangeSliderValue(state, action: PayloadAction<number[]>): void {
-			state.rangeFilter.selectedPrices = action.payload;
+			state.priceFilter.selectedPrices = action.payload;
 			// console.log(state.rangeFilter.selectedPrices)
 		},
 		setMinSquare(state, action: PayloadAction<number>): void {
@@ -207,37 +207,34 @@ export const { setActiveCategory, setRangeSliderValue, setMinSquare, setUlParams
 
 export function getActiveCategory(prodCatFilter) {
 	const selectedCtg = prodCatFilter['categories'].findIndex((item) => item.checked === true);
-	const forFilter = prodCatFilter['categories'][selectedCtg].forFilter;
 	const value = prodCatFilter['categories'][selectedCtg].value;
-	return [forFilter, value]
+	return value
 };
 
 export const getCheckedFilters = createSelector(
 	(state) => ({ ...state.FiltersReducer }),
-	({ prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter }) => {
+	({ priceFilter, prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter }) => {
 		const filters = {prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter}
-		let chosenFilters;
-		let checkedItems = [];
-
+		
 		console.log('Начало работы');
 		const activeFilter = getActiveCategory(prodCatFilter);
 		console.log('activeFilter: ', activeFilter);
 		// checkedItems.push({category: activeFilter[1]})
 		
 		// Проходимся по всему стейту и выбираем только выбранные записи (в которых checked = true).
-		if (activeFilter[0] === 'all') {
-			// chosenFilters = filters;
-			// Object.values(chosenFilters).forEach((filter: Record<string, any>) => {
-			// 	for (let index in filter) {					
-			// 		filter[index].forEach(item => {
-			// 			if (item.checked === true) checkedItems.push(item)
-			// 		})
-			// 	}
-			// });
-			console.log('Активен фильтр "Все", ничего не делаем');
+		let checkedItems = [];
+		if (activeFilter === 'Все') {
+			let result = {
+				category: "Все",
+				selectedPrices: priceFilter.selectedPrices,
+			}
+			console.log('result с активным фильтром "Все"', result);
+			return result
 		} else {
-			chosenFilters = filters[activeFilter[0]]
-			Object.values(chosenFilters).forEach((filter: Record<string, any>) => {
+			// chosenFilter = filters[activeFilter]
+			const forFilter = prodCatFilter['categories'].find((item) => item.value === activeFilter).forFilter;
+			const chosenFilter = filters[forFilter]
+			Object.values(chosenFilter).forEach((filter: Record<string, any>) => {
 				for (let index in filter) {
 					const item = filter[index];
 					if (item.checked === true) checkedItems.push(item)
@@ -250,10 +247,10 @@ export const getCheckedFilters = createSelector(
 		// filtersData в итоге будет заполнена выбранными элементами и передана дальше для фильтрации с её помощью
 		// если элемент не выбран пользователем, то он имеет значение пустой строки ''
 		let filtersData = [
-			{category: "Недвижимость", estateType: [], minSquare: '', roomsQuantity: '' },
-			{category: "Ноутбук", laptopType: [], laptopRamValue: '', laptopDiagonal: '', laptopProcType: [] },
-			{category: "Фотоаппарат", cameraType: [], resolutionMatrix: '', resolutionVideo: '' },
-			{category: "Автомобиль", bodyType: [], minimalYear: '', transmission: '' }
+			{category: "Недвижимость", price: [], estateType: [], minSquare: '', roomsQuantity: '' },
+			{category: "Ноутбук", price: [], laptopType: [], laptopRamValue: '', laptopDiagonal: '', laptopProcType: [] },
+			{category: "Фотоаппарат", price: [], cameraType: [], resolutionMatrix: '', resolutionVideo: '' },
+			{category: "Автомобиль", price: [], bodyType: [], minimalYear: '', transmission: '' }
 		];		
 		
 		// 2. Все value выбранных объектов checkedItems, относящиеся к чекбоксам, 
@@ -268,7 +265,7 @@ export const getCheckedFilters = createSelector(
 				})
 			} 
 			else {
-				// 3. Заполняются остальные свойства объекта filtersData
+				// 3. Заполняются остальные свойства объекта filtersData (кроме selectedPrices, его добавим ниже)
 				filtersData.forEach(elem => {
 					if(elem.category === item.category) {
 						elem[item.subfilter] = item.value;
@@ -277,22 +274,16 @@ export const getCheckedFilters = createSelector(
 			}			
 		})
 
-		const result = filtersData.filter(obj => obj.category === activeFilter[1])
+		// 4. выбираем в новый объект result только тот элемент filtersData, чья категория сейчас активна. 
+		let result = filtersData.filter(obj => obj.category === activeFilter)[0]
+		
+		// 5. добавляем выбранные цены в result
+		result.price = priceFilter.selectedPrices;
+		
+		// Всё готово, возвращаем result;
 		console.log('filtersData:', filtersData);
 		console.log('result', result);
-		// Проверить на каждом элементе, что алгоритм ведёт себя правильно
 
-		// далее здесь нужно обработать rangeSlider
-		// итоговый результат упаковать в (подумать) и вернуть из функции
-		// затем оно будет использовано для поиска по базе данных
-
-		// return result
+		return result
 	}
 )
-
-// let filtersData = [
-// 	{category: "Недвижимость", type: ["", "", ""], area: 20, "rooms-count": 2 },
-// 	{category: "Ноутбук", type: ["", "", ""], "ram-value": 4, "screen-size": 13, "cpu-type": ["", "", ""] },
-// 	{category: "Фотоаппарат", type: ["", "", ""], "matrix-resolution": 14.2, "supporting": 2 },
-// 	{category: "Автомобиль", "body-type": ["", "", ""], "production-year": 2016, "transmission": "auto" }
-// ];

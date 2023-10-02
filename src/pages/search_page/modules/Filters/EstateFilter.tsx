@@ -19,7 +19,7 @@ export const EstateFilter = () => {
 	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
 	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__estate";
-	if (activeFilter[0] !== "estateFilter" || activeFilter[0] === "all") filterClasses += " hidden";
+	if (activeFilter !== "Недвижимость" || activeFilter === "Все") filterClasses += " hidden";
 
 	// Минимальная площадь
 	let minSquare = Number(

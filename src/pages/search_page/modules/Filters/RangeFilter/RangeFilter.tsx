@@ -3,12 +3,12 @@ import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
 import { setRangeSliderValue } from "../FiltersReducer";
 
-export const RangeFilter = () => {
+export const PriceFilter = () => {
 
 	const dispatch = useAppDispatch();
-	const selectedPrices = useAppSelector(state => state.FiltersReducer.rangeFilter.selectedPrices)
-	const minPrice = useAppSelector(state => state.FiltersReducer.rangeFilter.minPrice)
-	const maxPrice = useAppSelector(state => state.FiltersReducer.rangeFilter.maxPrice)
+	const selectedPrices = useAppSelector(state => state.FiltersReducer.priceFilter.selectedPrices)
+	const minPrice = useAppSelector(state => state.FiltersReducer.priceFilter.minPrice)
+	const maxPrice = useAppSelector(state => state.FiltersReducer.priceFilter.maxPrice)
 	
 	const changeValue = (value) => {
 		// console.log(`onChange: ${JSON.stringify({ value, index })}`)
@@ -25,8 +25,9 @@ export const RangeFilter = () => {
 
 	return (		
 		<div className="filter__range">
+			<label>Цена, ₽</label>
 			{/* <label htmlFor="range">Цена, ₽</label> */}
-			<div>Цена, ₽</div>
+			{/* <div>Цена, ₽</div> */}
 			<input type="text" id="sampleSlider" style={{'display': 'none'}}/>			
 			<div className="rs-tooltip-container">
 				<div className="rs-tooltip">от {selectedPrices[0]}</div>

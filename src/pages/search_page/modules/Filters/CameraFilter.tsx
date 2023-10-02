@@ -28,7 +28,7 @@ export const CameraFilter = () => {
 	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
 	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__camera";
-	if (activeFilter[0] !== "cameraFilter" || activeFilter[0] === "all") filterClasses += " hidden";
+	if (activeFilter !== "Фотоаппарат" || activeFilter === "Все") filterClasses += " hidden";
 
 	// Тип фотоаппарата
 	const cameraTypeData = useAppSelector((state) => state.FiltersReducer.cameraFilter.cameraType);
