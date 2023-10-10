@@ -25,7 +25,7 @@ export const db_dev_products = {
 			"filters": {
 				"type": "flat",
 				"area": 120,
-				"rooms-count": 2
+				"rooms-count": 6
 			}
 		},
 		{

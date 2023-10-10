@@ -76,8 +76,10 @@ export const selectCrafter = (data, eventHandler) => {
 	);
 };
 
-export const dbAdapter = (direction, value) => {			
-	const values = {
+export const dbKeysAdapter = (direction, value) => {			
+	const keyNames = {
+		category: 'category',
+		price: 'price',
 		estateType: "type",
 		minSquare: "area",
 		roomsQuantity: "rooms-count",
@@ -90,16 +92,26 @@ export const dbAdapter = (direction, value) => {
 		resolutionVideo: "supporting",
 		bodyType: "body-type",
 		minimalYear: "production-year",
-		transmission: "transmisson",
+		transmission: "transmission",
 	}
 	switch(direction) {
 		case 'toDB':
-			return values[value]					
+			return keyNames[value]					
 		case 'toState':
-			for (const key in values) {
-				if (values[key] === value) {
+			for (const key in keyNames) {
+				if (keyNames[key] === value) {
 				  return key;
 				}
 			}
 	}			
+}
+
+export const dbValuesAdapter = (object) => {
+	for(const key in object) {
+		// key - ключ, object[key] - значение;
+		switch (key) {
+			case 'category':
+			case 'price':
+		}
+	} 
 }

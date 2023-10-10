@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 
-import { dbAdapter } from "./utils";
+import { dbKeysAdapter, dbValuesAdapter } from "./utils";
 // import { inputs_data } from './inputsData.js'
 
 interface FiltersState {
-	activeFilter: {
+	activeCategory: {
 		all: boolean;
 		estate: boolean;
 		laptops: boolean;
@@ -64,9 +64,9 @@ const initialState = {
 		categories: [
 			{ value: 'Все', forFilter: "all", checked: false, text: "Все", filter: 'prodCatFilter', subfilter: 'categories'},
 			{ value: "Недвижимость", forFilter: "estateFilter", checked: false, text: "Недвижимость", filter: 'prodCatFilter', subfilter: 'categories'},
-			{ value: 'Ноутбук', forFilter: "laptopFilter", checked: true, text: "Ноутбуки", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: 'Ноутбук', forFilter: "laptopFilter", checked: false, text: "Ноутбуки", filter: 'prodCatFilter', subfilter: 'categories'},
 			{ value: 'Фотоаппарат', forFilter: "cameraFilter", checked: false, text: "Фотоаппараты", filter: 'prodCatFilter', subfilter: 'categories'},
-			{ value: 'Автомобиль', forFilter: "carFilter", checked: false, text: "Автомобили", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: 'Автомобиль', forFilter: "carFilter", checked: true, text: "Автомобили", filter: 'prodCatFilter', subfilter: 'categories'},
 		],		
 	},
 	cameraFilter: {
@@ -76,14 +76,14 @@ const initialState = {
 			{value: 'mirrorless', checked: false, text: 'Беззеркальный', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'cameraType'},
 		],
 		resolutionMatrix: [
-			{value: '1mp', checked: false, text: '1 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
-			{value: '3mp', checked: false, text: '3 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
-			{value: '5mp', checked: false, text: '5 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
-			{value: '7mp', checked: false, text: '7 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
-			{value: '10mp', checked: false, text: '10 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '1', checked: false, text: '1 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '3', checked: false, text: '3 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '5', checked: false, text: '5 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '7', checked: false, text: '7 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '10', checked: false, text: '10 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
 		],
 		resolutionVideo: [
-			{value: 'any', checked: false, text: 'Любое', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionVideo'},
+			{value: '', checked: false, text: 'Любое', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionVideo'},
 			{value: 'HD', checked: false, text: 'HD', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionVideo'},
 			{value: 'FullHD', checked: false, text: 'Full HD', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionVideo'},
 			{value: '4K', checked: false, text: '4K', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionVideo'},
@@ -99,7 +99,7 @@ const initialState = {
 			{value: '2000', checked: true, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
 		],
 		transmission: [
-			{value: 'any', checked: false, text: 'Любая', category: "Автомобиль", filter: 'carFilter', subfilter: 'transmission'},
+			{value: '', checked: false, text: 'Любая', category: "Автомобиль", filter: 'carFilter', subfilter: 'transmission'},
 			{value: 'mechanic', checked: false, text: 'Механика', category: "Автомобиль", filter: 'carFilter', subfilter: 'transmission'},
 			{value: 'auto', checked: false, text: 'Автомат', category: "Автомобиль", filter: 'carFilter', subfilter: 'transmission'},
 		],
@@ -118,17 +118,17 @@ const initialState = {
 			{ value: "gaming", checked: false, text: "Игровой ноутбук", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
 		],
 		laptopRamValue: [
-			{ value: "any", checked: true, text: "Любой", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
-			{ value: "4gb", checked: false, text: "4 Гб", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
-			{ value: "8gb", checked: false, text: "8 Гб", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
-			{ value: "16gb", checked: false, text: "16 Гб", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
+			{ value: "", checked: true, text: "Любой", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
+			{ value: "4", checked: false, text: "4 Гб", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
+			{ value: "8", checked: false, text: "8 Гб", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
+			{ value: "16", checked: false, text: "16 Гб", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopRamValue'},
 		],
 		laptopDiagonal: [
-			{ value: "any", checked: true, text: "Любая", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
-			{ value: "13in", checked: false, text: "13″",  category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
-			{ value: "14in", checked: false, text: "14″", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
-			{ value: "15in", checked: false, text: "15″", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
-			{ value: "16in", checked: false, text: "17″", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "", checked: true, text: "Любая", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "13", checked: false, text: "13″",  category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "14", checked: false, text: "14″", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "15", checked: false, text: "15″", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
+			{ value: "16", checked: false, text: "17″", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopDiagonal'},
 		],
 		laptopProcType: [
 			{ value: "i3", checked: false, text: "Intel Core i3", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopProcType'},
@@ -146,12 +146,12 @@ const initialState = {
 			{value: '', checked: true, category: "Недвижимость", filter: 'estateFilter', subfilter: 'minSquare'}
 		],
 		roomsQuantity: [
-			{ value: "any", checked: false, text: "Любое", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
-			{ value: "one", checked: false, text: "1", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
-			{ value: "two", checked: false, text: "2", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
-			{ value: "three", checked: false, text: "3", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
-			{ value: "four", checked: false, text: "4", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
-			{ value: "fivemore", checked: false, text: "5+", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "", checked: false, text: "Любое", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "1", checked: false, text: "1", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "2", checked: false, text: "2", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "3", checked: false, text: "3", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "4", checked: false, text: "4", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
+			{ value: "5+", checked: false, text: "5+", category: "Недвижимость", filter: 'estateFilter', subfilter: 'roomsQuantity'},
 		],
 	},	
 };
@@ -214,25 +214,27 @@ export function getActiveCategory(prodCatFilter) {
 export const getCheckedFilters = createSelector(
 	(state) => ({ ...state.FiltersReducer }),
 	({ priceFilter, prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter }) => {
+		// console.log('Начало работы селектора getCheckedFilters');
+		// 1. Определяем интересующие нас фильтры и узнаём активную категорию
 		const filters = {prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter}
+		const activeCategory = getActiveCategory(prodCatFilter);
+		// console.log('activeCategory: ', activeCategory);
+		// checkedItems.push({category: activeCategory[1]})
 		
-		console.log('Начало работы');
-		const activeFilter = getActiveCategory(prodCatFilter);
-		console.log('activeFilter: ', activeFilter);
-		// checkedItems.push({category: activeFilter[1]})
-		
-		// Проходимся по всему стейту и выбираем только выбранные записи (в которых checked = true).
+		// 2. Проходимся по всему стейту и выбираем только выбранные записи (в которых checked = true).
 		let checkedItems = [];
-		if (activeFilter === 'Все') {
+		// 2.1 Если выбрана категория "Все", то записей никаких не будет, поэтому берём только цены
+		if (activeCategory === 'Все') {
 			let result = {
 				category: "Все",
 				selectedPrices: priceFilter.selectedPrices,
 			}
 			console.log('result с активным фильтром "Все"', result);
 			return result
-		} else {
-			// chosenFilter = filters[activeFilter]
-			const forFilter = prodCatFilter['categories'].find((item) => item.value === activeFilter).forFilter;
+		} 
+		// 2.2 Если не "Все", то вычисляем активный фильтр в стейте и выбираем итемы с checked = true из него 
+		else {
+			const forFilter = prodCatFilter['categories'].find((item) => item.value === activeCategory).forFilter;
 			const chosenFilter = filters[forFilter]
 			Object.values(chosenFilter).forEach((filter: Record<string, any>) => {
 				for (let index in filter) {
@@ -243,7 +245,7 @@ export const getCheckedFilters = createSelector(
 		}
 		// console.log('checkedItems:', checkedItems);
 
-		// Преобразовываем выбранные пользователем элементы фильтров в более удобный для фильтрации вид
+		// 3. Преобразовываем выбранные пользователем элементы фильтров в более удобный для фильтрации вид
 		// filtersData в итоге будет заполнена выбранными элементами и передана дальше для фильтрации с её помощью
 		// если элемент не выбран пользователем, то он имеет значение пустой строки ''
 		let filtersData = [
@@ -253,7 +255,7 @@ export const getCheckedFilters = createSelector(
 			{category: "Автомобиль", price: [], bodyType: [], minimalYear: '', transmission: '' }
 		];		
 		
-		// 2. Все value выбранных объектов checkedItems, относящиеся к чекбоксам, 
+		// 4. Все value выбранных объектов checkedItems, относящиеся к чекбоксам, 
 		// перепаковываются в массивы в соотв. категории filtersData (например estateType)
 		const checkboxes = ['estateType', 'laptopType', 'laptopProcType', 'cameraType', 'bodyType']
 		checkedItems.forEach(item => {
@@ -265,7 +267,7 @@ export const getCheckedFilters = createSelector(
 				})
 			} 
 			else {
-				// 3. Заполняются остальные свойства объекта filtersData (кроме selectedPrices, его добавим ниже)
+				// 5. Заполняются остальные свойства объекта filtersData (кроме prices, его добавим ниже)
 				filtersData.forEach(elem => {
 					if(elem.category === item.category) {
 						elem[item.subfilter] = item.value;
@@ -274,16 +276,26 @@ export const getCheckedFilters = createSelector(
 			}			
 		})
 
-		// 4. выбираем в новый объект result только тот элемент filtersData, чья категория сейчас активна. 
-		let result = filtersData.filter(obj => obj.category === activeFilter)[0]
+		// 6. выбираем в result только тот элемент filtersData, чья категория сейчас активна. 
+		// result - это объект
+		let result = filtersData.filter(obj => obj.category === activeCategory)[0]
 		
-		// 5. добавляем выбранные цены в result
+		// 7. добавляем выбранные цены в result
 		result.price = priceFilter.selectedPrices;
-		
-		// Всё готово, возвращаем result;
-		console.log('filtersData:', filtersData);
-		console.log('result', result);
 
-		return result
+		// 8. Переводим названия свойств объекта на "язык" базы данных
+		// Создаем новый объект, переименовывая ключи на основе dbKeysAdapter
+		const renamedResult = {};
+		for (const key in result) {			
+			const adaptedKey = dbKeysAdapter('toDB', key);
+			renamedResult[adaptedKey] = result[key];
+		}
+		// console.log('renamedResult', renamedResult);
+		
+		// dbValuesAdapter(renamedResult)
+		// 9. Всё готово, возвращаем renamedResult;
+		// console.log('filtersData:', filtersData);
+		// console.log('result', result);
+		return renamedResult
 	}
 )
