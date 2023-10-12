@@ -39,7 +39,7 @@ const SearchPageSlice = createSlice({
 			state.productsData = action.payload.products;
 			state.page.isLoading = false;
 			state.page.error = false;
-			console.log(state.productsData);
+			// console.log(state.productsData);
 		});
 		builder.addCase(initializePage.rejected, (state, action) => {
 			state.page.error = true;

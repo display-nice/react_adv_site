@@ -1,32 +1,11 @@
 import { useAppSelector } from "@src/hook";
-
-const BtnAddToFav = () => {
-	return (
-		<button className="product__favourite fav-add" type="button" aria-label="Добавить в избранное">
-			<svg
-				width="22"
-				height="20"
-				viewBox="0 0 22 20"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					fillRule="evenodd"
-					clipRule="evenodd"
-					d="M3 7C3 13 10 16.5 11 17C12 16.5 19 13 19 7C19 4.79086 17.2091 3 15 3C12 3 11 5 11 5C11 5 10 3 7 3C4.79086 3 3 4.79086 3 7Z"
-					stroke="white"
-					strokeWidth="2"
-					strokeLinejoin="round"
-				/>
-			</svg>
-		</button>
-	);
-};
+import { BtnAddToFav } from "./BtnAddToFav";
+import { formatPublishDate } from "./utils";
 
 const createListItems = (data) => {
 	const listItems = data.map((item) => {
 		return (
-			<li className="results__item product">
+			<li className="results__item product" key={item.name + "_key"}>
 				<BtnAddToFav />
 				<div className="product__image">
 					<div className="product__image-more-photo hidden">+2 фото</div>
@@ -53,7 +32,7 @@ const createListItems = (data) => {
 					<div className="product__address">
 						{item.address.city + ", " + item.address.street + ", " + item.address.building}
 					</div>
-					<div className="product__date">2 часа назад</div>
+					<div className="product__date">{formatPublishDate(item["publish-date"])}</div>
 				</div>
 			</li>
 		);
@@ -62,7 +41,9 @@ const createListItems = (data) => {
 };
 
 export const CardList = () => {
-
+	// Инициализация. 
+	// Если ещё не нажимали кнопку "показать" (то есть если нет фильтрованных данных по продуктам),
+	// то показываем все продукты, пришедшие с сервера, в том порядке, в котором они пришли
 	const productsData = useAppSelector((state) => state.SearchPageReducer.productsData);
 	const filteredProductsData = useAppSelector(
 		(state) => state.SearchPageReducer.filteredProductsData
@@ -71,7 +52,7 @@ export const CardList = () => {
 	if (!filteredProductsData) listItems = createListItems(productsData);
 	if (filteredProductsData) listItems = createListItems(filteredProductsData);
 
-	return (
-		<ul className="results__list">{listItems}</ul>		
-	);
+	return <ul className="results__list">{listItems}</ul>;
 };
+
+
