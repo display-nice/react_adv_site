@@ -12,6 +12,7 @@
 }
 
 .product__image {
+  display: flex;
   position: relative;
 }
 

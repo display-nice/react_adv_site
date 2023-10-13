@@ -1,6 +1,6 @@
 import { useAppSelector } from "@src/hook";
 import { BtnAddToFav } from "./BtnAddToFav";
-import { formatPublishDate } from "./utils";
+import { addThinSpacesToNumber, formatPublishDate } from "./utils";
 
 const createListItems = (data) => {
 	const listItems = data.map((item) => {
@@ -28,9 +28,9 @@ const createListItems = (data) => {
 					<h3 className="product__title">
 						<a href="/#">{item.name}</a>
 					</h3>
-					<div className="product__price">{item.price} ₽</div>
+					<div className="product__price">{addThinSpacesToNumber(item.price)} ₽</div>
 					<div className="product__address">
-						{item.address.city + ", " + item.address.street + ", " + item.address.building}
+						{item.address.city + ", " + item.address.street}
 					</div>
 					<div className="product__date">{formatPublishDate(item["publish-date"])}</div>
 				</div>
