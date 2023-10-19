@@ -1,88 +1,88 @@
+import React from "react";
+import { useState} from "react";
+
 import { useAppSelector } from "@src/hook";
 import { BtnAddToFav } from "./BtnAddToFav";
 import { addThinSpacesToNumber, formatPublishDate } from "./utils";
-import { useState, useCallback } from "react";
 
 const Product = ({ item }) => {
-	const [isHintVisible, setIsHintVisible] = useState(false);
+	// Локальные для каждого продукта состояния
+	// Видна ли подсказка, какая колонка активна, какая ссылка на изображение
+	const [hintIsVisible, setHintIsVisible] = useState<boolean>(false);
+	const [activeColumn, setActiveColumn] = useState<boolean | number>(false);
+	const [imgLink, setImgLink] = useState<string>(item.photos[0]);
 
-	const activate = (e) => {
-		e.target.className = "product__navigation-column product__navigation-column--active";
+	const activateColumn = (e, image) => {
+		const index = Number(e.target.dataset.index);
+		setActiveColumn(index);
+		setImgLink(image);
+		// Для пятой колонки нужно показать инфо-подсказку "+n фото"
+		if (index === 4) setHintIsVisible(true);
 	};
-	const deactivate = (e) => {
-		e.target.className = "product__navigation-column";
+	const deactivateColumn = (e) => {
+		const index = Number(e.target.dataset.index);
+		setActiveColumn(false);
+		// Для пятой колонки нужно скрыть инфо-подсказку "+n фото"
+		if (index === 4) setHintIsVisible(false);
 	};
 
+	// Подсчёт общего количества фото в массиве "photos" у каждого продукта в БД
 	const photosAmount = item.photos.length;
 	let morePhotos = photosAmount > 5 ? photosAmount - 5 : null;
 
-	// const fifthColumnMouseEnter = useCallback((e) => {
-	// 	// activate(e);
-	// 	setIsHintVisible(true);
-	// }, []);
-
-	// const fifthColumnMouseLeave = useCallback((e) => {
-	// 	// deactivate(e);
-	// 	setIsHintVisible(false);
-	// }, []);
-
-	const fifthColumnMouseEnter = useCallback((e) => {
-		// activate(e);
-		setIsHintVisible(true);
-	}, []);
-
-	const fifthColumnMouseLeave = useCallback((e) => {
-		// deactivate(e);
-		setIsHintVisible(false);
-		// console.log('пятая колонка');
-	}, []);
-
-	const test = (e) => {
-		// console.log("хинт");
-		// console.log(e.target.getAttribute("data-index"))
-	}
-	const test2 = (e) => {
-		console.log("колонка");
-	}
-
+	// Конструктор навигационных колонок для каждого фото.
+	// Количество колонок с подсвечивающимися плитками - не больше пяти;
+	// На пятой колонке (индекс = 4) показывается инфо-подсказка "+n фото"
 	const photoNav = item.photos.map((image, index) => {
+
+		// Обработчики событий и классы присваиваются в зависимости от условий
 		let mouseEnterHandler;
 		let mouseLeaveHandler;
 		let className;
-		// Подсвечиваем активную плитку. По-умолчанию активной должна быть первая.
-		index === 0
+
+		// Подсвечиваем активную плитку.
+		activeColumn === index
 			? (className = "product__navigation-column product__navigation-column--active")
 			: (className = "product__navigation-column");
+		
 		// Условия в зависимости от количества фото в объявлении в базе данных
-		if (photosAmount >= 2 && photosAmount <= 5) {
-			mouseEnterHandler = activate;
-			mouseLeaveHandler = deactivate;
-		} else if (photosAmount > 5) {
+		if (photosAmount > 5) {
 			// Нам нужно не более пяти плиток (колонок) на изображении
 			// Если мы сейчас на пятой и далее, то ничего не возвращаем
-			if (index >= 1 && index <= 3) {
-				mouseEnterHandler = activate;
-				mouseLeaveHandler = deactivate;
+			switch (index) {
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+					mouseEnterHandler = (e) => activateColumn(e, image);
+					mouseLeaveHandler = (e) => deactivateColumn(e);
+					break;
+				case 4:
+					return (
+						<React.Fragment key={item.name + "_photo_" + index + "_fifth-column"}>
+							<div
+								onMouseEnter={(e) => activateColumn(e, image)}
+								onMouseLeave={(e) => deactivateColumn(e)}
+								className={className + " product__navigation-column--fifth"}
+								data-index={index}
+							>
+								<span></span>
+							</div>
+							{hintIsVisible && <div className="product__image-more-photo">+{morePhotos} фото</div>}
+						</React.Fragment>
+					);
+				default:
+					return;
+				// Ничего не делать для всех других случаев (index > 4)
 			}
-			if (index === 4) {
-				return (
-					<>
-						<div
-							key={item.name + "_photo_" + index + "_fifth-column"}
-							onMouseEnter={fifthColumnMouseEnter}
-							onMouseLeave={fifthColumnMouseLeave}
-							className={className += " product__navigation-column--fifth"}
-							data-index={index}
-						>
-							<span></span>
-						</div>
-						{isHintVisible && <div className="product__image-more-photo">
-							+{morePhotos} фото
-						</div>}
-					</>
-				);
-			}
-			if (index > 4) return;
+		} 
+		else if (photosAmount >= 0 && photosAmount <= 5) {
+			mouseEnterHandler = (e) => {
+				activateColumn(e, image);
+			};
+			mouseLeaveHandler = (e) => {
+				deactivateColumn(e);
+			};
 		}
 		return (
 			<div
@@ -101,15 +101,7 @@ const Product = ({ item }) => {
 		<li className="results__item product" key={item.name + "_key"}>
 			<BtnAddToFav />
 			<div className="product__image">
-				{/* <div className="product__image-more-photo hidden">+{morePhotos} фото</div> */}
-				
-				<img
-					src="img/item1.jpg"
-					srcSet={item.photos[0]}
-					width="318"
-					height="220"
-					alt="Загородный дом с видом на озеро"
-				/>
+				<img src={imgLink} width="318" height="220" alt={item.name} />
 				<div className="product__image-navigation">{photoNav}</div>
 			</div>
 			<div className="product__content">
@@ -121,14 +113,13 @@ const Product = ({ item }) => {
 				<div className="product__date">{formatPublishDate(item["publish-date"])}</div>
 			</div>
 		</li>
-		
 	);
 };
 
 export const CardList = () => {
 	// Инициализация.
 	// Если ещё не нажимали кнопку "показать" (то есть если нет фильтрованных данных по продуктам),
-	// то показываем все продукты, пришедшие с сервера, в том порядке, в котором они пришли
+	// то показываем все продукты, пришедшие с сервера, в том порядке, в котором они пришли.
 	const productsData = useAppSelector((state) => state.SearchPageReducer.productsData);
 	const filteredProductsData = useAppSelector(
 		(state) => state.SearchPageReducer.filteredProductsData
@@ -140,59 +131,8 @@ export const CardList = () => {
 	return (
 		<ul className="results__list">
 			{products.map((item, index) => {
-				return <Product key={item.name + "_key_photo_" + index} item={item} />;
+				return <Product key={item.name + "_product_key_" + index} item={item} />;
 			})}
 		</ul>
 	);
 };
-
-// <div
-// 	key={item.name + "_photo_" + index}
-// 	onMouseEnter={activate}
-// 	onMouseLeave={deactivate}
-// 	className="product__navigation-column product__navigation-column--active"
-// >
-// 	<span></span>
-// </div>;
-
-{
-	/* <div
-							onMouseEnter={activate}
-							onMouseLeave={deactivate}
-							className="product__navigation-column product__navigation-column--active"
-						>
-							<span></span>
-						</div>
-
-						<div
-							onMouseEnter={activate}
-							onMouseLeave={deactivate}
-							className="product__navigation-column"
-						>
-							<span></span>
-						</div>
-
-						<div
-							onMouseEnter={activate}
-							onMouseLeave={deactivate}
-							className="product__navigation-column"
-						>
-							<span></span>
-						</div>
-
-						<div
-							onMouseEnter={activate}
-							onMouseLeave={deactivate}
-							className="product__navigation-column"
-						>
-							<span></span>
-						</div>
-
-						<div
-							onMouseEnter={activate}
-							onMouseLeave={deactivate}
-							className="product__navigation-column"
-						>
-							<span></span>
-						</div> */
-}
