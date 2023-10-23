@@ -1,6 +1,7 @@
-import { React, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { useAppSelector, useAppDispatch } from "@src/hook";
 // import { initializePage } from "@search_page/SearchPageReducer";
 import { initializePage } from "./SearchPageReducer";
 
@@ -9,16 +10,19 @@ import { Filters } from "./modules/Filters/_Filters";
 
 import { Sorting } from "@sp_modules/Sorting/Sorting";
 import { CardList } from "@sp_modules/CardList/CardList";
-import { Popup } from "@sp_modules/Popup";
+import { ProductCardPopup } from "@sp_modules/ProductCardPopup";
 import { Spinner } from "@sp_modules/Spinner/Spinner";
 
 const PageContent = () => {
+	const prodCardIsVis = useAppSelector(state => state.SearchPageReducer.productCard.isVisible);
 
 	// Если страница ещё загружается - то основной контент показан не будет
 	const pageIsLoading = useSelector((state) => state.SearchPageReducer.page.isLoading);
 	if (pageIsLoading) {
 		return null;
 	}
+
+	// Управление видимостью <ProductCardPopup/>
 	
 	return (
 		<section className="onlineshop-app">
@@ -46,8 +50,8 @@ const PageContent = () => {
 					</div>
 					<CardList />
 				</section>
-				<Popup/>
 			</div>
+			{prodCardIsVis && <ProductCardPopup/>}
 		</section>
 	);
 };

@@ -1,11 +1,14 @@
 import React from "react";
-import { useState} from "react";
+import { useState } from "react";
 
-import { useAppSelector } from "@src/hook";
+import { useAppSelector, useAppDispatch } from "@src/hook.ts";
+
 import { BtnAddToFav } from "./BtnAddToFav";
 import { addThinSpacesToNumber, formatPublishDate } from "./utils";
+import { setProductCard } from "../../SearchPageReducer";
 
 const Product = ({ item }) => {
+	const dispatch = useAppDispatch();
 	// Локальные для каждого продукта состояния
 	// Видна ли подсказка, какая колонка активна, какая ссылка на изображение
 	const [hintIsVisible, setHintIsVisible] = useState<boolean>(false);
@@ -25,6 +28,11 @@ const Product = ({ item }) => {
 		// Для пятой колонки нужно скрыть инфо-подсказку "+n фото"
 		if (index === 4) setHintIsVisible(false);
 	};
+
+	const changeProductCard = () => {
+		console.log('открытие карточки по клику на изображение')
+		dispatch( setProductCard({isVisible: true, data: item}) )
+	}
 
 	// Подсчёт общего количества фото в массиве "photos" у каждого продукта в БД
 	const photosAmount = item.photos.length;
@@ -75,7 +83,8 @@ const Product = ({ item }) => {
 					return;
 				// Ничего не делать для всех других случаев (index > 4)
 			}
-		} 
+		}
+		// Нам нужно не более пяти плиток (колонок) на изображении
 		else if (photosAmount >= 0 && photosAmount <= 5) {
 			mouseEnterHandler = (e) => {
 				activateColumn(e, image);
@@ -100,12 +109,13 @@ const Product = ({ item }) => {
 	return (
 		<li className="results__item product" key={item.name + "_key"}>
 			<BtnAddToFav />
-			<div className="product__image">
+			
+			<div className="product__image" onClick={changeProductCard}>
 				<img src={imgLink} width="318" height="220" alt={item.name} />
 				<div className="product__image-navigation">{photoNav}</div>
 			</div>
 			<div className="product__content">
-				<h3 className="product__title">
+				<h3 className="product__title" onClick={changeProductCard}>
 					<a href="/#">{item.name}</a>
 				</h3>
 				<div className="product__price">{addThinSpacesToNumber(item.price)} ₽</div>

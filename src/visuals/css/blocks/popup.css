@@ -1,5 +1,5 @@
 .popup {
-  display: none;
+  /* display: none; */
   position: absolute;
   z-index: 3;
   top: 0;

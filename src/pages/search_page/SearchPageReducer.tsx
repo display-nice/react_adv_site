@@ -27,11 +27,20 @@ const SearchPageSlice = createSlice({
 		},	
 		productsData: null,
 		filteredProductsData: null,
+		productCard: {
+			isVisible: false,
+			data: {}
+		}
 	},
 	reducers: {
 		setFilteredProductsData(state, action) {
 			state.filteredProductsData = action.payload;
 			console.log('state.filteredProductsData', state.filteredProductsData);
+		},
+		setProductCard(state, action) {
+			console.log(action.payload);
+			state.productCard.isVisible = action.payload.isVisible;
+			state.productCard.data = action.payload.data;
 		}
 	},
 	extraReducers: (builder) => {
@@ -59,4 +68,4 @@ const SearchPageSlice = createSlice({
 })
 
 export const SearchPageReducer = SearchPageSlice.reducer;
-export const {setFilteredProductsData} = SearchPageSlice.actions;
+export const {setFilteredProductsData, setProductCard} = SearchPageSlice.actions;
