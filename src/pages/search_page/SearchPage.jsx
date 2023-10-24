@@ -10,7 +10,7 @@ import { Filters } from "./modules/Filters/_Filters";
 
 import { Sorting } from "@sp_modules/Sorting/Sorting";
 import { CardList } from "@sp_modules/CardList/CardList";
-import { ProductCardPopup } from "@sp_modules/ProductCardPopup";
+import { ProductCardPopup } from "@sp_modules/CardList/ProductCardPopup";
 import { Spinner } from "@sp_modules/Spinner/Spinner";
 
 const PageContent = () => {

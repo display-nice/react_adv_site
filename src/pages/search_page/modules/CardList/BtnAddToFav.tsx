@@ -1,6 +1,6 @@
-export const BtnAddToFav = () => {
+const btn = (className) => {
 	return (
-		<button className="product__favourite fav-add" type="button" aria-label="Добавить в избранное">
+		<button className={className} type="button" aria-label="Добавить в избранное">
 			<svg
 				width="22"
 				height="20"
@@ -19,4 +19,12 @@ export const BtnAddToFav = () => {
 			</svg>
 		</button>
 	);
+};
+
+export const BtnFavCardList = () => {
+	return btn("product__favourite fav-add");
+};
+
+export const BtnFavProdCard = () => {
+	return btn("gallery__favourite fav-add");
 };

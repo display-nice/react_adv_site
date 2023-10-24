@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { BtnAddToFav } from "./BtnAddToFav";
+import { BtnFavCardList } from "./BtnAddToFav";
 import { addThinSpacesToNumber, formatPublishDate } from "./utils";
 import { setProductCard } from "../../SearchPageReducer";
 
@@ -108,7 +108,7 @@ const Product = ({ item }) => {
 
 	return (
 		<li className="results__item product" key={item.name + "_key"}>
-			<BtnAddToFav />
+			<BtnFavCardList />
 			
 			<div className="product__image" onClick={changeProductCard}>
 				<img src={imgLink} width="318" height="220" alt={item.name} />
