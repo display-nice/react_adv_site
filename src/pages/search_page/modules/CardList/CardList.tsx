@@ -30,7 +30,6 @@ const Product = ({ item }) => {
 	};
 
 	const changeProductCard = () => {
-		console.log('открытие карточки по клику на изображение')
 		dispatch( setProductCard({isVisible: true, data: item}) )
 	}
 

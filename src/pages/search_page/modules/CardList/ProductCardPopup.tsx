@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { setProductCard } from "../../SearchPageReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { formatPublishDate, addThinSpacesToNumber } from "./utils";
+import { formatPublishDate, addThinSpacesToNumber, translateChars } from "./utils";
 import { BtnFavProdCard } from "./BtnAddToFav";
 
 function GalleryItem({ photo, index, gai, setGai }) {
@@ -19,6 +19,27 @@ function GalleryItem({ photo, index, gai, setGai }) {
 	);
 }
 
+function Characteristics({cardData}) {
+	// фильтры в БД приходят в виде объекта, удобней обработать в виде массива
+	const filtersArr = Object.entries(cardData["filters"])
+
+	const characteristics = filtersArr.map((filter, index) => {
+		// Если значение фильтра пустое или прочерк, то нам не нужно отрисовывать его
+		if (filter[1] === '' || filter[1] === '-') return;
+
+		// Если значение есть, то переводим его и отрисовываем
+		let header = translateChars(cardData["category"], "header", filter);
+		let value = translateChars(cardData["category"], "value", filter);
+		return (
+			<li className="chars__item" key={"chars_key_" + index}>
+				<div className="chars__name">{header}</div>
+				<div className="chars__value">{value}</div>
+			</li>
+		)
+	})
+	return characteristics;	
+}
+
 export const ProductCardPopup = () => {
 	const [galleryActiveItem, setGalleryActiveItem] = useState<number>(0);
 	const cardData = useAppSelector((state) => state.SearchPageReducer.productCard.data);
@@ -31,7 +52,7 @@ export const ProductCardPopup = () => {
 		", " +
 		cardData["address"]["street"] +
 		", " +
-		cardData["address"]["building"];
+		cardData["address"]["building"];	
 
 	return (
 		<section className="popup">
@@ -81,18 +102,15 @@ export const ProductCardPopup = () => {
 							</ul>
 						</div>
 						<ul className="popup__chars chars">
-							<li className="chars__item">
-								<div className="chars__name">Год выпуска</div>
-								<div className="chars__value">2019</div>
-							</li>
-							<li className="chars__item">
+							< Characteristics cardData={cardData}/>							
+							{/* <li className="chars__item">
 								<div className="chars__name">Коробка передач</div>
 								<div className="chars__value">автоматическая</div>
 							</li>
 							<li className="chars__item">
 								<div className="chars__name">Тип кузова</div>
 								<div className="chars__value">универсал</div>
-							</li>
+							</li> */}
 						</ul>
 						<div className="popup__seller seller seller--good">
 							<h3>Продавец</h3>

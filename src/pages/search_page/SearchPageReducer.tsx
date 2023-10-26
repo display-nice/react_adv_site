@@ -38,7 +38,6 @@ const SearchPageSlice = createSlice({
 			console.log('state.filteredProductsData', state.filteredProductsData);
 		},
 		setProductCard(state, action) {
-			console.log(action.payload);
 			state.productCard.isVisible = action.payload.isVisible;
 			state.productCard.data = action.payload.data;
 		}
