@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-import { setProductCard } from "../../SearchPageReducer";
+import { setProductCard } from "../../../SearchPageReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { formatPublishDate, addThinSpacesToNumber, translateChars } from "./utils";
-import { BtnFavProdCard } from "./BtnAddToFav";
+import { formatPublishDate, addThinSpacesToNumber, translateChars } from "../utils";
+import { BtnFavProdCard } from "../BtnAddToFav";
+
+import { MapComponent } from "./Map";
 
 function GalleryItem({ photo, index, gai, setGai }) {
 	// gai - это galleryActiveItem, переменная состояния в ProductCardPopup
@@ -146,7 +148,8 @@ export const ProductCardPopup = () => {
 					</div>
 					<div className="popup__right">
 						<div className="popup__map">
-							<img src="img/map.jpg" width="268" height="180" alt={fullAddress} />
+							{/* <img src="img/map.jpg" width="268" height="180" alt={fullAddress} /> */}
+							<MapComponent coords={cardData["coordinates"]}/>
 						</div>
 						<div className="popup__address">{fullAddress}</div>
 					</div>
