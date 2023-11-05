@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { setProductCard } from "../../../SearchPageReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
@@ -42,37 +42,39 @@ function Characteristics({ cardData }) {
 	return characteristics;
 }
 
-// Меняет классы для рейтинга продавца в зависимости от этого рейтинга
-function sellerClasses(rating) {
-	let classes = "popup__seller seller";
-	if (rating >= 4.8) {
-		classes += " seller--good";
-		return classes;
-	} else if (rating >= 4 && rating < 4.8) {
-		return classes;
-	} else if (rating < 4) {
-		classes += " seller--bad";
-		return classes;
-	}
-}
 
 export const ProductCardPopup = () => {
 	const [galleryActiveItem, setGalleryActiveItem] = useState<number>(0);
 	const cardData = useAppSelector((state) => state.SearchPageReducer.productCard.data);
 	const dispatch = useAppDispatch();
-
+	
 	// Закрывает продуктовую карточку (попап)
 	// либо при нажатии на тёмный фон (первый "иф"), либо при нажатии на крестик (второй "иф")
 	const closeProductCard = (e) => {
 		if (
 			e.target.firstElementChild &&
 			e.target.firstElementChild.classList.value === "popup__inner"
-		) {
-			dispatch(setProductCard({ isVisible: false, data: {} }));
-		} else if (e.target.closest(".popup__close")) {
-			dispatch(setProductCard({ isVisible: false, data: {} }));
+			) {
+				dispatch(setProductCard({ isVisible: false, data: {} }));
+			} else if (e.target.closest(".popup__close")) {
+				dispatch(setProductCard({ isVisible: false, data: {} }));
 		}
 	};
+
+	// Меняет классы для рейтинга продавца в зависимости от этого рейтинга
+	function sellerClasses(rating) {
+		let classes = "popup__seller seller";
+		if (rating >= 4.8) {
+			classes += " seller--good";
+			return classes;
+		} else if (rating >= 4 && rating < 4.8) {
+			return classes;
+		} else if (rating < 4) {
+			classes += " seller--bad";
+			return classes;
+		}
+	}
+
 	const fullAddress =
 		cardData["address"]["city"] +
 		", " +

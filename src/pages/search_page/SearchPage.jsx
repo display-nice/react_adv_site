@@ -61,7 +61,7 @@ export const SearchPage = () => {
 	const dispatch = useDispatch();
 
 	// 1. Инициализация всей страницы
-	// Получение с сервера данных по городам
+	// Получение с сервера данных по продуктам
 	useEffect(() => {
 		dispatch(initializePage());
 	}, [dispatch]);

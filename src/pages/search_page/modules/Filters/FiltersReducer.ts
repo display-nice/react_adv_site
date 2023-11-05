@@ -55,19 +55,19 @@ type selectParams = {
 }
 
 const initialState = {	
-	priceFilter: {
-		minPrice: 2,
-		maxPrice: 200,
-		selectedPrices: [2, 200],
-	},
+	// priceFilter: {
+	// 	minBorder: 1,
+	// 	maxBorder: 100,
+	// 	selectedPrices: [1, 100],
+	// },
 	prodCatFilter: {
 		categories: [
-			{ value: 'Все', forFilter: "all", checked: false, text: "Все", filter: 'prodCatFilter', subfilter: 'categories'},
+			{ value: 'Все', forFilter: "all", checked: true, text: "Все", filter: 'prodCatFilter', subfilter: 'categories'},
 			{ value: "Недвижимость", forFilter: "estateFilter", checked: false, text: "Недвижимость", filter: 'prodCatFilter', subfilter: 'categories'},
 			{ value: 'Ноутбук', forFilter: "laptopFilter", checked: false, text: "Ноутбуки", filter: 'prodCatFilter', subfilter: 'categories'},
 			{ value: 'Фотоаппарат', forFilter: "cameraFilter", checked: false, text: "Фотоаппараты", filter: 'prodCatFilter', subfilter: 'categories'},
-			{ value: 'Автомобиль', forFilter: "carFilter", checked: true, text: "Автомобили", filter: 'prodCatFilter', subfilter: 'categories'},
-		],		
+			{ value: 'Автомобиль', forFilter: "carFilter", checked: false, text: "Автомобили", filter: 'prodCatFilter', subfilter: 'categories'},
+		],
 	},
 	cameraFilter: {
 		cameraType: [
@@ -96,7 +96,7 @@ const initialState = {
 			{value: '1940', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
 			{value: '1960', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
 			{value: '1980', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
-			{value: '2000', checked: true, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
+			{value: '2000', checked: false, get text() {return this.value}, category: "Автомобиль", filter: 'carFilter', subfilter: 'minimalYear'},
 		],
 		transmission: [
 			{value: '', checked: false, text: 'Любая', category: "Автомобиль", filter: 'carFilter', subfilter: 'transmission'},
@@ -138,9 +138,9 @@ const initialState = {
 	},
 	estateFilter: {
 		estateType: [
-			{ value: "house", checked: true, text: "Дом", category: "Недвижимость", filter: 'estateFilter', subfilter: 'estateType'},
-			{ value: "flat", checked: true, text: "Квартира", category: "Недвижимость", filter: 'estateFilter', subfilter: 'estateType'},
-			{ value: "apartment", checked: true, text: "Апартаменты", category: "Недвижимость", filter: 'estateFilter', subfilter: 'estateType'},
+			{ value: "house", checked: false, text: "Дом", category: "Недвижимость", filter: 'estateFilter', subfilter: 'estateType'},
+			{ value: "flat", checked: false, text: "Квартира", category: "Недвижимость", filter: 'estateFilter', subfilter: 'estateType'},
+			{ value: "apartment", checked: false, text: "Апартаменты", category: "Недвижимость", filter: 'estateFilter', subfilter: 'estateType'},
 		],
 		minSquare: [
 			{value: '', checked: true, category: "Недвижимость", filter: 'estateFilter', subfilter: 'minSquare'}
@@ -164,10 +164,6 @@ const FiltersSlice = createSlice({
 			state.prodCatFilter.categories.map((cat) => {
 				cat.value === action.payload ? (cat.checked = true) : (cat.checked = false);
 			});
-		},
-		setRangeSliderValue(state, action: PayloadAction<number[]>): void {
-			state.priceFilter.selectedPrices = action.payload;
-			// console.log(state.rangeFilter.selectedPrices)
 		},
 		setMinSquare(state, action: PayloadAction<number>): void {
 			// console.log(String(action.payload));
@@ -202,7 +198,7 @@ const FiltersSlice = createSlice({
 });
 
 export const FiltersReducer = FiltersSlice.reducer;
-export const { setActiveCategory, setRangeSliderValue, setMinSquare, setUlParams, setSelectParams } =
+export const { setActiveCategory, setMinSquare, setUlParams, setSelectParams } =
 	FiltersSlice.actions;
 
 export function getActiveCategory(prodCatFilter) {
@@ -227,9 +223,8 @@ export const getCheckedFilters = createSelector(
 		if (activeCategory === 'Все') {
 			let result = {
 				category: "Все",
-				selectedPrices: priceFilter.selectedPrices,
 			}
-			console.log('result с активным фильтром "Все"', result);
+			// console.log('result с активным фильтром "Все"', result);
 			return result
 		} 
 		// 2.2 Если не "Все", то вычисляем активный фильтр в стейте и выбираем итемы с checked = true из него 
@@ -249,10 +244,10 @@ export const getCheckedFilters = createSelector(
 		// filtersData в итоге будет заполнена выбранными элементами и передана дальше для фильтрации с её помощью
 		// если элемент не выбран пользователем, то он имеет значение пустой строки ''
 		let filtersData = [
-			{category: "Недвижимость", price: [], estateType: [], minSquare: '', roomsQuantity: '' },
-			{category: "Ноутбук", price: [], laptopType: [], laptopRamValue: '', laptopDiagonal: '', laptopProcType: [] },
-			{category: "Фотоаппарат", price: [], cameraType: [], resolutionMatrix: '', resolutionVideo: '' },
-			{category: "Автомобиль", price: [], bodyType: [], minimalYear: '', transmission: '' }
+			{category: "Недвижимость", estateType: [], minSquare: '', roomsQuantity: '' },
+			{category: "Ноутбук", laptopType: [], laptopRamValue: '', laptopDiagonal: '', laptopProcType: [] },
+			{category: "Фотоаппарат", cameraType: [], resolutionMatrix: '', resolutionVideo: '' },
+			{category: "Автомобиль", bodyType: [], minimalYear: '', transmission: '' }
 		];		
 		
 		// 4. Все value выбранных объектов checkedItems, относящиеся к чекбоксам, 
@@ -279,23 +274,16 @@ export const getCheckedFilters = createSelector(
 		// 6. выбираем в result только тот элемент filtersData, чья категория сейчас активна. 
 		// result - это объект
 		let result = filtersData.filter(obj => obj.category === activeCategory)[0]
-		
-		// 7. добавляем выбранные цены в result
-		result.price = priceFilter.selectedPrices;
 
-		// 8. Переводим названия свойств объекта на "язык" базы данных
+		// 7. Переводим названия свойств объекта на "язык" базы данных
 		// Создаем новый объект, переименовывая ключи на основе dbKeysAdapter
 		const renamedResult = {};
 		for (const key in result) {			
 			const adaptedKey = dbKeysAdapter('toDB', key);
 			renamedResult[adaptedKey] = result[key];
 		}
-		// console.log('renamedResult', renamedResult);
-		
-		// dbValuesAdapter(renamedResult)
-		// 9. Всё готово, возвращаем renamedResult;
-		// console.log('filtersData:', filtersData);
-		// console.log('result', result);
+
+		// 8. Всё готово, возвращаем renamedResult;
 		return renamedResult
 	}
 )

@@ -28,10 +28,13 @@ export const checkLaptop = (filters, product) => {
 			// и подлежит полноценной проверке
 			switch (key) {
 				// Цена
-				// case 'price':
-				// 	product.price >= value[0] && product.price <= value[1] ?
-				// 	array.push(true) : array.push(false)
-				// 	break;
+				case 'prices':
+					console.log('проверка цены...');
+					console.log('product.prices', product.prices);
+					console.log('value[0]:', value[0], 'value[1]:', value[1]);
+					product.price >= value[0] && product.price <= value[1] ?
+					array.push(true) : array.push(false)
+					break;
 				// Тип ноутбука
 				case "type":
 					value.some((elem) => elem === product.filters["type"])
@@ -75,10 +78,10 @@ export const checkEstate = (filters, product) => {
 			}
 			switch (key) {
 				// Цена
-				// case 'price':
-				// 	product.price >= value[0] && product.price <= value[1] ?
-				// 	array.push(true) : array.push(false)
-				// 	break;
+				case 'prices':
+					product.price >= value[0] && product.price <= value[1] ?
+					array.push(true) : array.push(false)
+					break;
 				// Тип недвижимости
 				case "type":
 					value.some((elem) => elem === product.filters["type"])
@@ -121,10 +124,10 @@ export const checkCamera = (filters, product) => {
 			}
 			switch (key) {
 				// Цена
-				// case 'price':
-				// 	product.price >= value[0] && product.price <= value[1] ?
-				// 	array.push(true) : array.push(false)
-				// 	break;
+				case 'prices':
+					product.price >= value[0] && product.price <= value[1] ?
+					array.push(true) : array.push(false)
+					break;
 				// Тип фотоаппарата
 				case "type":
 					value.some((elem) => elem === product.filters["type"])
@@ -174,10 +177,10 @@ export const checkCar = (filters, product) => {
 			}
 			switch (key) {
 				// Цена
-				// case 'price':
-				// 	product.price >= value[0] && product.price <= value[1] ?
-				// 	array.push(true) : array.push(false)
-				// 	break;
+				case 'prices':
+					product.price >= value[0] && product.price <= value[1] ?
+					array.push(true) : array.push(false)
+					break;
 				// Минимальный год выпуска
 				case "production-year":
 					product.filters["production-year"] >= Number(value)

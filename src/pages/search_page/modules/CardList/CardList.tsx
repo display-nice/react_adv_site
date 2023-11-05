@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
@@ -129,13 +129,23 @@ export const CardList = () => {
 	// Инициализация.
 	// Если ещё не нажимали кнопку "показать" (то есть если нет фильтрованных данных по продуктам),
 	// то показываем все продукты, пришедшие с сервера, в том порядке, в котором они пришли.
-	const productsData = useAppSelector((state) => state.SearchPageReducer.productsData);
+	// при этом для состояния по-умолчанию показываем только 7 продуктов (такое ТЗ)
+	const dispatch = useAppDispatch();
+	const page = useAppSelector((state) => state.SearchPageReducer.page);
 	const filteredProductsData = useAppSelector(
 		(state) => state.SearchPageReducer.filteredProductsData
 	);
-	let products;
-	if (!filteredProductsData) products = productsData;
-	if (filteredProductsData) products = filteredProductsData;
+	const firstLaunchProdData = useAppSelector(state => state.SearchPageReducer.firstLaunchProdData)
+	
+	let products = []; // массив объектов
+	// Для состояния по-умолчанию нам нужны только первые 7 продуктов (такое ТЗ)
+	// они устанавливаются в extraReducers в SearchPageReducer при инициализации приложения
+	if (!filteredProductsData && !page.isLoading && !page.error) {
+		products = firstLaunchProdData;
+	}
+
+	// Если пользователь уже нажимал кнопку "Показать", то показываем все найденные продукты
+	if (filteredProductsData) products = filteredProductsData;	
 
 	return (
 		<ul className="results__list">

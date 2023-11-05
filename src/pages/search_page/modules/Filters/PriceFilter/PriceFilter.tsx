@@ -1,27 +1,19 @@
 import ReactSlider from "react-slider";
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { setRangeSliderValue } from "../FiltersReducer";
+import { setChosenPrices } from "@src/pages/search_page/SearchPageReducer";
+import { addThinSpacesToNumber } from "../../CardList/utils";
 
 export const PriceFilter = () => {
 
 	const dispatch = useAppDispatch();
-	const selectedPrices = useAppSelector(state => state.FiltersReducer.priceFilter.selectedPrices)
-	const minPrice = useAppSelector(state => state.FiltersReducer.priceFilter.minPrice)
-	const maxPrice = useAppSelector(state => state.FiltersReducer.priceFilter.maxPrice)
+	const selectedPrices = useAppSelector(state => state.SearchPageReducer.priceFilter.selectedPrices)
+	const minBorder = useAppSelector(state => state.SearchPageReducer.priceFilter.minBorder)
+	const maxBorder = useAppSelector(state => state.SearchPageReducer.priceFilter.maxBorder)
 	
-	const changeValue = (value) => {
-		// console.log(`onChange: ${JSON.stringify({ value, index })}`)
-		dispatch(setRangeSliderValue(value))
+	const changeSelectedPrices = (value) => {
+		dispatch(setChosenPrices(value))
 	}
-
-	// const renderThumbTest = (props, state) => {
-	// 	console.log(props);
-	// 	console.log(state);
-	// 	return (
-	// 		<div {...props}>{state.valueNow}</div>
-	// 	)
-	// }
 
 	return (		
 		<div className="filter__range">
@@ -30,18 +22,18 @@ export const PriceFilter = () => {
 			{/* <div>Цена, ₽</div> */}
 			<input type="text" id="sampleSlider" style={{'display': 'none'}}/>			
 			<div className="rs-tooltip-container">
-				<div className="rs-tooltip">от {selectedPrices[0]}</div>
-				<div className="rs-tooltip">до {selectedPrices[1]}</div>
+				<div className="rs-tooltip">от {addThinSpacesToNumber(selectedPrices[0])}</div>
+				<div className="rs-tooltip">до {addThinSpacesToNumber(selectedPrices[1])}</div>
 			</div>
 			<ReactSlider
 				className="rs-container"
 				thumbClassName="rs-thumb"
 				trackClassName="rs-colored-line"
-				min={minPrice}
-  				max={maxPrice}
+				min={minBorder}
+  				max={maxBorder}
 				value={selectedPrices}
 				// defaultValue={[0, 100]}
-				onChange={changeValue}
+				onChange={changeSelectedPrices}
 				// renderThumb={renderThumbTest}
 				ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
 				ariaLabel={["Lower thumb", "Upper thumb"]}

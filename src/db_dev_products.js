@@ -31,7 +31,7 @@ export const db_dev_products = {
 		{
 			"name": "Однушка в спальнике Питера",
 			"price": 10000000,
-			"coordinates": [60.027449, 30.340338],
+			"coordinates": [60.028541, 30.339081],
 			"seller": {
 				"fullname": "Игнат-Агент",
 				"rating": 4.2
@@ -89,7 +89,7 @@ export const db_dev_products = {
 		{
 			"name": "Студия для аскетов",
 			"price": 5000000,
-			"coordinates": [52.334955, 104.267437],
+			"coordinates": [52.334053, 104.267886],
 			"seller": {
 				"fullname": "Марья Андреевна",
 				"rating": 3
