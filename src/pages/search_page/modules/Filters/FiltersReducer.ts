@@ -207,6 +207,15 @@ export function getActiveCategory(prodCatFilter) {
 	return value
 };
 
+// export const getActiveCategory2 = createSelector(
+// 	(state) => ({ ...state.FiltersReducer }),
+// 	({prodCatFilter}) =>	{
+// 		const selectedCtg = prodCatFilter['categories'].findIndex((item) => item.checked === true);
+// 		const value = prodCatFilter['categories'][selectedCtg].value;
+// 		return value
+// 	}
+// )
+
 export const getCheckedFilters = createSelector(
 	(state) => ({ ...state.FiltersReducer }),
 	({ priceFilter, prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter }) => {

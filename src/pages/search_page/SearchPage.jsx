@@ -5,25 +5,23 @@ import { useAppSelector, useAppDispatch } from "@src/hook";
 // import { initializePage } from "@search_page/SearchPageReducer";
 import { initializePage } from "./SearchPageReducer";
 
-// import { Filters } from "@sp_modules/Filters/Filters.jsx";
-import { Filters } from "./modules/Filters/_Filters";
+import { Filters } from "@sp_modules/Filters/_Filters";
 
-import { Sorting } from "@sp_modules/Sorting/Sorting";
+import { Favorites } from '@sp_modules/Favorites';
+import { Sort } from '@sp_modules/Sort'
 import { CardList } from "@sp_modules/CardList/CardList";
 import { ProductCardPopup } from "@sp_modules/CardList/ProductCardPopup/ProductCardPopup";
 import { Spinner } from "@sp_modules/Spinner/Spinner";
 
 const PageContent = () => {
-	const prodCardIsVis = useAppSelector(state => state.SearchPageReducer.productCard.isVisible);
+	const prodCardIsVis = useAppSelector((state) => state.SearchPageReducer.productCard.isVisible);
 
 	// Если страница ещё загружается - то основной контент показан не будет
 	const pageIsLoading = useSelector((state) => state.SearchPageReducer.page.isLoading);
 	if (pageIsLoading) {
 		return null;
-	}
+	}	
 
-	// Управление видимостью <ProductCardPopup/>
-	
 	return (
 		<section className="onlineshop-app">
 			<h1 className="visually-hidden">Главная</h1>
@@ -36,22 +34,28 @@ const PageContent = () => {
 				<section className="onlineshop-app__results results">
 					<div className="results__head">
 						<h2 className="title results__title">Результаты</h2>
-						<Sorting />
+						<div className="results__sorting sorting">
+							<form className="sorting__form">
+								<Sort />
+								<Favorites />
+							</form>
+						</div>
 					</div>
-					<div className="results__info favourites hidden">
+					{/* <div className="results__info favourites hidden">
 						<p className="favourites__empty-message">
-							У вас пока нет избранных товаров. Чтобы отметить товар, кликните
-							на сердечко в карточке объявления.
+							У вас пока нет избранных товаров. Чтобы отметить товар, кликните на сердечко в
+							карточке объявления.
 						</p>
 						<p className="favourites__notion">
-							Вы можете вернуться к списку всех товаров, кликнув ещё раз
-							на&nbsp;«Показать избранные»
+							Вы можете вернуться к списку всех товаров, кликнув ещё раз на&nbsp;«Показать
+							избранные»
 						</p>
-					</div>
+					</div> */}
 					<CardList />
 				</section>
 			</div>
-			{prodCardIsVis && <ProductCardPopup/>}
+			{/* Управление видимостью <ProductCardPopup/> */}
+			{prodCardIsVis && <ProductCardPopup />}
 		</section>
 	);
 };
@@ -73,11 +77,11 @@ export const SearchPage = () => {
 	if (page.error)
 		content = (
 			<h1>
-				Ошибка получения данных с сервера. 
+				Ошибка получения данных с сервера.
 				<br />
 				Обновите страницу.
 			</h1>
 		);
 	if (!page.isLoading && !page.error) content = <PageContent />;
-	return <>{content}</>
+	return <>{content}</>;
 };

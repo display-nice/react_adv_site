@@ -30,8 +30,8 @@ const Product = ({ item }) => {
 	};
 
 	const changeProductCard = () => {
-		dispatch( setProductCard({isVisible: true, data: item}) )
-	}
+		dispatch(setProductCard({ isVisible: true, data: item }));
+	};
 
 	// Подсчёт общего количества фото в массиве "photos" у каждого продукта в БД
 	const photosAmount = item.photos.length;
@@ -41,7 +41,6 @@ const Product = ({ item }) => {
 	// Количество колонок с подсвечивающимися плитками - не больше пяти;
 	// На пятой колонке (индекс = 4) показывается инфо-подсказка "+n фото"
 	const photoNav = item.photos.map((image, index) => {
-
 		// Обработчики событий и классы присваиваются в зависимости от условий
 		let mouseEnterHandler;
 		let mouseLeaveHandler;
@@ -51,7 +50,7 @@ const Product = ({ item }) => {
 		activeColumn === index
 			? (className = "product__navigation-column product__navigation-column--active")
 			: (className = "product__navigation-column");
-		
+
 		// Условия в зависимости от количества фото в объявлении в базе данных
 		if (photosAmount > 5) {
 			// Нам нужно не более пяти плиток (колонок) на изображении
@@ -108,7 +107,7 @@ const Product = ({ item }) => {
 	return (
 		<li className="results__item product" key={item.name + "_key"}>
 			<BtnFavCardList />
-			
+
 			<div className="product__image" onClick={changeProductCard}>
 				<img src={imgLink} width="318" height="220" alt={item.name} />
 				<div className="product__image-navigation">{photoNav}</div>
@@ -135,23 +134,31 @@ export const CardList = () => {
 	const filteredProductsData = useAppSelector(
 		(state) => state.SearchPageReducer.filteredProductsData
 	);
-	const firstLaunchProdData = useAppSelector(state => state.SearchPageReducer.firstLaunchProdData)
-	
-	let products = []; // массив объектов
-	// Для состояния по-умолчанию нам нужны только первые 7 продуктов (такое ТЗ)
-	// они устанавливаются в extraReducers в SearchPageReducer при инициализации приложения
-	if (!filteredProductsData && !page.isLoading && !page.error) {
-		products = firstLaunchProdData;
-	}
 
-	// Если пользователь уже нажимал кнопку "Показать", то показываем все найденные продукты
-	if (filteredProductsData) products = filteredProductsData;	
+	let products = []; // массив объектов
+
+	// Если кнопка "Избранные" активна, то показываем избранные
+	// либо заглушку избранных, если кнопка активна, но избранных нет
+
+	// Иначе показываем все найденные фильтрованные продукты
+	if (filteredProductsData) products = filteredProductsData;
 
 	return (
-		<ul className="results__list">
-			{products.map((item, index) => {
-				return <Product key={item.name + "_product_key_" + index} item={item} />;
-			})}
-		</ul>
+		<>
+			<div className="results__info favourites hidden">
+				<p className="favourites__empty-message">
+					У вас пока нет избранных товаров. Чтобы отметить товар, кликните на сердечко в карточке
+					объявления.
+				</p>
+				<p className="favourites__notion">
+					Вы можете вернуться к списку всех товаров, кликнув ещё раз на&nbsp;«Показать избранные»
+				</p>
+			</div>
+			<ul className="results__list">
+				{products.map((item, index) => {
+					return <Product key={item.name + "_product_key_" + index} item={item} />;
+				})}
+			</ul>
+		</>
 	);
 };
