@@ -9,8 +9,7 @@ import { useAppSelector, useAppDispatch } from "@src/hook";
 import { checkLaptop, checkEstate, checkCamera, checkCar } from "./conditions";
 import { setFilteredProductsData, setPriceBorders, setChosenPrices } from "../../SearchPageReducer";
 import { getCheckedFilters, setActiveCategory } from "./FiltersReducer";
-import { showPopular, showCheap, showNew } from "../../SearchPageReducer";
-
+import { performSorting } from "../../SearchPageUtils";
 
 interface checkedFiltersTypes {
 	category?: string;
@@ -32,39 +31,69 @@ interface checkedFiltersTypes {
 
 export const Filters = () => {
 	const dispatch = useAppDispatch();
+	const sortBy = useAppSelector((state) => state.SearchPageReducer.sortBy);
 	const productsData = useAppSelector((state) => state.SearchPageReducer.productsData);
 	const selectedPrices = useAppSelector(
 		(state) => state.SearchPageReducer.priceFilter.selectedPrices
 	);
-	const sortState = useAppSelector((state) => state.SearchPageReducer.sort);
 
 	// добавляем выбранные цены в набор активных фильтров
 	let checkedFilters: checkedFiltersTypes = useAppSelector(getCheckedFilters);
 	checkedFilters.prices = selectedPrices;
 
 	const performFiltration = () => {
-		const singleCtgProducts = productsData.filter(
-			(product) => product["category"] === checkedFilters["category"]
-		);
 		let filteredProducts = [];
+		if (checkedFilters["category"] === "Все") {
+			filteredProducts = productsData;
+		} else {
+			const singleCtgProducts = productsData.filter(
+				(product) => product["category"] === checkedFilters["category"]
+			);
+			singleCtgProducts.forEach((product) => {
+				switch (checkedFilters["category"]) {
+					case "Недвижимость":
+						if (checkEstate(checkedFilters, product)) filteredProducts.push(product);
+						break;
+					case "Ноутбук":
+						if (checkLaptop(checkedFilters, product)) filteredProducts.push(product);
+						break;
+					case "Фотоаппарат":
+						if (checkCamera(checkedFilters, product)) filteredProducts.push(product);
+						break;
+					case "Автомобиль":
+						if (checkCar(checkedFilters, product)) filteredProducts.push(product);
+						break;
+				}
+			});
+		}
 
-		singleCtgProducts.forEach((product) => {
-			switch (checkedFilters["category"]) {
-				case "Недвижимость":
-					if (checkEstate(checkedFilters, product)) filteredProducts.push(product);
-					break;
-				case "Ноутбук":
-					if (checkLaptop(checkedFilters, product)) filteredProducts.push(product);
-					break;
-				case "Фотоаппарат":
-					if (checkCamera(checkedFilters, product)) filteredProducts.push(product);
-					break;
-				case "Автомобиль":
-					if (checkCar(checkedFilters, product)) filteredProducts.push(product);
-					break;
-			}
-		});
 		return filteredProducts;
+	};
+	// performFiltration и sort несогласованы?
+	const sort = (products) => {
+		const state = {
+			sortBy,
+			productsData,
+			priceFilter: {
+				selectedPrices
+			},			
+			filteredProductsData: products
+		}
+		let sortedProducts = performSorting(state);
+		return sortedProducts;
+	};
+
+	const showBtnClick = (e) => {
+		e.preventDefault();
+		// 1. Получаем продукты, отфильтрованные согласно активным фильтрам
+		const filteredProducts = performFiltration();
+
+		// 2. Сортируем продукты согласно активному фильтру сортировки
+		const sortedProducts = sort(filteredProducts);
+
+		// 3. Фильтрованные и сортированные продукты отправляем в стейт
+		// при изменении этого стейта Реакт отрисует их в компоненте CardList
+		dispatch(setFilteredProductsData(sortedProducts));
 	};
 
 	// Используется в ProdCatFilter при выборе категории (option в select'е)
@@ -84,37 +113,6 @@ export const Filters = () => {
 		dispatch(setChosenPrices([minPrice, maxPrice]));
 		dispatch(setActiveCategory(category));
 		dispatch(setFilteredProductsData(productsOnCtg));
-	};
-
-	const showBtnClick = (e) => {
-		e.preventDefault();
-		// 1. Получаем продукты, отфильтрованные согласно активным фильтрам
-		const filteredProducts = performFiltration();
-		// dispatch(performSorting(e.target.value));
-		// 2. Сортируем продукты, согласно активному фильтру сортировки
-		// 2.1 определяем активный фильтр
-		let sortedFilteredProducts;
-		let activeSortType;
-		for (let key in sortState) {
-			if (sortState[key] === true) {
-				activeSortType = key;
-				break;
-			}
-		}
-		switch (activeSortType) {
-			case "popular":
-				sortedFilteredProducts = showPopular('showBtn', filteredProducts);
-				break;
-			case "cheap":
-				sortedFilteredProducts = showCheap(filteredProducts);
-				break;
-			case "new":
-				sortedFilteredProducts = showNew(filteredProducts);
-				break;
-		}
-		// 3. Фильтрованные и сортированные продукты отправляем в стейт
-		// при изменении этого стейта Реакт отрисует их в компоненте CardList
-		dispatch(setFilteredProductsData(sortedFilteredProducts));
 	};
 
 	return (

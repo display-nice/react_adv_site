@@ -54,12 +54,7 @@ type selectParams = {
 	checked?: boolean;
 }
 
-const initialState = {	
-	// priceFilter: {
-	// 	minBorder: 1,
-	// 	maxBorder: 100,
-	// 	selectedPrices: [1, 100],
-	// },
+const initialState = {
 	prodCatFilter: {
 		categories: [
 			{ value: 'Все', forFilter: "all", checked: true, text: "Все", filter: 'prodCatFilter', subfilter: 'categories'},
@@ -218,7 +213,7 @@ export function getActiveCategory(prodCatFilter) {
 
 export const getCheckedFilters = createSelector(
 	(state) => ({ ...state.FiltersReducer }),
-	({ priceFilter, prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter }) => {
+	({ prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter }) => {
 		// console.log('Начало работы селектора getCheckedFilters');
 		// 1. Определяем интересующие нас фильтры и узнаём активную категорию
 		const filters = {prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter}

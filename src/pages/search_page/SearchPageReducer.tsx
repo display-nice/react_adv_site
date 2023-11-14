@@ -3,6 +3,7 @@ import { SP_Services } from "./SearchPageServices";
 import { useAppSelector } from "@src/hook";
 import { getCheckedFilters } from "./modules/Filters/FiltersReducer";
 import { getActiveCategory } from "./modules/Filters/FiltersReducer";
+import { performSorting, findMinMaxPrices } from "./SearchPageUtils";
 
 // Инициализация страницы: подгрузка данных о городах и точках доставки,
 // установка их в стейт через extraReducers. Вызывается в компоненте SearchPage.jsx
@@ -20,47 +21,9 @@ export const initializePage = createAsyncThunk(
 	}
 );
 
-// Варианты сортировки:
-// Популярные.
-// Порядок по умолчанию. Данные в том порядке, в котором они пришли с сервера.
-export function showPopular(mode, productsData) {
-	console.log("showPopular start");
-	if (mode === 'initializePage') return productsData;
-	if (mode === 'sortingBtn') {
-		const categories = document.getElementById('prodCatFilter_categories') as HTMLSelectElement;
-		const activeCtg = categories.value;
-		if (activeCtg === 'Все') {
-			return productsData
-		} else {
-			const singleCtgProducts = productsData.filter(
-				(product) => product["category"] === activeCtg
-			);		
-			return singleCtgProducts
-		}
-	}
-	if (mode === 'showBtn') {
-		// Если нажата кнопка "Показать", то productsData - это уже фильтрованные продукты
-		return productsData
-	}
-}
-// Сначала дешёвые.
-// Объявления, отсортированные по возрастанию цены от меньшей к большей.
-// При этом учитываются цены из ценового фильтра (для всех категорий товаров кроме «Все»).
-export function showCheap(filteredProductsData) {
-	console.log("showCheap start");
-	let cheapFirstArr = filteredProductsData.sort((a, b) => a.price - b.price);
-	return cheapFirstArr;
-}
-// Новые.
-// Сортировка по дате публикации объявления, от недавних к поздним.
-export function showNew(filteredProductsData) {
-	console.log("showNew ok");
-	let newestFirstArr = filteredProductsData.sort(
-		(a, b) => b["publish-date"] - a["publish-date"]
-	);
-	return newestFirstArr;
-}
 
+
+// productsData и filteredProductsData - массив объектов
 const SearchPageSlice = createSlice({
 	name: "SearchPageSlice",
 	initialState: {
@@ -69,7 +32,6 @@ const SearchPageSlice = createSlice({
 			error: false,
 		},
 		productsData: null,
-		firstLaunchProdData: null,
 		filteredProductsData: null,
 		priceFilter: {
 			minBorder: 1,
@@ -80,11 +42,7 @@ const SearchPageSlice = createSlice({
 			isVisible: false,
 			data: {},
 		},
-		sort: {
-			popular: true,
-			cheap: false,
-			new: false,
-		},
+		sortBy: 'popular' , // popular, cheap, new
 	},
 	reducers: {
 		setFilteredProductsData(state, action) {
@@ -104,47 +62,26 @@ const SearchPageSlice = createSlice({
 			state.priceFilter.maxBorder = action.payload[1];
 			// console.log(state.rangeFilter.selectedPrices)
 		},
-		performSorting(state, action) {
+		sort(state, action) {
 			// Устанавливаем состояние нажатой кнопки
-			for (let key in state.sort) {
-				key === action.payload ? (state.sort[key] = true) : (state.sort[key] = false);
-			}
+			state.sortBy = action.payload;
 			// В зависимости от типа нажатой кнопки запускаем нужный фильтр
-			switch (action.payload) {
-				case "popular":
-					state.filteredProductsData = showPopular('sortingBtn', state.productsData);
-					break;
-				case "cheap":
-					state.filteredProductsData = showCheap(state.filteredProductsData);
-					break;
-				case "new":
-					state.filteredProductsData = showNew(state.filteredProductsData);
-					break;
-			}
+			state.filteredProductsData = performSorting(state)
 		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(initializePage.fulfilled, (state, action) => {
 			state.productsData = action.payload.products;
+			state.filteredProductsData = action.payload.products;
 			state.page.isLoading = false;
-			state.page.error = false;
-
-			// Для состояния по-умолчанию нам нужны только первые 7 продуктов (такое ТЗ)
-			// let products = []; // массив объектов
-			// for(let i = 0; i < 7; ++i) {
-			// 	products.push(action.payload.products[i])
-			// }
-			state.filteredProductsData = showPopular('initializePage', state.productsData);
+			state.page.error = false;			
 
 			// Поиск и установка минимального и максимального значений цен
-			// в выводимых на экран продуктах при инициализации приложения (первые 7)
-			let prodPrices = state.filteredProductsData.map((product) => product["price"]);
-			const minPrice = Math.min.apply(null, prodPrices);
-			const maxPrice = Math.max.apply(null, prodPrices);
-			state.priceFilter.minBorder = minPrice;
-			state.priceFilter.maxBorder = maxPrice;
-			state.priceFilter.selectedPrices = [minPrice, maxPrice];
-			// console.log("state.initialProductPrices = ", [minPrice, maxPrice]);
+			// в выводимых на экран продуктах при инициализации приложения
+			const minMaxPrices = findMinMaxPrices(state.filteredProductsData)
+			state.priceFilter.minBorder = minMaxPrices[0];
+			state.priceFilter.maxBorder = minMaxPrices[1];
+			state.priceFilter.selectedPrices = minMaxPrices;
 		});
 		builder.addCase(initializePage.rejected, (state, action) => {
 			state.page.error = true;
@@ -160,5 +97,5 @@ export const {
 	setProductCard,
 	setChosenPrices,
 	setPriceBorders,
-	performSorting,
+	sort,
 } = SearchPageSlice.actions;
