@@ -1,10 +1,10 @@
-import { setActiveCategory } from "./FiltersReducer";
+import { setActiveCategory } from "./_FiltersReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook";
 import { selectCrafter } from "./utils";
 
-export const ProductCategoryFilter = ({filterOnSelect}) => {
+export const ProdCatFilter = ({ selectCtg }) => {
 	const selectCategory = (e): void => {
-		filterOnSelect(e.target.value);
+		selectCtg(e.target.value);
 	};
 
 	const prodCatData = useAppSelector((state) => state.FiltersReducer.prodCatFilter.categories);

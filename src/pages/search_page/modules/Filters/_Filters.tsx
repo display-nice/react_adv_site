@@ -1,4 +1,4 @@
-import { ProductCategoryFilter } from "./ProdCatFilter";
+import { ProdCatFilter } from "./ProdCatFilter";
 import { CameraFilter } from "./CameraFilter";
 import { CarFilter } from "./CarFilter";
 import { EstateFilter } from "./EstateFilter";
@@ -7,9 +7,17 @@ import { PriceFilter } from "./PriceFilter/PriceFilter";
 
 import { useAppSelector, useAppDispatch } from "@src/hook";
 import { checkLaptop, checkEstate, checkCamera, checkCar } from "./conditions";
-import { setFilteredProductsData, setPriceBorders, setChosenPrices } from "../../SearchPageReducer";
-import { getCheckedFilters, setActiveCategory } from "./FiltersReducer";
-import { performSorting } from "../../SearchPageUtils";
+import {
+	setProductsOnCtg,
+	setFilteredProducts,
+	setPriceBorders,
+	setChosenPrices,
+	setDefaultSort,
+} from "../../SearchPageReducer";
+import { getCheckedFilters, setActiveCategory } from "./_FiltersReducer";
+import { performSorting, findMinMaxPrices } from "../../SearchPageUtils";
+
+import { performFiltration } from "../../SearchPageUtils";
 
 interface checkedFiltersTypes {
 	category?: string;
@@ -32,98 +40,92 @@ interface checkedFiltersTypes {
 export const Filters = () => {
 	const dispatch = useAppDispatch();
 	const sortBy = useAppSelector((state) => state.SearchPageReducer.sortBy);
-	const productsData = useAppSelector((state) => state.SearchPageReducer.productsData);
+	const productsServer = useAppSelector((state) => state.SearchPageReducer.productsServer);
+	const productsOnCtg = useAppSelector((state) => state.SearchPageReducer.productsOnCtg);
 	const selectedPrices = useAppSelector(
 		(state) => state.SearchPageReducer.priceFilter.selectedPrices
 	);
+	const checkedFilters: checkedFiltersTypes = useAppSelector(getCheckedFilters);
+	// checkedFilters.prices = selectedPrices;
+	const activeCtg = checkedFilters["category"];
 
-	// добавляем выбранные цены в набор активных фильтров
-	let checkedFilters: checkedFiltersTypes = useAppSelector(getCheckedFilters);
-	checkedFilters.prices = selectedPrices;
-
-	const performFiltration = () => {
-		let filteredProducts = [];
-		if (checkedFilters["category"] === "Все") {
-			filteredProducts = productsData;
-		} else {
-			const singleCtgProducts = productsData.filter(
-				(product) => product["category"] === checkedFilters["category"]
-			);
-			singleCtgProducts.forEach((product) => {
-				switch (checkedFilters["category"]) {
-					case "Недвижимость":
-						if (checkEstate(checkedFilters, product)) filteredProducts.push(product);
-						break;
-					case "Ноутбук":
-						if (checkLaptop(checkedFilters, product)) filteredProducts.push(product);
-						break;
-					case "Фотоаппарат":
-						if (checkCamera(checkedFilters, product)) filteredProducts.push(product);
-						break;
-					case "Автомобиль":
-						if (checkCar(checkedFilters, product)) filteredProducts.push(product);
-						break;
-				}
-			});
-		}
-
+	const filterLocal = () => {
+		const state = {
+			productsServer,
+			productsOnCtg,
+			priceFilter: {
+				selectedPrices,
+			},
+			activeCtg
+		};
+		const filteredProducts = performFiltration(state, checkedFilters);
+		// let filteredProducts = [];
+		// console.log("checkedFilters", checkedFilters);
+		// console.log("productsOnCtg", productsOnCtg);
 		return filteredProducts;
 	};
-	// performFiltration и sort несогласованы?
-	const sort = (products) => {
+
+	const sortLocal = (products) => {
 		const state = {
 			sortBy,
-			productsData,
+			productsServer,
+			productsOnCtg,
+			filteredProducts: products,
 			priceFilter: {
-				selectedPrices
-			},			
-			filteredProductsData: products
-		}
-		let sortedProducts = performSorting(state);
+				selectedPrices,
+			},
+			activeCtg
+		};
+		console.log('sortLocal priceFilter', state.priceFilter);
+		let sortedProducts = performSorting(state, checkedFilters);
 		return sortedProducts;
 	};
 
-	const showBtnClick = (e) => {
+	const ShowBtnClick = (e) => {
 		e.preventDefault();
 		// 1. Получаем продукты, отфильтрованные согласно активным фильтрам
-		const filteredProducts = performFiltration();
+		const filteredProducts = filterLocal();
+		console.log("performFiltration returned", filteredProducts.length, "products");
 
 		// 2. Сортируем продукты согласно активному фильтру сортировки
-		const sortedProducts = sort(filteredProducts);
+		const sortedProducts = sortLocal(filteredProducts);
+		console.log("sortedProducts returned", sortedProducts.length, "products");
 
 		// 3. Фильтрованные и сортированные продукты отправляем в стейт
 		// при изменении этого стейта Реакт отрисует их в компоненте CardList
-		dispatch(setFilteredProductsData(sortedProducts));
+		dispatch(setFilteredProducts(sortedProducts));
 	};
 
 	// Используется в ProdCatFilter при выборе категории (option в select'е)
-	const filterOnSelect = (category) => {
+	const selectCtg = (pressedCtgBtn) => {
+		// Фильтрация по выбранной пользователем категории (по нажатому селекту)
 		let productsOnCtg;
-		if (category === "Все") {
-			productsOnCtg = productsData;
+		if (pressedCtgBtn === "Все") {
+			productsOnCtg = productsServer;
 		} else {
-			productsOnCtg = productsData.filter((product) => product["category"] === category);
+			productsOnCtg = productsServer.filter((product) => product["category"] === pressedCtgBtn);
 		}
-		// Поиск минимального и максимального значений цен в выводимых на экран продуктах
-		let prodPrices = productsOnCtg.map((product) => product["price"]);
-		const minPrice = Math.min.apply(null, prodPrices);
-		const maxPrice = Math.max.apply(null, prodPrices);
 
-		dispatch(setPriceBorders([minPrice, maxPrice]));
-		dispatch(setChosenPrices([minPrice, maxPrice]));
-		dispatch(setActiveCategory(category));
-		dispatch(setFilteredProductsData(productsOnCtg));
+		// Поиск минимального и максимального значений цен в выводимых на экран продуктах
+		let minMaxPrices = findMinMaxPrices(productsOnCtg);
+
+		dispatch(setPriceBorders([minMaxPrices[0], minMaxPrices[1]]));
+		dispatch(setChosenPrices([minMaxPrices[0], minMaxPrices[1]]));
+		dispatch(setActiveCategory(pressedCtgBtn));
+		dispatch(setProductsOnCtg(productsOnCtg));
+		dispatch(setFilteredProducts(productsOnCtg));
+		dispatch(setDefaultSort());
 	};
 
 	return (
 		<form className="filter__form" action="#" method="post">
-			<ProductCategoryFilter filterOnSelect={filterOnSelect} />
+			<ProdCatFilter selectCtg={selectCtg} />
 			<PriceFilter />
 			<EstateFilter />
 			<CameraFilter />
 			<LaptopFilter />
 			<CarFilter />
-			<button onClick={showBtnClick} className="button filter__button" type="submit">
+			<button onClick={ShowBtnClick} className="button filter__button" type="submit">
 				Показать
 			</button>
 		</form>

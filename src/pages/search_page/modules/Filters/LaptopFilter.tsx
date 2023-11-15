@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setUlParams, getActiveCategory } from "./FiltersReducer";
+import { setUlParams, getActiveCategory } from "./_FiltersReducer";
 import { ulCrafter } from "./utils";
 
 export const LaptopFilter = () => {
@@ -37,7 +37,9 @@ export const LaptopFilter = () => {
 	const laptopRamButtons = ulCrafter("radio", laptopRamData, laptopRamUlClasses, changeUlParams);
 
 	// Минимальная диагональ экрана
-	const laptopDiagonalData = useAppSelector((state) => state.FiltersReducer.laptopFilter.laptopDiagonal);
+	const laptopDiagonalData = useAppSelector(
+		(state) => state.FiltersReducer.laptopFilter.laptopDiagonal
+	);
 	const laptopDiagonalUlClasses = "filter__radiobuttons-list";
 	const laptopDiagonalButtons = ulCrafter(
 		"radio",
@@ -50,7 +52,8 @@ export const LaptopFilter = () => {
 	const laptopProcTypeData = useAppSelector(
 		(state) => state.FiltersReducer.laptopFilter.laptopProcType
 	);
-	const laptopProcTypeClasses = "filter__checkboxes-list filter__checkboxes-list--laptop-processor ";
+	const laptopProcTypeClasses =
+		"filter__checkboxes-list filter__checkboxes-list--laptop-processor ";
 	const laptopProcTypeButtons = ulCrafter(
 		"checkbox",
 		laptopProcTypeData,
@@ -66,7 +69,7 @@ export const LaptopFilter = () => {
 			</fieldset>
 			<fieldset className="filter__radiobuttons filter__radiobuttons--ram">
 				<legend>Минимальный объем оперативной памяти</legend>
-				{laptopRamButtons}				
+				{laptopRamButtons}
 			</fieldset>
 			<fieldset className="filter__radiobuttons filter__radiobuttons--diagonal">
 				<legend>Минимальная диагональ экрана</legend>

@@ -202,14 +202,14 @@ export function getActiveCategory(prodCatFilter) {
 	return value
 };
 
-// export const getActiveCategory2 = createSelector(
-// 	(state) => ({ ...state.FiltersReducer }),
-// 	({prodCatFilter}) =>	{
-// 		const selectedCtg = prodCatFilter['categories'].findIndex((item) => item.checked === true);
-// 		const value = prodCatFilter['categories'][selectedCtg].value;
-// 		return value
-// 	}
-// )
+export const getActiveCtg = createSelector(
+	(state) => ({ ...state.FiltersReducer }),
+	({prodCatFilter}) =>	{
+		const selectedCtg = prodCatFilter['categories'].findIndex((item) => item.checked === true);
+		const activeCtg = prodCatFilter['categories'][selectedCtg].value;
+		return activeCtg
+	}
+)
 
 export const getCheckedFilters = createSelector(
 	(state) => ({ ...state.FiltersReducer }),
@@ -218,6 +218,7 @@ export const getCheckedFilters = createSelector(
 		// 1. Определяем интересующие нас фильтры и узнаём активную категорию
 		const filters = {prodCatFilter, cameraFilter, carFilter, laptopFilter, estateFilter}
 		const activeCategory = getActiveCategory(prodCatFilter);
+		
 		// console.log('activeCategory: ', activeCategory);
 		// checkedItems.push({category: activeCategory[1]})
 		

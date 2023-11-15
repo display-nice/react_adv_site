@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setUlParams, setSelectParams, getActiveCategory } from "./FiltersReducer";
+import { setUlParams, setSelectParams, getActiveCategory } from "./_FiltersReducer";
 import { ulCrafter, selectCrafter } from "./utils";
 
 export const CameraFilter = () => {
