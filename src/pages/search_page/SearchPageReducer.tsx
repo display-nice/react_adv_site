@@ -66,7 +66,7 @@ const SearchPageSlice = createSlice({
 			state.sortBy = action.payload.sortBy;
 			const checkedFilters = action.payload.checkedFilters
 			// В зависимости от типа нажатой кнопки запускаем нужный фильтр
-			state.filteredProducts = performFiltration(state, checkedFilters);
+			// state.filteredProducts = performFiltration(state, checkedFilters);
 			state.filteredProducts = performSorting(state, checkedFilters);
 		},
 		

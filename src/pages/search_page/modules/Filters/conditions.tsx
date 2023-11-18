@@ -29,9 +29,6 @@ export const checkLaptop = (filters, product) => {
 			switch (key) {
 				// Цена
 				case 'prices':
-					console.log('проверка цены...');
-					console.log('product.prices', product.prices);
-					console.log('value[0]:', value[0], 'value[1]:', value[1]);
 					product.price >= value[0] && product.price <= value[1] ?
 					array.push(true) : array.push(false)
 					break;
@@ -136,10 +133,15 @@ export const checkCamera = (filters, product) => {
 					break;
 				// Минимальное разрешение матрицы
 				case "matrix-resolution":
-					product.filters["matrix-resolution"] >= Number(value)
-						? array.push(true)
-						: array.push(false);
-					break;
+					if (!Number(value)) {
+						array.push(false);
+						break;
+					} else {
+						product.filters["matrix-resolution"] >= Number(value)
+							? array.push(true)
+							: array.push(false);
+						break;
+					}
 				// Минимальное разрешение видео
 				case "supporting":
 					// Значения в фильтрах и в базе данных товаров различаются

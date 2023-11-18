@@ -1,7 +1,7 @@
 export const db_dev_products = {
 	"products": [
 		{
-			"name": "Двушка в центре Питера",
+			"name": "2-комн. квартира в центре",
 			"price": 30000000,
 			"coordinates": [59.938784, 30.323126],
 			"seller": {
@@ -29,7 +29,7 @@ export const db_dev_products = {
 			}
 		},
 		{
-			"name": "Однушка в спальнике Питера",
+			"name": "1-комн. квартира в спальном районе",
 			"price": 10000000,
 			"coordinates": [60.028541, 30.339081],
 			"seller": {
@@ -56,7 +56,7 @@ export const db_dev_products = {
 			}
 		},
 		{
-			"name": "Трёшка рядом с Кремлём",
+			"name": "3-комн. квартира рядом с Кремлём",
 			"price": 22000000,
 			"coordinates": [56.330176, 43.999294],
 			"seller": {
@@ -87,7 +87,7 @@ export const db_dev_products = {
 			}
 		},
 		{
-			"name": "Студия для аскетов",
+			"name": "Квартира-студия для аскетов",
 			"price": 5000000,
 			"coordinates": [52.334053, 104.267886],
 			"seller": {
@@ -256,7 +256,7 @@ export const db_dev_products = {
 			}
 		},
 		{
-			"name": "Новый Porsche Panamera",
+			"name": "Новый Porsche Cayman",
 			"price": 6942000,
 			"coordinates": [55.653558, 37.586329],
 			"seller": {
@@ -283,7 +283,7 @@ export const db_dev_products = {
 			"filters": {
 				"production-year": 2019,
 				"transmission": "auto",
-				"body-type": "universal"
+				"body-type": "cupe"
 			}
 		},
 		{
@@ -418,14 +418,14 @@ export const db_dev_products = {
 			],
 			"filters": {
 				"type": "-",
-				"ram-value": 4,
+				"ram-value": 8,
 				"screen-size": 13,
 				"cpu-type": "i5"
 			}
 		},
 		{
-			"name": "Ноутбук Asus GTX 860",
-			"price": 21900,
+			"name": "Ноутбук Asus GTX 2060",
+			"price": 41900,
 			"coordinates": [55.75092, 36.965827],
 			"seller": {
 				"fullname": "Идеальный ноутбук",
@@ -448,7 +448,7 @@ export const db_dev_products = {
 				"http://192.168.0.2/react-adv-site/images_local/laptop_3_6.png"
 			],
 			"filters": {
-				"type": "home",
+				"type": "gaming",
 				"ram-value": 8,
 				"screen-size": 15.6,
 				"cpu-type": "i7"
@@ -456,13 +456,13 @@ export const db_dev_products = {
 		},
 		{
 			"name": "LENOVO-PC 20236",
-			"price": 11000,
+			"price": 13000,
 			"coordinates": [55.75092, 36.965827],
 			"seller": {
 				"fullname": "Идеальный ноутбук",
 				"rating": 4.2
 			},
-			"description": "Продаём ноутбук без жесткого диска, но с зарядным устройством. С экраном проблемы, но на работу самого ноутбука это не влияет, он работает исправно. Подарим мышку. При личном визите угостим печеньками!",
+			"description": "Продаём ноутбук без жесткого диска, но с зарядным устройством. С экраном проблемы, но на работу самого ноутбука это не влияет, он работает исправно. Подарим мышку.",
 			"address": {
 				"city": "садовое товарищество Хуторок",
 				"street": "ул. Берёзовая",
@@ -504,8 +504,8 @@ export const db_dev_products = {
 				"http://192.168.0.2/react-adv-site/images_local/laptop_5_3.png"
 			],
 			"filters": {
-				"type": "ultrabook",
-				"ram-value": "-",
+				"type": "ultra",
+				"ram-value": 16,
 				"screen-size": 13,
 				"cpu-type": "i7"
 			}
@@ -531,7 +531,7 @@ export const db_dev_products = {
 				"http://192.168.0.2/react-adv-site/images_local/cam_1_2.png"
 			],
 			"filters": {
-				"type": "slr",
+				"type": "dslr",
 				"matrix-resolution": "-",
 				"supporting": "full-hd"
 			}
@@ -587,7 +587,7 @@ export const db_dev_products = {
 				"http://192.168.0.2/react-adv-site/images_local/cam_3_6.png"
 			],
 			"filters": {
-				"type": "slr",
+				"type": "dslr",
 				"matrix-resolution": "-",
 				"supporting": "-"
 			}
@@ -617,8 +617,8 @@ export const db_dev_products = {
 				"http://192.168.0.2/react-adv-site/images_local/cam_4_6.png"
 			],
 			"filters": {
-				"type": "slr",
-				"matrix-resolution": "-",
+				"type": "mirrorless",
+				"matrix-resolution": 24.2,
 				"supporting": "4K"
 			}
 		}

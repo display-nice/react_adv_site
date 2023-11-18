@@ -66,16 +66,17 @@ const initialState = {
 	},
 	cameraFilter: {
 		cameraType: [
-			{value: 'mirror', checked: false, text: 'Зеркальный', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'cameraType'},
+			{value: 'dslr', checked: false, text: 'Зеркальный', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'cameraType'},
 			{value: 'digital', checked: false, text: 'Цифровой', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'cameraType'},
 			{value: 'mirrorless', checked: false, text: 'Беззеркальный', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'cameraType'},
 		],
 		resolutionMatrix: [
-			{value: '1', checked: false, text: '1 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
-			{value: '3', checked: false, text: '3 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '', checked: false, text: 'Любое', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
 			{value: '5', checked: false, text: '5 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
-			{value: '7', checked: false, text: '7 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
 			{value: '10', checked: false, text: '10 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '15', checked: false, text: '15 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '20', checked: false, text: '20 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
+			{value: '25', checked: false, text: '25 МП', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionMatrix'},
 		],
 		resolutionVideo: [
 			{value: '', checked: false, text: 'Любое', category: "Фотоаппарат", filter: 'cameraFilter', subfilter: 'resolutionVideo'},
@@ -103,7 +104,7 @@ const initialState = {
 			{value: 'universal', checked: false, text: 'Универсал', category: "Автомобиль", filter: 'carFilter', subfilter: 'bodyType'},
 			{value: 'hatchback', checked: false, text: 'Хэтчбэк', category: "Автомобиль", filter: 'carFilter', subfilter: 'bodyType'},
 			{value: 'suv', checked: false, text: 'Внедорожник', category: "Автомобиль", filter: 'carFilter', subfilter: 'bodyType'},
-			{value: 'cupe', checked: false, text: 'Купэ', category: "Автомобиль", filter: 'carFilter', subfilter: 'bodyType'},
+			{value: 'cupe', checked: false, text: 'Купе', category: "Автомобиль", filter: 'carFilter', subfilter: 'bodyType'},
 		],
 	},
 	laptopFilter: {

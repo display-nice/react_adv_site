@@ -26,6 +26,8 @@ interface checkedFiltersTypes {
 // 	return sortedProducts
 // }
 
+// ! надо проверить, как себя ведут сортировка и фильтрация при выбранных категориях и настроенных фильтрах
+
 export function performFiltration(state, checkedFilters) {
 	console.log('performFiltration started');
 
@@ -130,6 +132,7 @@ export function performSorting(state, checkedFilters) {
 	return sortedProducts;
 }
 
+// Ищет минимальную и максимальную цены
 export function findMinMaxPrices(products) {
 	let prodPrices = products.map((product) => product["price"]);
 	const minPrice = Math.min.apply(null, prodPrices);

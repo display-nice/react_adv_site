@@ -15,12 +15,12 @@ import { getCheckedFilters } from "./Filters/_FiltersReducer";
 export const Sort = () => {
 	const dispatch = useAppDispatch();
 	const sortBy = useAppSelector(state => state.SearchPageReducer.sortBy);
-	const checkedFilters = useAppSelector(getCheckedFilters)
+	// const checkedFilters = useAppSelector(getCheckedFilters)
 
 	const showSorted = (e) => {
 		const data = {
 			sortBy: e.target.value,
-			checkedFilters
+			// checkedFilters
 		}
 		dispatch(sort(data))
 	}

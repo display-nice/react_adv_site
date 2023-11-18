@@ -38,7 +38,7 @@ export function translateChars(category, type, filter) {
 					"universal": "Универсал",
 					"hatchback": "Хэтчбэк",
 					"suv": "Внедорожник",
-					"cupe": "Купэ",				
+					"cupe": "Купе",				
 				},
 			}
 		},
