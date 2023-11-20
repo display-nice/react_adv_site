@@ -131,8 +131,8 @@ export const CardList = () => {
 	// при этом для состояния по-умолчанию показываем только 7 продуктов (такое ТЗ)
 	const dispatch = useAppDispatch();
 	const page = useAppSelector((state) => state.SearchPageReducer.page);
-	const filteredProducts = useAppSelector(
-		(state) => state.SearchPageReducer.filteredProducts
+	const displayedProducts = useAppSelector(
+		(state) => state.SearchPageReducer.displayedProducts
 	);
 
 	let products = []; // массив объектов
@@ -141,7 +141,7 @@ export const CardList = () => {
 	// либо заглушку избранных, если кнопка активна, но избранных нет
 
 	// Иначе показываем все найденные фильтрованные продукты
-	if (filteredProducts) products = filteredProducts;
+	if (displayedProducts) products = displayedProducts;
 
 	return (
 		<>

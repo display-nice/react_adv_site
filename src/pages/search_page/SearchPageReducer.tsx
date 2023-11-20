@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { SP_Services } from "./SearchPageServices";
-import { performSorting, findMinMaxPrices, performFiltration } from "./SearchPageUtils";
+import { filter, sort, findMinMaxPrices } from "./SearchPageUtils";
 
 // Инициализация страницы: подгрузка данных о городах и точках доставки,
 // установка их в стейт через extraReducers. Вызывается в компоненте SearchPage.jsx
@@ -18,7 +18,7 @@ export const initializePage = createAsyncThunk(
 	}
 );
 
-// productsServer и filteredProducts - массив объектов
+// productsServer и displayedProducts - массив объектов
 const SearchPageSlice = createSlice({
 	name: "SearchPageSlice",
 	initialState: {
@@ -28,7 +28,7 @@ const SearchPageSlice = createSlice({
 		},
 		productsServer: null,
 		productsOnCtg: null,
-		filteredProducts: null,
+		displayedProducts: null,
 		priceFilter: {
 			minBorder: 1,
 			maxBorder: 100,
@@ -38,15 +38,15 @@ const SearchPageSlice = createSlice({
 			isVisible: false,
 			data: {},
 		},
-		sortBy: "popular", // popular, cheap, new
+		sortBy: "popular", // Возможные значения: "popular", "cheap", "new"
 	},
 	reducers: {
 		setProductsOnCtg(state, action) {
 			state.productsOnCtg = action.payload;
 		},
-		setFilteredProducts(state, action) {
-			state.filteredProducts = action.payload;
-			console.log("state.filteredProducts", state.filteredProducts);
+		setDisplayedProducts(state, action) {
+			state.displayedProducts = action.payload;
+			console.log("state.displayedProducts", state.displayedProducts);
 		},
 		setProductCard(state, action) {
 			state.productCard.isVisible = action.payload.isVisible;
@@ -61,30 +61,29 @@ const SearchPageSlice = createSlice({
 			state.priceFilter.maxBorder = action.payload[1];
 			// console.log(state.rangeFilter.selectedPrices)
 		},
-		sort(state, action) {
-			// Устанавливаем состояние нажатой кнопки
-			state.sortBy = action.payload.sortBy;
-			const checkedFilters = action.payload.checkedFilters
-			// В зависимости от типа нажатой кнопки запускаем нужный фильтр
-			// state.filteredProducts = performFiltration(state, checkedFilters);
-			state.filteredProducts = performSorting(state, checkedFilters);
+		performFiltration(state, action) {
+			const checkedFilters = action.payload;
+			state.displayedProducts = filter(state, checkedFilters);
 		},
-		
-		setDefaultSort(state) {
-			state.sortBy = "popular";
+		performSorting(state, action) {
+			const checkedFilters = action.payload
+			state.displayedProducts = sort(state, checkedFilters);
 		},
+		setSortType(state, action) {
+			state.sortBy = action.payload;
+		}
 	},
 	extraReducers: (builder) => {
 		builder.addCase(initializePage.fulfilled, (state, action) => {
 			state.productsServer = action.payload.products;
 			state.productsOnCtg = action.payload.products;
-			state.filteredProducts = action.payload.products;
+			state.displayedProducts = action.payload.products;
 			state.page.isLoading = false;
 			state.page.error = false;
 
 			// Поиск и установка минимального и максимального значений цен
 			// в выводимых на экран продуктах при инициализации приложения
-			const minMaxPrices = findMinMaxPrices(state.filteredProducts);
+			const minMaxPrices = findMinMaxPrices(state.displayedProducts);
 			state.priceFilter.minBorder = minMaxPrices[0];
 			state.priceFilter.maxBorder = minMaxPrices[1];
 			state.priceFilter.selectedPrices = minMaxPrices;
@@ -100,10 +99,11 @@ const SearchPageSlice = createSlice({
 export const SearchPageReducer = SearchPageSlice.reducer;
 export const {
 	setProductsOnCtg,
-	setFilteredProducts,
+	setDisplayedProducts,
 	setProductCard,
 	setChosenPrices,
 	setPriceBorders,
-	sort,
-	setDefaultSort,
+	performFiltration,
+	performSorting,
+	setSortType,
 } = SearchPageSlice.actions;

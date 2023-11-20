@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook";
-import { sort } from "../SearchPageReducer";
+import { performSorting, setSortType } from "../SearchPageReducer";
 import { getCheckedFilters } from "./Filters/_FiltersReducer";
 
 // Варианты сортировки:
@@ -15,14 +15,11 @@ import { getCheckedFilters } from "./Filters/_FiltersReducer";
 export const Sort = () => {
 	const dispatch = useAppDispatch();
 	const sortBy = useAppSelector(state => state.SearchPageReducer.sortBy);
-	// const checkedFilters = useAppSelector(getCheckedFilters)
+	const checkedFilters = useAppSelector(getCheckedFilters)
 
 	const showSorted = (e) => {
-		const data = {
-			sortBy: e.target.value,
-			// checkedFilters
-		}
-		dispatch(sort(data))
+		dispatch(setSortType(e.target.value))
+		dispatch(performSorting(checkedFilters))
 	}
 
 	return (
