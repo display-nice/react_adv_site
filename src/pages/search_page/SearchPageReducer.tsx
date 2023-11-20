@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { SP_Services } from "./SearchPageServices";
-import { filter, sort, findMinMaxPrices } from "./SearchPageUtils";
+import { filter, sort,  } from "@helpers/filterAndSort";
+import { findMinMaxPrices } from "@src/utils/prices";
 
 // Инициализация страницы: подгрузка данных о городах и точках доставки,
 // установка их в стейт через extraReducers. Вызывается в компоненте SearchPage.jsx

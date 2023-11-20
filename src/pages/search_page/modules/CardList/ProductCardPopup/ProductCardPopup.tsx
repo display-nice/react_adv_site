@@ -3,7 +3,9 @@ import { useState } from "react";
 import { setProductCard } from "../../../SearchPageReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { formatPublishDate, addThinSpacesToNumber, translateChars } from "../utils";
+import { translateChars } from "@src/helpers/translators(adapters)";
+import { addThinSpacesToNumber } from "@src/utils/prices";
+import { formatPublishDate } from "@src/utils/date";
 import { BtnFavProdCard } from "../BtnAddToFav";
 
 import { MapComponent } from "./Map";
@@ -42,22 +44,21 @@ function Characteristics({ cardData }) {
 	return characteristics;
 }
 
-
 export const ProductCardPopup = () => {
 	const [galleryActiveItem, setGalleryActiveItem] = useState<number>(0);
 	const cardData = useAppSelector((state) => state.SearchPageReducer.productCard.data);
 	const dispatch = useAppDispatch();
-	
+
 	// Закрывает продуктовую карточку (попап)
 	// либо при нажатии на тёмный фон (первый "иф"), либо при нажатии на крестик (второй "иф")
 	const closeProductCard = (e) => {
 		if (
 			e.target.firstElementChild &&
 			e.target.firstElementChild.classList.value === "popup__inner"
-			) {
-				dispatch(setProductCard({ isVisible: false, data: {} }));
-			} else if (e.target.closest(".popup__close")) {
-				dispatch(setProductCard({ isVisible: false, data: {} }));
+		) {
+			dispatch(setProductCard({ isVisible: false, data: {} }));
+		} else if (e.target.closest(".popup__close")) {
+			dispatch(setProductCard({ isVisible: false, data: {} }));
 		}
 	};
 
@@ -151,7 +152,7 @@ export const ProductCardPopup = () => {
 					<div className="popup__right">
 						<div className="popup__map">
 							{/* <img src="img/map.jpg" width="268" height="180" alt={fullAddress} /> */}
-							<MapComponent coords={cardData["coordinates"]}/>
+							<MapComponent coords={cardData["coordinates"]} />
 						</div>
 						<div className="popup__address">{fullAddress}</div>
 					</div>

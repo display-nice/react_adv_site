@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setUlParams, setSelectParams, getActiveCategory } from "./_FiltersReducer";
-import { ulCrafter, selectCrafter } from "./utils";
+import { ulCrafter, selectCrafter } from "@src/utils/html_elems_craft";
 
 export const CarFilter = () => {
 	const dispatch = useAppDispatch();

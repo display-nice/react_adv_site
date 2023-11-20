@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 
-import { dbKeysAdapter, dbValuesAdapter } from "./utils";
+import { dbKeysAdapter } from "@src/helpers/translators(adapters)";
 // import { inputs_data } from './inputsData.js'
 
 interface FiltersState {

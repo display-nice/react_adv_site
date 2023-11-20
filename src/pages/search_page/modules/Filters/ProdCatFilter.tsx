@@ -1,7 +1,7 @@
 import { setActiveCategory } from "./_FiltersReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook";
-import { selectCrafter } from "./utils";
-import { findMinMaxPrices} from "../../SearchPageUtils";
+import { selectCrafter } from "@src/utils/html_elems_craft";
+import { findMinMaxPrices} from "@utils/prices";
 import { setPriceBorders, setChosenPrices, setProductsOnCtg, setDisplayedProducts, setSortType } from "../../SearchPageReducer";
 
 

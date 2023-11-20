@@ -1,9 +1,9 @@
-import { checkProduct } from "./modules/Filters/conditionsNew";
+import { checkProduct } from "@helpers/productConditions";
 
 // Функция фильтрации
 export function filter(state, checkedFilters) {
-	console.log('performFiltration started');
-	console.log('checkedFilters', checkedFilters);
+	console.log("performFiltration started");
+	console.log("checkedFilters", checkedFilters);
 
 	const { productsServer, productsOnCtg, priceFilter } = state;
 	const activeCtg = checkedFilters["category"];
@@ -13,17 +13,17 @@ export function filter(state, checkedFilters) {
 	if (activeCtg === "Все") {
 		filteredProducts = filterOutByPrices(productsServer);
 	} else {
-		const suitableForPrices = filterOutByPrices(productsOnCtg)
+		const suitableForPrices = filterOutByPrices(productsOnCtg);
 		suitableForPrices.forEach((product) => {
 			if (checkProduct(checkedFilters, product)) filteredProducts.push(product);
 		});
 	}
-	console.log('performFiltration вернула popularProducts', filteredProducts.length);
+	console.log("performFiltration вернула popularProducts", filteredProducts.length);
 
 	// Вспомогательная функция отфильтровки по ценам
 	function filterOutByPrices(products) {
-		console.log('filterOutByPrices start');
-		console.log('selectedPrices', selectedPrices);
+		console.log("filterOutByPrices start");
+		console.log("selectedPrices", selectedPrices);
 		return products.filter(
 			(product) => product.price >= selectedPrices[0] && product.price <= selectedPrices[1]
 		);
@@ -34,8 +34,7 @@ export function filter(state, checkedFilters) {
 
 // Функция сортировки
 export function sort(state, checkedFilters) {
-	const { sortBy, displayedProducts } =
-		state;
+	const { sortBy, displayedProducts } = state;
 
 	let sortedProducts;
 	switch (sortBy) {
@@ -57,7 +56,7 @@ export function sort(state, checkedFilters) {
 	function showPopular() {
 		console.log("showPopular start");
 
-		let popularProducts = filter(state, checkedFilters)
+		let popularProducts = filter(state, checkedFilters);
 
 		console.log("showPopular returned", popularProducts.length, "products");
 		return popularProducts;
@@ -83,12 +82,4 @@ export function sort(state, checkedFilters) {
 	}
 
 	return sortedProducts;
-}
-
-// Ищет минимальную и максимальную цены
-export function findMinMaxPrices(products) {
-	let prodPrices = products.map((product) => product["price"]);
-	const minPrice = Math.min.apply(null, prodPrices);
-	const maxPrice = Math.max.apply(null, prodPrices);
-	return [minPrice, maxPrice];
 }

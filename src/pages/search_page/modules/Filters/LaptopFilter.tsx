@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setUlParams, getActiveCategory } from "./_FiltersReducer";
-import { ulCrafter } from "./utils";
+import { ulCrafter } from "@src/utils/html_elems_craft";
 
 export const LaptopFilter = () => {
 	const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setMinSquare, setUlParams, getActiveCategory } from "./_FiltersReducer";
-import { ulCrafter } from "./utils";
+import { ulCrafter } from "@src/utils/html_elems_craft";
 
 export const EstateFilter = () => {
 	const dispatch = useAppDispatch();

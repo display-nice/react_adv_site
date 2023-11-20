@@ -9,6 +9,7 @@
 		 "@fonts/*": ["src/visuals/fonts/*"],
 		 "@img/*": ["src/visuals/img/*"],
 		 "@utils/*": ["src/utils/*"],
+		 "@helpers/*": ["src/helpers/*"],
 		 "@services/*": ["src/services/*"],
 		 "@ui/*": ["src/ui/*"],
 		 "@search_page/*": ["src/pages/search_page/*"],

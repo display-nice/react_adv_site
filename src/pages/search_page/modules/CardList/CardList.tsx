@@ -1,10 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
 import { BtnFavCardList } from "./BtnAddToFav";
-import { addThinSpacesToNumber, formatPublishDate } from "./utils";
+import { addThinSpacesToNumber } from "@src/utils/prices";
+import { formatPublishDate } from "@src/utils/date";
 import { setProductCard } from "../../SearchPageReducer";
 
 const Product = ({ item }) => {
@@ -131,9 +132,7 @@ export const CardList = () => {
 	// при этом для состояния по-умолчанию показываем только 7 продуктов (такое ТЗ)
 	const dispatch = useAppDispatch();
 	const page = useAppSelector((state) => state.SearchPageReducer.page);
-	const displayedProducts = useAppSelector(
-		(state) => state.SearchPageReducer.displayedProducts
-	);
+	const displayedProducts = useAppSelector((state) => state.SearchPageReducer.displayedProducts);
 
 	let products = []; // массив объектов
 
