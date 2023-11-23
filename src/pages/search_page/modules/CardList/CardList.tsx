@@ -129,35 +129,62 @@ export const CardList = () => {
 	// Инициализация.
 	// Если ещё не нажимали кнопку "показать" (то есть если нет фильтрованных данных по продуктам),
 	// то показываем все продукты, пришедшие с сервера, в том порядке, в котором они пришли.
-	// при этом для состояния по-умолчанию показываем только 7 продуктов (такое ТЗ)
-	const dispatch = useAppDispatch();
-	const page = useAppSelector((state) => state.SearchPageReducer.page);
 	const displayedProducts = useAppSelector((state) => state.SearchPageReducer.displayedProducts);
-
-	let products = []; // массив объектов
+	const favProducts = useAppSelector((state) => state.SearchPageReducer.favProducts);
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 
 	// Если кнопка "Избранные" активна, то показываем избранные
 	// либо заглушку избранных, если кнопка активна, но избранных нет
 
-	// Иначе показываем все найденные фильтрованные продукты
-	if (displayedProducts) products = displayedProducts;
-
-	return (
-		<>
-			<div className="results__info favourites hidden">
-				<p className="favourites__empty-message">
-					У вас пока нет избранных товаров. Чтобы отметить товар, кликните на сердечко в карточке
-					объявления.
-				</p>
-				<p className="favourites__notion">
-					Вы можете вернуться к списку всех товаров, кликнув ещё раз на&nbsp;«Показать избранные»
-				</p>
-			</div>
-			<ul className="results__list">
-				{products.map((item, index) => {
-					return <Product key={item.name + "_product_key_" + index} item={item} />;
-				})}
-			</ul>
-		</>
-	);
+	if (favIsActive) {
+		// console.log("Избранные нажаты");
+		if (favProducts && favProducts.length > 0) {
+			// console.log("Выводим избранные на экран...");
+			return (
+				<ul className="results__list">
+					{favProducts.map((item, index) => (
+						<Product key={item.name + "_product_key_" + index} item={item} />
+					))}
+				</ul>
+			);
+		} else {
+			// console.log("Но избранных продуктов нет");
+			return (
+				<div className="results__info favourites">
+					<p className="favourites__empty-message">
+						У вас пока нет избранных товаров. Чтобы отметить товар, кликните на сердечко в карточке
+						объявления.
+					</p>
+					<p className="favourites__notion">
+						Вы можете вернуться к списку всех товаров, кликнув ещё раз на&nbsp;«Показать избранные»
+					</p>
+				</div>
+			);
+		}
+	} else {
+		// console.log("Избранные отключены, пробуем вывести обычные продукты");
+		// console.log("всего их штук:", displayedProducts.length);
+		if (displayedProducts && displayedProducts.length > 0) {
+			// console.log("Обычные найдены, отрисовываем...");
+			return (
+				<ul className="results__list">
+					{displayedProducts.map((item, index) => (
+						<Product key={item.name + "_product_key_" + index} item={item} />
+					))}
+				</ul>
+			);
+		} else {
+			// console.log("обычных не найдено, показываем заглушку");
+			return (
+				<div className="results__list">
+					<div className="results__info results__info--empty-block">
+						<p className="results__empty-message">Мы не нашли товары по вашему запросу.</p>
+						<p className="results__notion">
+							Попробуйте поменять фильтры настройки объявлений в блоке слева
+						</p>
+					</div>
+				</div>
+			);
+		}
+	}
 };

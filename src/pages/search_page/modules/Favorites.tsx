@@ -1,7 +1,24 @@
+import { useAppSelector, useAppDispatch } from "@src/hook";
+import { toggleFavIsActive } from "@search_page/SearchPageReducer";
+
 export const Favorites = () => {
+	const dispatch = useAppDispatch();
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
+
+	const toggleFavs = () => {
+		dispatch(toggleFavIsActive());
+	};
+
 	return (
-		<div className="sorting__favourites">
-			<input className="visually-hidden" type="checkbox" name="favourites" id="favourites" />
+		<div className="sorting__favourites" >
+			<input
+				className="visually-hidden"
+				type="checkbox"
+				name="favourites"
+				id="favourites"
+				onChange={toggleFavs}
+				checked={favIsActive === true}
+			/>
 			<label htmlFor="favourites">
 				<svg
 					width="18"

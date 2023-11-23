@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setMinSquare, setUlParams, getActiveCategory } from "./_FiltersReducer";
-import { ulCrafter } from "@src/utils/html_elems_craft";
+import { UlCrafter } from "@src/utils/html_elems_craft";
 
 export const EstateFilter = () => {
 	const dispatch = useAppDispatch();
@@ -37,14 +37,14 @@ export const EstateFilter = () => {
 	// Тип недвижимости
 	const estateTypeData = useAppSelector((state) => state.FiltersReducer.estateFilter.estateType);
 	const estateTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--estate ";
-	const estateTypeBtns = ulCrafter("checkbox", estateTypeData, estateTypeUlClasses, changeUlParams);
+	const estateTypeBtns = UlCrafter("checkbox", estateTypeData, estateTypeUlClasses, changeUlParams);
 
 	// Количество комнат
 	const roomsQuantityData = useAppSelector(
 		(state) => state.FiltersReducer.estateFilter.roomsQuantity
 	);
 	const roomsQuantityUlClasses = "filter__ram-list";
-	const roomsQuantityBtns = ulCrafter(
+	const roomsQuantityBtns = UlCrafter(
 		"radio",
 		roomsQuantityData,
 		roomsQuantityUlClasses,

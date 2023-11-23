@@ -11,6 +11,7 @@ export const PriceFilter = () => {
 	);
 	const minBorder = useAppSelector((state) => state.SearchPageReducer.priceFilter.minBorder);
 	const maxBorder = useAppSelector((state) => state.SearchPageReducer.priceFilter.maxBorder);
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 
 	const changeSelectedPrices = (value) => {
 		dispatch(setChosenPrices(value));
@@ -19,9 +20,6 @@ export const PriceFilter = () => {
 	return (
 		<div className="filter__range">
 			<label>Цена, ₽</label>
-			{/* <label htmlFor="range">Цена, ₽</label> */}
-			{/* <div>Цена, ₽</div> */}
-			<input type="text" id="sampleSlider" style={{ display: "none" }} />
 			<div className="rs-tooltip-container">
 				<div className="rs-tooltip">от {addThinSpacesToNumber(selectedPrices[0])}</div>
 				<div className="rs-tooltip">до {addThinSpacesToNumber(selectedPrices[1])}</div>
@@ -40,6 +38,7 @@ export const PriceFilter = () => {
 				ariaLabel={["Lower thumb", "Upper thumb"]}
 				pearling
 				minDistance={10}
+				disabled={favIsActive === true}
 			/>
 		</div>
 	);

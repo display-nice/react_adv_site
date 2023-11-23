@@ -1,6 +1,6 @@
 import { setActiveCategory } from "./_FiltersReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook";
-import { selectCrafter } from "@src/utils/html_elems_craft";
+import { SelectCrafter } from "@src/utils/html_elems_craft";
 import { findMinMaxPrices} from "@utils/prices";
 import { setPriceBorders, setChosenPrices, setProductsOnCtg, setDisplayedProducts, setSortType } from "../../SearchPageReducer";
 
@@ -8,6 +8,7 @@ import { setPriceBorders, setChosenPrices, setProductsOnCtg, setDisplayedProduct
 export const ProdCatFilter = () => {
 	const dispatch = useAppDispatch();
 	const productsServer = useAppSelector((state) => state.SearchPageReducer.productsServer);
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 	// Используется в ProdCatFilter при выборе категории (option в select'е)
 	// Фильтрация по выбранной пользователем категории (по нажатому селекту)
 	const selectCategory = (e) => {
@@ -38,7 +39,7 @@ export const ProdCatFilter = () => {
 	};	
 
 	const prodCatData = useAppSelector((state) => state.FiltersReducer.prodCatFilter.categories);
-	const prodCatFilter = selectCrafter(prodCatData, selectCategory);
+	const prodCatFilter = SelectCrafter(prodCatData, selectCategory);
 
 	return (
 		<div className="filter__select-wrapper">

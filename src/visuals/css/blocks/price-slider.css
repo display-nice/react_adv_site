@@ -58,13 +58,17 @@
 	/* border: 1px solid #ededed; */
 	/* background-color: #00b3bc;
 	border: 1px solid #00969b;
-	transition: all 0.2s linear; */
 	/* width: 0; */
+	/* transition: all 0.2s linear; */
 }
 
 .rs-colored-line-1 {
 	background-color: var(--main-blue);	
 }
+.rs-container.disabled > .rs-colored-line-1 {
+	background-color: var(--disabled-bg);
+	transition: all 0.2s linear;
+ }
 /* .rs-bg {	
 	width: 100%;
 	top: 20px;
@@ -135,8 +139,10 @@
 	cursor: pointer;
 	box-shadow: inset 0 0 1px #fff, inset 0 1px 6px #ebebeb,
 		1px 1px 4px rgba(0, 0, 0, 0.1);
+
+	outline: none;
+	/* outline отвечает за добавление рамки при выделении, стандартное поведение браузера */
 	/* transition: none; */
-	/* transition: all 0.2s linear; */
 }
 
 .rs-thumb::after {
@@ -160,6 +166,10 @@
 	top: 5px;
 }
 
+.rs-container.disabled > .rs-thumb {
+	background-color: var(--disabled-bg);
+	transition: all 0.2s linear;
+ }
 
 
 /* ---------- Слайдинг --------------- */

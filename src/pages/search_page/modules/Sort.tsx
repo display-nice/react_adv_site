@@ -15,7 +15,8 @@ import { getCheckedFilters } from "./Filters/_FiltersReducer";
 export const Sort = () => {
 	const dispatch = useAppDispatch();
 	const sortBy = useAppSelector(state => state.SearchPageReducer.sortBy);
-	const checkedFilters = useAppSelector(getCheckedFilters)
+	const checkedFilters = useAppSelector(getCheckedFilters);
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 
 	const showSorted = (e) => {
 		dispatch(setSortType(e.target.value))
@@ -33,8 +34,9 @@ export const Sort = () => {
 						name="sorting-order"
 						value="popular"
 						id="sort-popular"
-						checked={sortBy === 'popular'}
 						onChange={showSorted}
+						checked={sortBy === 'popular'}
+						disabled={favIsActive === true}
 					/>
 					<label htmlFor="sort-popular">Популярные</label>
 				</li>
@@ -45,8 +47,9 @@ export const Sort = () => {
 						name="sorting-order"
 						value="cheap"
 						id="sort-cheap"
-						checked={sortBy === 'cheap'}
 						onChange={showSorted}
+						checked={sortBy === 'cheap'}
+						disabled={favIsActive === true}
 					/>
 					<label htmlFor="sort-cheap">Дешёвые</label>
 				</li>
@@ -57,8 +60,9 @@ export const Sort = () => {
 						name="sorting-order"
 						value="new"
 						id="sort-new"
-						checked={sortBy === 'new'}
 						onChange={showSorted}
+						checked={sortBy === 'new'}
+						disabled={favIsActive === true}
 					/>
 					<label htmlFor="sort-new">Новые</label>
 				</li>

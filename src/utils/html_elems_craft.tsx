@@ -1,5 +1,5 @@
 // ------------- DESCRIPTION --------------
-// ulCrafter's incoming parameters:
+// UlCrafter's incoming parameters:
 // 1. items: array of objects from state, like this:
 // 	laptopType: [
 // 		{name: "laptopType", text: 'Ультрабук', value: 'ultra', checked: false},
@@ -11,8 +11,10 @@
 // 	cameraFilter, carFilter, laptopFilter, estateFilter
 // 4. ulClass: special css class for <ul> tag.
 // 5. eventHandler: function to handle events.
+import { useAppSelector } from "@src/hook";
 
-export const ulCrafter = (inputType, data, ulClasses, eventHandler) => {
+export const UlCrafter = (inputType, data, ulClasses, eventHandler) => {
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 	let liClasses;
 	switch (inputType) {
 		case "checkbox":
@@ -32,9 +34,10 @@ export const ulCrafter = (inputType, data, ulClasses, eventHandler) => {
 					value={item.value}
 					id={`${item.subfilter + "_" + item.value}`}
 					onChange={eventHandler}
-					checked={item.checked === true ? true : false}
 					data-filter={item.filter}
 					data-subfilter={item.subfilter}
+					checked={item.checked === true}
+					disabled={favIsActive === true}
 				/>
 				<label htmlFor={`${item.subfilter + "_" + item.value}`}>{item.text}</label>
 			</li>
@@ -42,10 +45,10 @@ export const ulCrafter = (inputType, data, ulClasses, eventHandler) => {
 	});
 
 	return <ul className={ulClasses}>{list}</ul>;
-
 };
 
-export const selectCrafter = (data, eventHandler) => {
+export const SelectCrafter = (data, eventHandler) => {
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 	const options = data.map((item) => (
 		<option
 			key={item.subfilter + "_" + item.value + "_key"}
@@ -59,10 +62,17 @@ export const selectCrafter = (data, eventHandler) => {
 	));
 	// Находим активный элемент и устанавливаем его по-умолчанию на весь <select>, делая компонент управляемым.
 	// Ставить defaultValue={item.checked ? item.value : undefined} на сам <option> здесь бесполезно.
-	const activeValue = data.find((item) => item.checked)?.value || ''; 
+	const activeValue = data.find((item) => item.checked)?.value || "";
 	return (
 		<>
-			<select value={activeValue} title={data[0].subfilter} id={data[0].filter + "_" + data[0].subfilter} name={data[0].subfilter} onChange={eventHandler}>
+			<select
+				value={activeValue}
+				title={data[0].subfilter}
+				id={data[0].filter + "_" + data[0].subfilter}
+				name={data[0].subfilter}
+				onChange={eventHandler}
+				disabled={favIsActive === true}
+			>
 				{options}
 			</select>
 			<svg width="14" height="8" viewBox="0 0 14 8" xmlns="http://www.w3.org/2000/svg">

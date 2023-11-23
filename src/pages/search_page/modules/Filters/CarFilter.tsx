@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setUlParams, setSelectParams, getActiveCategory } from "./_FiltersReducer";
-import { ulCrafter, selectCrafter } from "@src/utils/html_elems_craft";
+import { UlCrafter, SelectCrafter } from "@src/utils/html_elems_craft";
 
 export const CarFilter = () => {
 	const dispatch = useAppDispatch();
@@ -34,12 +34,12 @@ export const CarFilter = () => {
 
 	// Минимальный год выпуска
 	const minYearData = useAppSelector((state) => state.FiltersReducer.carFilter.minimalYear);
-	const minimalYearFilter = selectCrafter(minYearData, changeSelectParams);
+	const minimalYearFilter = SelectCrafter(minYearData, changeSelectParams);
 
 	// Коробка передач
 	const transmissionData = useAppSelector((state) => state.FiltersReducer.carFilter.transmission);
 	const transFilterUlClasses = "filter__radiobuttons-list";
-	const transmissionFilter = ulCrafter(
+	const transmissionFilter = UlCrafter(
 		"radio",
 		transmissionData,
 		transFilterUlClasses,
@@ -49,7 +49,7 @@ export const CarFilter = () => {
 	// Тип кузова
 	const bodyTypeData = useAppSelector((state) => state.FiltersReducer.carFilter.bodyType);
 	const bodyTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--car-body";
-	const bodyTypeFilter = ulCrafter("checkbox", bodyTypeData, bodyTypeUlClasses, changeUlParams);
+	const bodyTypeFilter = UlCrafter("checkbox", bodyTypeData, bodyTypeUlClasses, changeUlParams);
 
 	return (
 		<div className={filterClasses}>

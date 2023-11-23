@@ -1,5 +1,5 @@
 // Берёт таймштамп из БД и преобразует его в дату
-// в соответствии с бизнес-условиями
+// в соответствии с определёнными условиями
 export function formatPublishDate(timestamp: string): string {
 	const timestampNumber = Number(timestamp); // Преобразуем строку в число
 	// const timestampNumber = new Date(2023, 9, 11, 11).getTime(); // Для тестов

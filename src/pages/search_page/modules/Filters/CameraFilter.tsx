@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setUlParams, setSelectParams, getActiveCategory } from "./_FiltersReducer";
-import { ulCrafter, selectCrafter } from "@src/utils/html_elems_craft";
+import { UlCrafter, SelectCrafter } from "@src/utils/html_elems_craft";
 
 export const CameraFilter = () => {
 	const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ export const CameraFilter = () => {
 	// Тип фотоаппарата
 	const cameraTypeData = useAppSelector((state) => state.FiltersReducer.cameraFilter.cameraType);
 	const cameraTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--camera";
-	const cameraTypeFilter = ulCrafter(
+	const cameraTypeFilter = UlCrafter(
 		"checkbox",
 		cameraTypeData,
 		cameraTypeUlClasses,
@@ -44,11 +44,11 @@ export const CameraFilter = () => {
 	const resMatrixData = useAppSelector(
 		(state) => state.FiltersReducer.cameraFilter.resolutionMatrix
 	);
-	const resMatrixFilter = selectCrafter(resMatrixData, changeSelectParams);
+	const resMatrixFilter = SelectCrafter(resMatrixData, changeSelectParams);
 
 	// Минимальное разрешение видео
 	const resVideoData = useAppSelector((state) => state.FiltersReducer.cameraFilter.resolutionVideo);
-	const resVideoFilter = selectCrafter(resVideoData, changeSelectParams);
+	const resVideoFilter = SelectCrafter(resVideoData, changeSelectParams);
 
 	return (
 		<div className={filterClasses}>

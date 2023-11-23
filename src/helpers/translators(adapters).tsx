@@ -1,7 +1,7 @@
-// Функция-переводчик с языка БД на язык пользователей, имеет свой словарь
+// Функция-переводчик с языка БД на язык для пользователей, имеет свой словарь
 // Используется для отрисовки характеристик внутри карточки товара
 // filter - это один из фильтров "filters" в товаре в БД
-// подаётся на вход уже в виде массива (после работы Object.Entries)
+// подаётся на вход в виде массива, сделанного из объекта (после работы Object.Entries)
 // filter[0] - это ключ, filter[1] - значение
 // Используется в ProductCardPopup.tsx
 export function translateChars(category, type, filter) {	
@@ -101,7 +101,9 @@ export function translateChars(category, type, filter) {
 		}	
 }
 
-
+// Адаптирует названия переменных из состояния к соответствующим названиям
+// из базы данных по продуктам (json), приходящей с сервера
+// используется в _FiltersReducer.ts
 export const dbKeysAdapter = (direction, value) => {			
 	const keyNames = {
 		category: 'category',

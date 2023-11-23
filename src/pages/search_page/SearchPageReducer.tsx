@@ -30,6 +30,7 @@ const SearchPageSlice = createSlice({
 		productsServer: null,
 		productsOnCtg: null,
 		displayedProducts: null,
+		favProducts: null,
 		priceFilter: {
 			minBorder: 1,
 			maxBorder: 100,
@@ -40,6 +41,7 @@ const SearchPageSlice = createSlice({
 			data: {},
 		},
 		sortBy: "popular", // Возможные значения: "popular", "cheap", "new"
+		favIsActive: false
 	},
 	reducers: {
 		setProductsOnCtg(state, action) {
@@ -72,7 +74,14 @@ const SearchPageSlice = createSlice({
 		},
 		setSortType(state, action) {
 			state.sortBy = action.payload;
-		}
+		},
+		toggleFavIsActive(state) {
+			state.favIsActive = !state.favIsActive;
+			console.log(state.favIsActive);
+		},
+		setFavProducts(state, action) {
+			state.favProducts = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(initializePage.fulfilled, (state, action) => {
@@ -107,4 +116,6 @@ export const {
 	performFiltration,
 	performSorting,
 	setSortType,
+	toggleFavIsActive,
+	setFavProducts,
 } = SearchPageSlice.actions;

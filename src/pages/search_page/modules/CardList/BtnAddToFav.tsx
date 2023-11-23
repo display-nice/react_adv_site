@@ -1,4 +1,4 @@
-const btn = (className) => {
+const Btn = (className) => {
 	return (
 		<button className={className} type="button" aria-label="Добавить в избранное">
 			<svg
@@ -22,9 +22,9 @@ const btn = (className) => {
 };
 
 export const BtnFavCardList = () => {
-	return btn("product__favourite fav-add");
+	return Btn("product__favourite fav-add");
 };
 
 export const BtnFavProdCard = () => {
-	return btn("gallery__favourite fav-add");
+	return Btn("gallery__favourite fav-add");
 };
