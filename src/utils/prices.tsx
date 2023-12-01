@@ -3,7 +3,7 @@ export function addThinSpacesToNumber(number) {
 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "\u2009");
 }
 
-// Ищет минимальную и максимальную цены
+// Ищет минимальную и максимальную цены в массиве объектов
 export function findMinMaxPrices(products) {
 	let prodPrices = products.map((product) => product["price"]);
 	const minPrice = Math.min.apply(null, prodPrices);

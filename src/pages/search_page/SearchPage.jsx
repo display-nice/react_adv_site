@@ -9,8 +9,8 @@ import { Filters } from "@sp_modules/Filters/_Filters";
 
 import { Favorites } from '@sp_modules/Favorites';
 import { Sort } from '@sp_modules/Sort'
-import { CardList } from "@sp_modules/CardList/CardList";
-import { ProductCardPopup } from "@sp_modules/CardList/ProductCardPopup/ProductCardPopup";
+import { ProductList } from "@sp_modules/ProductList/ProductList";
+import { ProductCardPopup } from "@sp_modules/ProductList/ProductCardPopup/ProductCardPopup";
 import { Spinner } from "@sp_modules/Spinner/Spinner";
 
 const PageContent = () => {
@@ -41,17 +41,7 @@ const PageContent = () => {
 							</form>
 						</div>
 					</div>
-					{/* <div className="results__info favourites hidden">
-						<p className="favourites__empty-message">
-							У вас пока нет избранных товаров. Чтобы отметить товар, кликните на сердечко в
-							карточке объявления.
-						</p>
-						<p className="favourites__notion">
-							Вы можете вернуться к списку всех товаров, кликнув ещё раз на&nbsp;«Показать
-							избранные»
-						</p>
-					</div> */}
-					<CardList />
+					<ProductList />
 				</section>
 			</div>
 			{/* Управление видимостью <ProductCardPopup/> */}

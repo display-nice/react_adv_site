@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-import { setProductCard } from "../../../SearchPageReducer";
+import { setProductCard } from "@search_page/SearchPageReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
+import { addToFav, removeFromFav } from "@search_page/SearchPageReducer";
 import { translateChars } from "@src/helpers/translators(adapters)";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 import { formatPublishDate } from "@src/utils/date";
-import { BtnFavProdCard } from "../BtnAddToFav";
+import { BtnFavCard } from "../BtnAddToFav";
 
 import { MapComponent } from "./Map";
 
@@ -45,9 +46,17 @@ function Characteristics({ cardData }) {
 }
 
 export const ProductCardPopup = () => {
+	const dispatch = useAppDispatch();
 	const [galleryActiveItem, setGalleryActiveItem] = useState<number>(0);
 	const cardData = useAppSelector((state) => state.SearchPageReducer.productCard.data);
-	const dispatch = useAppDispatch();
+	const favProducts = useAppSelector((state) => state.SearchPageReducer.favProducts);
+
+	// ! избранные
+	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === cardData["id"]))
+	const toggleFavBtn = () => {
+		console.log("старт работы toggleFavBtn");
+		isInFavorites === false ? dispatch(addToFav(cardData)) : dispatch(removeFromFav(cardData));
+	};
 
 	// Закрывает продуктовую карточку (попап)
 	// либо при нажатии на тёмный фон (первый "иф"), либо при нажатии на крестик (второй "иф")
@@ -106,7 +115,7 @@ export const ProductCardPopup = () => {
 				<div className="popup__columns">
 					<div className="popup__left">
 						<div className="popup__gallery gallery">
-							<BtnFavProdCard />
+							<BtnFavCard favBtnActive={isInFavorites} toggleFavBtn={toggleFavBtn} />
 							<div className="gallery__main-pic">
 								<img
 									src={cardData["photos"][galleryActiveItem]}

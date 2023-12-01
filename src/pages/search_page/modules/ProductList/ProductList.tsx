@@ -3,34 +3,45 @@ import { useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { BtnFavCardList } from "./BtnAddToFav";
+import { addToFav, removeFromFav } from "@search_page/SearchPageReducer";
+import { BtnFavList, BtnFavCard } from "./BtnAddToFav";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 import { formatPublishDate } from "@src/utils/date";
-import { setProductCard } from "../../SearchPageReducer";
+import { setProductCard } from "@search_page/SearchPageReducer";
 
 const Product = ({ item }) => {
 	const dispatch = useAppDispatch();
+	const favProducts = useAppSelector(state => state.SearchPageReducer.favProducts)
 	// Локальные для каждого продукта состояния
 	// Видна ли подсказка, какая колонка активна, какая ссылка на изображение
 	const [hintIsVisible, setHintIsVisible] = useState<boolean>(false);
 	const [activeColumn, setActiveColumn] = useState<boolean | number>(false);
 	const [imgLink, setImgLink] = useState<string>(item.photos[0]);
+	
+	// ! избранные
+	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === item["id"]))
+	const toggleFavBtn = () => {
+		isInFavorites === false ? dispatch(addToFav(item)) : dispatch(removeFromFav(item))
+	}
+
 
 	const activateColumn = (e, image) => {
 		const index = Number(e.target.dataset.index);
 		setActiveColumn(index);
 		setImgLink(image);
-		// Для пятой колонки нужно показать инфо-подсказку "+n фото"
+		// Для пятой колонки показывается инфо-подсказка "+n фото"
 		if (index === 4) setHintIsVisible(true);
 	};
 	const deactivateColumn = (e) => {
 		const index = Number(e.target.dataset.index);
 		setActiveColumn(false);
-		// Для пятой колонки нужно скрыть инфо-подсказку "+n фото"
+		// Для пятой колонки нужно скрывается инфо-подсказка "+n фото"
 		if (index === 4) setHintIsVisible(false);
 	};
 
-	const changeProductCard = () => {
+	//! Видимость полноэкранной карточки товара
+	const showProductCard = () => {
+		// console.log(item);
 		dispatch(setProductCard({ isVisible: true, data: item }));
 	};
 
@@ -107,14 +118,14 @@ const Product = ({ item }) => {
 
 	return (
 		<li className="results__item product" key={item.name + "_key"}>
-			<BtnFavCardList />
+			<BtnFavList favBtnActive={isInFavorites} toggleFavBtn={toggleFavBtn}/>
 
-			<div className="product__image" onClick={changeProductCard}>
+			<div className="product__image" onClick={showProductCard}>
 				<img src={imgLink} width="318" height="220" alt={item.name} />
 				<div className="product__image-navigation">{photoNav}</div>
 			</div>
 			<div className="product__content">
-				<h3 className="product__title" onClick={changeProductCard}>
+				<h3 className="product__title" onClick={showProductCard}>
 					<a href="/#">{item.name}</a>
 				</h3>
 				<div className="product__price">{addThinSpacesToNumber(item.price)} ₽</div>
@@ -125,7 +136,7 @@ const Product = ({ item }) => {
 	);
 };
 
-export const CardList = () => {
+export const ProductList = () => {
 	// Инициализация.
 	// Если ещё не нажимали кнопку "показать" (то есть если нет фильтрованных данных по продуктам),
 	// то показываем все продукты, пришедшие с сервера, в том порядке, в котором они пришли.

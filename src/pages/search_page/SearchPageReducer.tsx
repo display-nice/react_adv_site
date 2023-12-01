@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { SP_Services } from "./SearchPageServices";
-import { filter, sort,  } from "@helpers/filterAndSort";
+import { filter, sort } from "@helpers/filterAndSort";
 import { findMinMaxPrices } from "@src/utils/prices";
 
 // Инициализация страницы: подгрузка данных о городах и точках доставки,
@@ -30,7 +30,6 @@ const SearchPageSlice = createSlice({
 		productsServer: null,
 		productsOnCtg: null,
 		displayedProducts: null,
-		favProducts: null,
 		priceFilter: {
 			minBorder: 1,
 			maxBorder: 100,
@@ -41,7 +40,8 @@ const SearchPageSlice = createSlice({
 			data: {},
 		},
 		sortBy: "popular", // Возможные значения: "popular", "cheap", "new"
-		favIsActive: false
+		favIsActive: false,
+		favProducts: [],
 	},
 	reducers: {
 		setProductsOnCtg(state, action) {
@@ -69,7 +69,7 @@ const SearchPageSlice = createSlice({
 			state.displayedProducts = filter(state, checkedFilters);
 		},
 		performSorting(state, action) {
-			const checkedFilters = action.payload
+			const checkedFilters = action.payload;
 			state.displayedProducts = sort(state, checkedFilters);
 		},
 		setSortType(state, action) {
@@ -79,8 +79,31 @@ const SearchPageSlice = createSlice({
 			state.favIsActive = !state.favIsActive;
 			console.log(state.favIsActive);
 		},
-		setFavProducts(state, action) {
-			state.favProducts = action.payload;
+		// setFavProducts(state, action) {
+		// 	switch (action.payload.action) {
+		// 		case "add":
+		// 			console.log("setFavProducts, ADD");
+		// 			state.favProducts.push(action.payload.product);
+		// 			console.log("state.favProducts = ", [...state.favProducts]);
+		// 			break;
+		// 		case "remove":
+		// 			console.log("setFavProducts, REMOVE");
+		// 			state.favProducts.splice(action.payload.i, 1);
+		// 			break;
+		// 	}
+		// },
+		addToFav(state, action) {
+			console.log("старт работы addToFav");
+			state.favProducts.push(action.payload);
+			console.log("state.favProducts = ", [...state.favProducts]);
+		},
+		removeFromFav(state, action) {
+			console.log("старт работы removeFromFav");
+			const i = state.favProducts.findIndex(
+				(favProduct) => favProduct["id"] === action.payload["id"]
+			);
+			state.favProducts.splice(i, 1);
+			console.log("state.favProducts = ", [...state.favProducts]);
 		},
 	},
 	extraReducers: (builder) => {
@@ -117,5 +140,7 @@ export const {
 	performSorting,
 	setSortType,
 	toggleFavIsActive,
-	setFavProducts,
+	// setFavProducts,
+	addToFav,
+	removeFromFav,
 } = SearchPageSlice.actions;

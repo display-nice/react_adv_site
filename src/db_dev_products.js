@@ -1,6 +1,7 @@
 export const db_dev_products = {
 	"products": [
 		{
+			"id": 77,
 			"name": "2-комн. квартира в центре",
 			"price": 30000000,
 			"coordinates": [59.938784, 30.323126],
@@ -29,6 +30,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 13,
 			"name": "1-комн. квартира в спальном районе",
 			"price": 10000000,
 			"coordinates": [60.028541, 30.339081],
@@ -56,6 +58,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 45,
 			"name": "3-комн. квартира рядом с Кремлём",
 			"price": 22000000,
 			"coordinates": [56.330176, 43.999294],
@@ -87,6 +90,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 42,
 			"name": "Квартира-студия для аскетов",
 			"price": 5000000,
 			"coordinates": [52.334053, 104.267886],
@@ -113,6 +117,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 22,
 			"name": "Апартаменты для фрилансера",
 			"price": 3000000,
 			"coordinates": [56.034606, 92.890391],
@@ -140,6 +145,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 16,
 			"name": "Апартаменты для пары",
 			"price": 11300000,
 			"coordinates": [53.051619, 158.627118],
@@ -167,6 +173,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 97,
 			"name": "Дом в финском стиле",
 			"price": 10500000,
 			"coordinates": [61.082668, 28.962497],
@@ -198,6 +205,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 78,
 			"name": "Дом для большой семьи",
 			"price": 17500000,
 			"coordinates": [60.09084, 29.977715],
@@ -226,6 +234,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 57,
 			"name": "BMW 5 серии б/у",
 			"price": 3370000,
 			"coordinates": [55.653558, 37.586329],
@@ -256,6 +265,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 79,
 			"name": "Новый Porsche Cayman",
 			"price": 6942000,
 			"coordinates": [55.653558, 37.586329],
@@ -287,6 +297,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 48,
 			"name": "LADA (ВАЗ) 2121 (4x4)",
 			"price": 620000,
 			"coordinates": [60.022396, 29.999607],
@@ -314,6 +325,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 6,
 			"name": "Hyundai Santa Fe II",
 			"price": 429000,
 			"coordinates": [59.851385, 30.026907],
@@ -341,6 +353,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 18,
 			"name": "Opel Corsa D",
 			"price": 195000,
 			"coordinates": [59.851385, 30.026907],
@@ -368,6 +381,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 10,
 			"name": "MacBook Pro 13 2011 года",
 			"price": 13000,
 			"coordinates": [53.446529, 41.807836],
@@ -397,6 +411,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 40,
 			"name": "Apple MacBook Air 13",
 			"price": 25000,
 			"coordinates": [55.180722, 61.427949],
@@ -424,6 +439,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 12,
 			"name": "Ноутбук Asus GTX 2060",
 			"price": 41900,
 			"coordinates": [55.75092, 36.965827],
@@ -455,6 +471,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 11,
 			"name": "LENOVO-PC 20236",
 			"price": 13000,
 			"coordinates": [55.75092, 36.965827],
@@ -483,6 +500,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 63,
 			"name": "Ультрабук Dell XPS 13",
 			"price": 129000,
 			"coordinates": [48.473343, 135.092982],
@@ -511,6 +529,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 53,
 			"name": "Фотоаппарат Nikon D610",
 			"price": 85000,
 			"coordinates": [55.75206, 36.959008],
@@ -537,6 +556,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 31,
 			"name": "Фотоаппарат Sony NEX-5",
 			"price": 10000,
 			"coordinates": [51.787424, 55.122216],
@@ -563,6 +583,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 99,
 			"name": "Nikon D3100 Kit 18-5",
 			"price": 9000,
 			"coordinates": [54.731851, 55.9634526],
@@ -593,6 +614,7 @@ export const db_dev_products = {
 			}
 		},
 		{
+			"id": 93,
 			"name": "Sony a6500",
 			"price": 60000,
 			"coordinates": [55.75206, 36.959008],

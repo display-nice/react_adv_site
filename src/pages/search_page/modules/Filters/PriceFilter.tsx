@@ -31,9 +31,7 @@ export const PriceFilter = () => {
 				min={minBorder}
 				max={maxBorder}
 				value={selectedPrices}
-				// defaultValue={[0, 100]}
 				onChange={changeSelectedPrices}
-				// renderThumb={renderThumbTest}
 				ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
 				ariaLabel={["Lower thumb", "Upper thumb"]}
 				pearling
