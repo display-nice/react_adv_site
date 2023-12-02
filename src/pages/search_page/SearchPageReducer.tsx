@@ -2,6 +2,7 @@ import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { SP_Services } from "./SearchPageServices";
 import { filter, sort } from "@helpers/filterAndSort";
 import { findMinMaxPrices } from "@src/utils/prices";
+import { getCookie, addToCookie, removeFromCookie } from "@src/utils/cookies";
 
 // Инициализация страницы: подгрузка данных о городах и точках доставки,
 // установка их в стейт через extraReducers. Вызывается в компоненте SearchPage.jsx
@@ -79,31 +80,16 @@ const SearchPageSlice = createSlice({
 			state.favIsActive = !state.favIsActive;
 			console.log(state.favIsActive);
 		},
-		// setFavProducts(state, action) {
-		// 	switch (action.payload.action) {
-		// 		case "add":
-		// 			console.log("setFavProducts, ADD");
-		// 			state.favProducts.push(action.payload.product);
-		// 			console.log("state.favProducts = ", [...state.favProducts]);
-		// 			break;
-		// 		case "remove":
-		// 			console.log("setFavProducts, REMOVE");
-		// 			state.favProducts.splice(action.payload.i, 1);
-		// 			break;
-		// 	}
-		// },
 		addToFav(state, action) {
-			console.log("старт работы addToFav");
 			state.favProducts.push(action.payload);
-			console.log("state.favProducts = ", [...state.favProducts]);
+			addToCookie('favorites', action.payload["id"])
 		},
 		removeFromFav(state, action) {
-			console.log("старт работы removeFromFav");
 			const i = state.favProducts.findIndex(
 				(favProduct) => favProduct["id"] === action.payload["id"]
 			);
 			state.favProducts.splice(i, 1);
-			console.log("state.favProducts = ", [...state.favProducts]);
+			removeFromCookie('favorites', action.payload["id"])
 		},
 	},
 	extraReducers: (builder) => {
@@ -111,8 +97,29 @@ const SearchPageSlice = createSlice({
 			state.productsServer = action.payload.products;
 			state.productsOnCtg = action.payload.products;
 			state.displayedProducts = action.payload.products;
-			state.page.isLoading = false;
-			state.page.error = false;
+
+			// Работа с кукисами при инициализации приложения
+			// Проверяем, существует ли кука с именем "favorites"
+			const cookiedFavorites = getCookie('favorites');
+			console.log('cookiedFavorites', cookiedFavorites);
+			if (cookiedFavorites) {
+				// Кука существует, берём из неё айдишники и по ним ищем продукты
+				// ставим их в стейт для отрисовки
+				action.payload.products.map(product => {
+					if (cookiedFavorites.includes(product["id"])) {
+						state.favProducts.push(product)
+					}
+				})
+			} else {
+				// Кука не существует, устанавливаем новую (пустой массив с датой действия сегодня + 1 день)
+				const favorites = [];
+				const expirationDate = new Date();
+				expirationDate.setDate(expirationDate.getDate() + 1);
+				const favoritesString = JSON.stringify(favorites);
+				document.cookie = `favorites=${encodeURIComponent(
+					favoritesString
+				)}; expires=${expirationDate.toUTCString()}; path=/`;				
+			}
 
 			// Поиск и установка минимального и максимального значений цен
 			// в выводимых на экран продуктах при инициализации приложения
@@ -120,6 +127,9 @@ const SearchPageSlice = createSlice({
 			state.priceFilter.minBorder = minMaxPrices[0];
 			state.priceFilter.maxBorder = minMaxPrices[1];
 			state.priceFilter.selectedPrices = minMaxPrices;
+
+			state.page.isLoading = false;
+			state.page.error = false;
 		});
 		builder.addCase(initializePage.rejected, (state, action) => {
 			state.page.error = true;

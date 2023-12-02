@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAppSelector, useAppDispatch } from "@src/hook";
 // import { initializePage } from "@search_page/SearchPageReducer";
 import { initializePage } from "./SearchPageReducer";
+import CookieConsent from "react-cookie-consent";
 
 import { Filters } from "@sp_modules/Filters/_Filters";
 
-import { Favorites } from '@sp_modules/Favorites';
-import { Sort } from '@sp_modules/Sort'
+import { Favorites } from "@sp_modules/Favorites";
+import { Sort } from "@sp_modules/Sort";
 import { ProductList } from "@sp_modules/ProductList/ProductList";
 import { ProductCardPopup } from "@sp_modules/ProductList/ProductCardPopup/ProductCardPopup";
 import { Spinner } from "@sp_modules/Spinner/Spinner";
@@ -20,7 +21,7 @@ const PageContent = () => {
 	const pageIsLoading = useSelector((state) => state.SearchPageReducer.page.isLoading);
 	if (pageIsLoading) {
 		return null;
-	}	
+	}
 
 	return (
 		<section className="onlineshop-app">
@@ -46,6 +47,14 @@ const PageContent = () => {
 			</div>
 			{/* Управление видимостью <ProductCardPopup/> */}
 			{prodCardIsVis && <ProductCardPopup />}
+			<CookieConsent
+				buttonText="Понятно"
+				containerClasses="CC_style"
+				contentClasses="CC_contentClasses"
+				buttonClasses="CC_buttonStyle"				
+			>
+				Избранные сохраняются в cookies
+			</CookieConsent>
 		</section>
 	);
 };

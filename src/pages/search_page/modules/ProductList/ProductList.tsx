@@ -18,12 +18,17 @@ const Product = ({ item }) => {
 	const [activeColumn, setActiveColumn] = useState<boolean | number>(false);
 	const [imgLink, setImgLink] = useState<string>(item.photos[0]);
 	
-	// ! избранные
+	//! избранные
 	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === item["id"]))
 	const toggleFavBtn = () => {
 		isInFavorites === false ? dispatch(addToFav(item)) : dispatch(removeFromFav(item))
 	}
 
+	/**
+	 * Этот комментарий используется для документации кода
+	 * 
+ 	*/
+	// TODO: Сделать что-то важное
 
 	const activateColumn = (e, image) => {
 		const index = Number(e.target.dataset.index);
@@ -39,9 +44,8 @@ const Product = ({ item }) => {
 		if (index === 4) setHintIsVisible(false);
 	};
 
-	//! Видимость полноэкранной карточки товара
+	// Видимость полноэкранной карточки товара
 	const showProductCard = () => {
-		// console.log(item);
 		dispatch(setProductCard({ isVisible: true, data: item }));
 	};
 
