@@ -33,7 +33,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.75;
-  color: var(--main-blue);
+  /* color: red; */
 }
 
 .sorting__order-tab label {
@@ -44,6 +44,7 @@
   border: 2px solid #e1e3ec;
   transition: var(--animation);
   cursor: pointer;
+  /* background-color: var(--white); */
 }
 
 .sorting__order-tab:first-of-type label {
@@ -86,7 +87,7 @@
 
 .sorting__order-tab input:disabled + label {
   color: var(--disabled-blue);
-  background-color: var(--white);
+  background-color: var(--disabled-bg);
   cursor: default;
 }
 

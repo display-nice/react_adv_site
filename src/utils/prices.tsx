@@ -1,3 +1,7 @@
+/**
+	Этот набор утилит отвечает за работу с ценами
+*/
+
 // Подставляет пробелы в цену через каждые 3 знака для удобства восприятия
 export function addThinSpacesToNumber(number) {
 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "\u2009");

@@ -2,6 +2,11 @@ import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setUlParams, getActiveCategory } from "./_FiltersReducer";
 import { UlCrafter } from "@src/utils/html_elems_craft";
 
+/**
+	Этот компонент отвечает за фильтр "Ноутбуки"
+	Используется в _Filters.tsx
+*/
+
 export const LaptopFilter = () => {
 	const dispatch = useAppDispatch();
 	const changeUlParams = (e) => {

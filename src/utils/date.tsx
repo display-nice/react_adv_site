@@ -1,4 +1,8 @@
-// Берёт таймштамп из БД и преобразует его в дату
+/**
+	Здесь происходит работа с датами
+*/
+
+// Берёт таймштамп из БД и преобразует его в текстовую дату
 // в соответствии с определёнными условиями
 export function formatPublishDate(timestamp: string): string {
 	const timestampNumber = Number(timestamp); // Преобразуем строку в число
@@ -28,9 +32,8 @@ export function formatPublishDate(timestamp: string): string {
 	// Если объявление опубликовано менее недели назад, выводим кол-во дней
 	const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 	if (daysDiff > 0 && daysDiff <= 7) {
-		console.log("daysDiff", daysDiff);
 		let daysSuffix;
-		if (daysDiff == 1) daysSuffix = "день";
+		if (daysDiff === 1) daysSuffix = "день";
 		else if ([2, 3, 4].includes(daysDiff)) daysSuffix = "дня";
 		else daysSuffix = "дней";
 		return `${daysDiff} ${daysSuffix} назад`;

@@ -4,6 +4,12 @@ import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setChosenPrices } from "@src/pages/search_page/SearchPageReducer";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 
+/**
+	Этот компонент отвечает за фильтр "Цена"
+	Использует сторонний npm-пакет "react-slider"
+	Сам используется в _Filters.tsx
+*/
+
 export const PriceFilter = () => {
 	const dispatch = useAppDispatch();
 	const selectedPrices = useAppSelector(

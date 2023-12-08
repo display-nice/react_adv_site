@@ -1,18 +1,25 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { useAppSelector, useAppDispatch } from "@src/hook";
-// import { initializePage } from "@search_page/SearchPageReducer";
-import { initializePage } from "./SearchPageReducer";
 import CookieConsent from "react-cookie-consent";
 
-import { Filters } from "@sp_modules/Filters/_Filters";
+import { useAppSelector } from "@src/hook";
+import { initializePage } from "./SearchPageReducer";
 
+import { Filters } from "@sp_modules/Filters/_Filters";
 import { Favorites } from "@sp_modules/Favorites";
 import { Sort } from "@sp_modules/Sort";
-import { ProductList } from "@sp_modules/ProductList/ProductList";
+import { ProductList } from "@sp_modules/ProductList/_ProductList";
 import { ProductCardPopup } from "@sp_modules/ProductList/ProductCardPopup/ProductCardPopup";
 import { Spinner } from "@sp_modules/Spinner/Spinner";
+
+/**
+	Это главный компонент поисковой страницы, из него состоят всё это приложение
+	Разделён на два больших подкомпонента: SearchPage и PageContent
+	* Компонент SearchPage производит инициализацию загрузки данных по товарам с сервера
+	и решает, что показать: загрузочный спиннер, заглушку при ошибке или основной контент.
+	SearchPage экспортируется и используется в App.tsx
+	* Компонент PageContent это и есть основной контент страницы.
+*/
 
 const PageContent = () => {
 	const prodCardIsVis = useAppSelector((state) => state.SearchPageReducer.productCard.isVisible);

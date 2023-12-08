@@ -2,6 +2,11 @@ import { useMemo } from "react";
 import { MapContainer, TileLayer, useMap, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
+/**
+	Этот компонент отвечает за показ карты
+	Используется в компоненте ProductCardPopup.tsx
+*/
+
 // Этот блок обходит баг с импортом иконок в Лефлете, когда иконки теряются, если они не размещены в корне
 // Здесь происходит прямой импорт иконок из каталога leaflet в node_modules и подмена путей
 import L from "leaflet";

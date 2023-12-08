@@ -6,8 +6,14 @@ import { LaptopFilter } from "./LaptopFilter";
 import { PriceFilter } from "./PriceFilter";
 
 import { useAppSelector, useAppDispatch } from "@src/hook";
-import { performSorting, performFiltration } from "../../SearchPageReducer";
+import { performSorting, performFiltration } from "@search_page/SearchPageReducer";
 import { getCheckedFilters } from "./_FiltersReducer";
+
+/**
+	Это компонент-агрегатор всех фильтров и кнопки "Показать"
+	Работает вместе с отдельным редьюсером _FiltersReducer.ts, как и все подфильтры
+	Используется в SearchPageReducer.tsx
+*/
 
 interface checkedFiltersTypes {
 	category?: string;
@@ -33,6 +39,7 @@ export const Filters = () => {
 	const sortBy = useAppSelector((state) => state.SearchPageReducer.sortBy);
 	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 
+	// Кнопка "Показать"
 	const Show = (e) => {
 		e.preventDefault();
 		dispatch(performFiltration(checkedFilters));

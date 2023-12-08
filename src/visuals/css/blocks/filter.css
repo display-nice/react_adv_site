@@ -110,7 +110,6 @@
   min-height: 52px;
   border: none;
   padding: 0;
-
   font-weight: 600;
   font-size: 20px;
   line-height: 1.6;
@@ -119,6 +118,7 @@
   background-color: var(--main-blue);
   border-radius: 4px;
   cursor: pointer;
+  transition: 0.2s linear all;
 }
 
 .filter__button:hover {
@@ -138,7 +138,7 @@
 }
 
 .filter__button:disabled {
-  background-color: var(--disabled-blue);
+  background-color: var(--disabled-bg);
   cursor: default;
 }
 
@@ -487,16 +487,4 @@ margin-bottom: 22px;
   display: flex;
   flex-direction: column;
   position: relative;
-  /* padding-left: 16px;
-  padding-right: 16px; */
 }
-
-/* .filter__range label {
-  margin-left: -16px;
-} */
-
-/* .filter__category-filters {
-  position: fixed;
-  z-index: 100;
-  width: 345px;
-} */

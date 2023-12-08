@@ -1,6 +1,11 @@
 import { useAppSelector, useAppDispatch } from "@src/hook";
 import { toggleFavIsActive } from "@search_page/SearchPageReducer";
 
+/**
+	Этот компонент отвечает за работу кнопки "Показать избранные"
+	Используется в компоненте SearchPage.jsx, т.е. на уровне страницы
+*/
+
 export const Favorites = () => {
 	const dispatch = useAppDispatch();
 	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
@@ -10,7 +15,7 @@ export const Favorites = () => {
 	};
 
 	return (
-		<div className="sorting__favourites" >
+		<div className="sorting__favourites">
 			<input
 				className="visually-hidden"
 				type="checkbox"

@@ -1,3 +1,9 @@
+/**
+	Этот компонент отвечает за проверку продукта условиям фильтрации
+	Здесь содержатся все фильтры для каждого вида товара
+	Используется в filterAndSort.tsx (а та, в свою очередь, в _Filters.tsx и Sort.tsx)
+*/
+
 // Функция checkProduct проверяет каждый продукт на соответствие выбранным пользаком фильтрам
 // Один product - это один объект из базы данных с сервера
 // Функция запускается каждый раз для каждого продукта там, где это требуется
@@ -5,8 +11,6 @@
 // и в Sort.tsx (при сортировке), если после "Дешёвые" или "Новые" нажимается кнопка "Популярные"
 
 export const checkProduct = (filters, product) => {
-	console.log("checkProduct start, проверяем", product.name);
-
 	// В зависимости от активной категории выбирается проверочная функция
 	let performCheckup;
 	const activeCtg = filters["category"];
@@ -46,27 +50,26 @@ export const checkProduct = (filters, product) => {
 				continue;
 			}
 			//
-			// console.log("key = ", key, ", value = ", value);
+			//
 			let oneFilterCheckupResult = performCheckup(key, value, product);
-			// console.log("результат проверки: ", oneFilterCheckupResult);
+			//
 			checkupFlags.push(oneFilterCheckupResult);
 		}
 	}
 
 	// Применяем функцию reduce для сложения всех элементов массива checkupFlags (а они все булевые)
 	// т.е. checkupFlags - это массив результатов проверки продукта, подходит продукт под фильтры или нет
-	// Выведет false, если в массиве есть хотя бы одно значение false 
+	// Выведет false, если в массиве есть хотя бы одно значение false
 	// если false - то product не подошёл под фильтры
-	console.log("checkupFlags после всех проверок = ", checkupFlags);
+
 	let result = checkupFlags.reduce(function (accumulator, currentValue) {
 		return accumulator && currentValue;
 	});
-	console.log("result", result);
+
 	return result;
 };
 
 export const checkLaptop = (filtersKey, filtersValue, product) => {
-	console.log("проверка одного ноутбука...");
 	let checkupFlag;
 	switch (filtersKey) {
 		// Тип ноутбука

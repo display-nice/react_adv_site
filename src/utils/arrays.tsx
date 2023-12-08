@@ -1,3 +1,0 @@
-const unnamed = (product, favProducts) => {
-	
-}

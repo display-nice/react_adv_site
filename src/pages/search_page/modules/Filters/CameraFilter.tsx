@@ -2,6 +2,11 @@ import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setUlParams, setSelectParams, getActiveCategory } from "./_FiltersReducer";
 import { UlCrafter, SelectCrafter } from "@src/utils/html_elems_craft";
 
+/**
+	Этот компонент отвечает за фильтр "Фотоаппараты"
+	Используется в _Filters.tsx
+*/
+
 export const CameraFilter = () => {
 	const dispatch = useAppDispatch();
 	const changeUlParams = (e): void => {

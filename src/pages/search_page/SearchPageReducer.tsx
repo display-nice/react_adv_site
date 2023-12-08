@@ -4,6 +4,11 @@ import { filter, sort } from "@helpers/filterAndSort";
 import { findMinMaxPrices } from "@src/utils/prices";
 import { getCookie, addToCookie, removeFromCookie } from "@src/utils/cookies";
 
+/**
+	Это центральный, основной редьюсер всей страницы. Вместе с _FiltersReducer.tsx образует общий стейт страницы.
+	Здесь происходит инициализация страницы и хранятся данные, так или иначе затрагивающие всю страницу.
+*/
+
 // Инициализация страницы: подгрузка данных о городах и точках доставки,
 // установка их в стейт через extraReducers. Вызывается в компоненте SearchPage.jsx
 // Использует асинх. запрос к серверу, вынесенный в отдельный файл SearchPageServices.js
@@ -20,7 +25,9 @@ export const initializePage = createAsyncThunk(
 	}
 );
 
-// productsServer и displayedProducts - массив объектов
+// productsServer, productsOnCtg и displayedProducts, favProducts - массив объектов
+// данные из них используются для отрисовки продуктов в модуле _ProductList.tsx
+// данные favProducts дублируются в куки, но не целиком всем объектом, а только айдишник объекта.
 const SearchPageSlice = createSlice({
 	name: "SearchPageSlice",
 	initialState: {
@@ -50,7 +57,6 @@ const SearchPageSlice = createSlice({
 		},
 		setDisplayedProducts(state, action) {
 			state.displayedProducts = action.payload;
-			console.log("state.displayedProducts", state.displayedProducts);
 		},
 		setProductCard(state, action) {
 			state.productCard.isVisible = action.payload.isVisible;
@@ -58,12 +64,10 @@ const SearchPageSlice = createSlice({
 		},
 		setChosenPrices(state, action: PayloadAction<number[]>): void {
 			state.priceFilter.selectedPrices = action.payload;
-			// console.log(state.rangeFilter.selectedPrices)
 		},
 		setPriceBorders(state, action: PayloadAction<number[]>): void {
 			state.priceFilter.minBorder = action.payload[0];
 			state.priceFilter.maxBorder = action.payload[1];
-			// console.log(state.rangeFilter.selectedPrices)
 		},
 		performFiltration(state, action) {
 			const checkedFilters = action.payload;
@@ -78,18 +82,17 @@ const SearchPageSlice = createSlice({
 		},
 		toggleFavIsActive(state) {
 			state.favIsActive = !state.favIsActive;
-			console.log(state.favIsActive);
 		},
 		addToFav(state, action) {
 			state.favProducts.push(action.payload);
-			addToCookie('favorites', action.payload["id"])
+			addToCookie("favorites", action.payload["id"]);
 		},
 		removeFromFav(state, action) {
 			const i = state.favProducts.findIndex(
 				(favProduct) => favProduct["id"] === action.payload["id"]
 			);
 			state.favProducts.splice(i, 1);
-			removeFromCookie('favorites', action.payload["id"])
+			removeFromCookie("favorites", action.payload["id"]);
 		},
 	},
 	extraReducers: (builder) => {
@@ -100,16 +103,16 @@ const SearchPageSlice = createSlice({
 
 			// Работа с кукисами при инициализации приложения
 			// Проверяем, существует ли кука с именем "favorites"
-			const cookiedFavorites = getCookie('favorites');
-			console.log('cookiedFavorites', cookiedFavorites);
+			const cookiedFavorites = getCookie("favorites");
+
 			if (cookiedFavorites) {
 				// Кука существует, берём из неё айдишники и по ним ищем продукты
 				// ставим их в стейт для отрисовки
-				action.payload.products.map(product => {
+				action.payload.products.map((product) => {
 					if (cookiedFavorites.includes(product["id"])) {
-						state.favProducts.push(product)
+						state.favProducts.push(product);
 					}
-				})
+				});
 			} else {
 				// Кука не существует, устанавливаем новую (пустой массив с датой действия сегодня + 1 день)
 				const favorites = [];
@@ -118,7 +121,7 @@ const SearchPageSlice = createSlice({
 				const favoritesString = JSON.stringify(favorites);
 				document.cookie = `favorites=${encodeURIComponent(
 					favoritesString
-				)}; expires=${expirationDate.toUTCString()}; path=/`;				
+				)}; expires=${expirationDate.toUTCString()}; path=/`;
 			}
 
 			// Поиск и установка минимального и максимального значений цен
@@ -133,7 +136,7 @@ const SearchPageSlice = createSlice({
 		});
 		builder.addCase(initializePage.rejected, (state, action) => {
 			state.page.error = true;
-			console.log("initializePage.rejected error");
+
 			// state.error = action.error.message; здесь можно получить доступ к сообщению об ошибке
 		});
 	},
@@ -150,7 +153,6 @@ export const {
 	performSorting,
 	setSortType,
 	toggleFavIsActive,
-	// setFavProducts,
 	addToFav,
 	removeFromFav,
 } = SearchPageSlice.actions;

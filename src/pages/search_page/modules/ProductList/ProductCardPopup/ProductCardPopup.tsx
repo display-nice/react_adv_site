@@ -1,49 +1,18 @@
 import { useState } from "react";
 
-import { setProductCard } from "@search_page/SearchPageReducer";
+import { setProductCard, addToFav, removeFromFav } from "@search_page/SearchPageReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { addToFav, removeFromFav } from "@search_page/SearchPageReducer";
 import { translateChars } from "@src/helpers/translators(adapters)";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 import { formatPublishDate } from "@src/utils/date";
 import { BtnFavCard } from "../BtnAddToFav";
-
 import { MapComponent } from "./Map";
 
-function GalleryItem({ photo, index, gai, setGai }) {
-	// gai - это galleryActiveItem, переменная состояния в ProductCardPopup
-	const classes = gai === index ? "gallery__item gallery__item--active" : "gallery__item";
-	const changeGai = () => {
-		setGai(index);
-	};
-	return (
-		<li className={classes} onClick={changeGai}>
-			<img src={photo} alt={"Фото №" + index} width="124" height="80" />
-		</li>
-	);
-}
-
-function Characteristics({ cardData }) {
-	// фильтры в БД приходят в виде объекта, удобней обработать в виде массива
-	const filtersArr = Object.entries(cardData["filters"]);
-
-	const characteristics = filtersArr.map((filter, index) => {
-		// Если значение фильтра пустое или прочерк, то нам не нужно отрисовывать его
-		if (filter[1] === "" || filter[1] === "-") return;
-
-		// Если значение есть, то переводим его и отрисовываем
-		let header = translateChars(cardData["category"], "header", filter);
-		let value = translateChars(cardData["category"], "value", filter);
-		return (
-			<li className="chars__item" key={"chars_key_" + index}>
-				<div className="chars__name">{header}</div>
-				<div className="chars__value">{value}</div>
-			</li>
-		);
-	});
-	return characteristics;
-}
+/**
+	Этот компонент отвечает за показ полноэкранной подробной карточки товара
+	Используется в компоненте SearchPage.jsx, т.е. на уровне страницы
+*/
 
 export const ProductCardPopup = () => {
 	const dispatch = useAppDispatch();
@@ -51,10 +20,9 @@ export const ProductCardPopup = () => {
 	const cardData = useAppSelector((state) => state.SearchPageReducer.productCard.data);
 	const favProducts = useAppSelector((state) => state.SearchPageReducer.favProducts);
 
-	// ! избранные
-	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === cardData["id"]))
+	// Кнопка "избранные"
+	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === cardData["id"]));
 	const toggleFavBtn = () => {
-		console.log("старт работы toggleFavBtn");
 		isInFavorites === false ? dispatch(addToFav(cardData)) : dispatch(removeFromFav(cardData));
 	};
 
@@ -160,7 +128,6 @@ export const ProductCardPopup = () => {
 					</div>
 					<div className="popup__right">
 						<div className="popup__map">
-							{/* <img src="img/map.jpg" width="268" height="180" alt={fullAddress} /> */}
 							<MapComponent coords={cardData["coordinates"]} />
 						</div>
 						<div className="popup__address">{fullAddress}</div>
@@ -170,3 +137,37 @@ export const ProductCardPopup = () => {
 		</section>
 	);
 };
+
+function GalleryItem({ photo, index, gai, setGai }) {
+	// gai - это galleryActiveItem, переменная состояния в ProductCardPopup
+	const classes = gai === index ? "gallery__item gallery__item--active" : "gallery__item";
+	const changeGai = () => {
+		setGai(index);
+	};
+	return (
+		<li className={classes} onClick={changeGai}>
+			<img src={photo} alt={"Фото №" + index} width="124" height="80" />
+		</li>
+	);
+}
+
+function Characteristics({ cardData }) {
+	// фильтры в БД приходят в виде объекта, удобней обработать в виде массива
+	const filtersArr = Object.entries(cardData["filters"]);
+
+	const characteristics = filtersArr.map((filter, index) => {
+		// Если значение фильтра пустое или прочерк, то нам не нужно отрисовывать его
+		if (filter[1] === "" || filter[1] === "-") return;
+
+		// Если значение есть, то переводим его и отрисовываем
+		let header = translateChars(cardData["category"], "header", filter);
+		let value = translateChars(cardData["category"], "value", filter);
+		return (
+			<li className="chars__item" key={"chars_key_" + index}>
+				<div className="chars__name">{header}</div>
+				<div className="chars__value">{value}</div>
+			</li>
+		);
+	});
+	return characteristics;
+}

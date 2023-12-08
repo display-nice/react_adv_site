@@ -1,17 +1,23 @@
-// ------------- DESCRIPTION --------------
-// UlCrafter's incoming parameters:
-// 1. items: array of objects from state, like this:
-// 	laptopType: [
-// 		{name: "laptopType", text: 'Ультрабук', value: 'ultra', checked: false},
-// 		{name: "laptopType", text: 'Домашний ноутбук', value: 'home', checked: false},
-// 		{name: "laptopType", text: 'Игровой ноутбук', value: 'gaming', checked: false}
-// 	]
-// 2. inputType: "checkbox" or "radio"
-// 3. filter: name of the filter in state, one of this:
-// 	cameraFilter, carFilter, laptopFilter, estateFilter
-// 4. ulClass: special css class for <ul> tag.
-// 5. eventHandler: function to handle events.
+/**
+	Этот компонент отвечает за создание инпутов с типом checkbox, radio, select
+	Используется во всех фильтрах, кроме фильтра цены	
+*/
+
 import { useAppSelector } from "@src/hook";
+
+/**
+	UlCrafter. Делает чекбоксы и радиокнопки.
+	На вход принимает:
+		inputType: "checkbox" или "radio"
+		data: массив с объектами из стейта, например:
+			laptopType: [
+				{ value: "ultra", checked: false, text: "Ультрабук", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
+				{ value: "home", checked: false, text: "Домашний ноутбук", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
+				{ value: "gaming", checked: false, text: "Игровой ноутбук", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
+			],
+		ulClasses: специфичные для места расположения css-классы
+		eventHandler: функция-обработчик событий
+*/
 
 export const UlCrafter = (inputType, data, ulClasses, eventHandler) => {
 	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
@@ -47,6 +53,17 @@ export const UlCrafter = (inputType, data, ulClasses, eventHandler) => {
 	return <ul className={ulClasses}>{list}</ul>;
 };
 
+/**
+	SelectCrafter. Делает инпуты с типом Селект.
+	На вход принимает:		
+		data: массив с объектами из стейта, например:
+			laptopType: [
+				{ value: "ultra", checked: false, text: "Ультрабук", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
+				{ value: "home", checked: false, text: "Домашний ноутбук", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
+				{ value: "gaming", checked: false, text: "Игровой ноутбук", category: "Ноутбук", filter: 'laptopFilter', subfilter: 'laptopType'},
+			],
+		eventHandler: функция-обработчик событий
+*/
 export const SelectCrafter = (data, eventHandler) => {
 	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 	const options = data.map((item) => (

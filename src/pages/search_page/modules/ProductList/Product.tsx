@@ -3,32 +3,30 @@ import { useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { addToFav, removeFromFav } from "@search_page/SearchPageReducer";
-import { BtnFavList, BtnFavCard } from "./BtnAddToFav";
+import { addToFav, removeFromFav, setProductCard} from "@search_page/SearchPageReducer";
+import { BtnFavList } from "./BtnAddToFav";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 import { formatPublishDate } from "@src/utils/date";
-import { setProductCard } from "@search_page/SearchPageReducer";
 
-const Product = ({ item }) => {
+/**
+	Этот компонент отвечает за показ лист-айтема <li></li>, одного продукта в списке продуктов
+	Используется в компоненте _ProductList.tsx
+*/
+
+export const Product = ({ item }) => {
 	const dispatch = useAppDispatch();
-	const favProducts = useAppSelector(state => state.SearchPageReducer.favProducts)
 	// Локальные для каждого продукта состояния
 	// Видна ли подсказка, какая колонка активна, какая ссылка на изображение
 	const [hintIsVisible, setHintIsVisible] = useState<boolean>(false);
 	const [activeColumn, setActiveColumn] = useState<boolean | number>(false);
 	const [imgLink, setImgLink] = useState<string>(item.photos[0]);
 	
-	//! избранные
+	// Кнопка "избранные"
+	const favProducts = useAppSelector(state => state.SearchPageReducer.favProducts)
 	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === item["id"]))
 	const toggleFavBtn = () => {
 		isInFavorites === false ? dispatch(addToFav(item)) : dispatch(removeFromFav(item))
 	}
-
-	/**
-	 * Этот комментарий используется для документации кода
-	 * 
- 	*/
-	// TODO: Сделать что-то важное
 
 	const activateColumn = (e, image) => {
 		const index = Number(e.target.dataset.index);
@@ -138,68 +136,4 @@ const Product = ({ item }) => {
 			</div>
 		</li>
 	);
-};
-
-export const ProductList = () => {
-	// Инициализация.
-	// Если ещё не нажимали кнопку "показать" (то есть если нет фильтрованных данных по продуктам),
-	// то показываем все продукты, пришедшие с сервера, в том порядке, в котором они пришли.
-	const displayedProducts = useAppSelector((state) => state.SearchPageReducer.displayedProducts);
-	const favProducts = useAppSelector((state) => state.SearchPageReducer.favProducts);
-	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
-
-	// Если кнопка "Избранные" активна, то показываем избранные
-	// либо заглушку избранных, если кнопка активна, но избранных нет
-
-	if (favIsActive) {
-		// console.log("Избранные нажаты");
-		if (favProducts && favProducts.length > 0) {
-			// console.log("Выводим избранные на экран...");
-			return (
-				<ul className="results__list">
-					{favProducts.map((item, index) => (
-						<Product key={item.name + "_product_key_" + index} item={item} />
-					))}
-				</ul>
-			);
-		} else {
-			// console.log("Но избранных продуктов нет");
-			return (
-				<div className="results__info favourites">
-					<p className="favourites__empty-message">
-						У вас пока нет избранных товаров. Чтобы отметить товар, кликните на сердечко в карточке
-						объявления.
-					</p>
-					<p className="favourites__notion">
-						Вы можете вернуться к списку всех товаров, кликнув ещё раз на&nbsp;«Показать избранные»
-					</p>
-				</div>
-			);
-		}
-	} else {
-		// console.log("Избранные отключены, пробуем вывести обычные продукты");
-		// console.log("всего их штук:", displayedProducts.length);
-		if (displayedProducts && displayedProducts.length > 0) {
-			// console.log("Обычные найдены, отрисовываем...");
-			return (
-				<ul className="results__list">
-					{displayedProducts.map((item, index) => (
-						<Product key={item.name + "_product_key_" + index} item={item} />
-					))}
-				</ul>
-			);
-		} else {
-			// console.log("обычных не найдено, показываем заглушку");
-			return (
-				<div className="results__list">
-					<div className="results__info results__info--empty-block">
-						<p className="results__empty-message">Мы не нашли товары по вашему запросу.</p>
-						<p className="results__notion">
-							Попробуйте поменять фильтры настройки объявлений в блоке слева
-						</p>
-					</div>
-				</div>
-			);
-		}
-	}
 };

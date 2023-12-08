@@ -1,7 +1,28 @@
-import { addToFav, removeFromFav } from "@search_page/SearchPageReducer";
-import { useAppSelector, useAppDispatch } from "@src/hook.ts";
+/**
+ Этот компонент отвечает за кнопку "Избранные", кнопка-сердечко
+ Используется в компонентах: Product.tsx (BtnFavList), ProductCardPopup.tsx (BtnFavCard)
+ Каждый из этих компонентов передаёт в Btn обработчик toggleFavBtn();
+ Ну и классы активности определяются тоже здесь, но в компонентах-обёртках BtnFavList, BtnFavCard
+*/
 
-const Btn = (classes, toggleFavBtn) => {	
+export const BtnFavList = ({favBtnActive, toggleFavBtn}) => {
+	const basicClass = "product__favourite fav-add";
+	let classes;
+	if (favBtnActive === true) classes = basicClass + " fav-add__active";
+	else classes = basicClass;
+	return Btn(classes, toggleFavBtn);
+};
+
+export const BtnFavCard = ({favBtnActive, toggleFavBtn}) => {
+	const basicClass = "gallery__favourite fav-add";
+	let classes;
+	if (favBtnActive) classes = basicClass + " fav-add__active";
+	else classes = basicClass;
+	return Btn(classes, toggleFavBtn);
+};
+
+const Btn = (classes, toggleFavBtn) => {
+
 	const handleClick = () => {
 		toggleFavBtn();
 	}
@@ -28,18 +49,3 @@ const Btn = (classes, toggleFavBtn) => {
 	);
 };
 
-export const BtnFavList = ({favBtnActive, toggleFavBtn}) => {
-	const basicClass = "product__favourite fav-add";
-	let classes;
-	if (favBtnActive === true) classes = basicClass + " fav-add__active";
-	else classes = basicClass;
-	return Btn(classes, toggleFavBtn);
-};
-
-export const BtnFavCard = ({favBtnActive, toggleFavBtn}) => {
-	const basicClass = "gallery__favourite fav-add";
-	let classes;
-	if (favBtnActive) classes = basicClass + " fav-add__active";
-	else classes = basicClass;
-	return Btn(classes, toggleFavBtn);
-};

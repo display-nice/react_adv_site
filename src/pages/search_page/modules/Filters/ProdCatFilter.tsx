@@ -2,14 +2,17 @@ import { setActiveCategory } from "./_FiltersReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook";
 import { SelectCrafter } from "@src/utils/html_elems_craft";
 import { findMinMaxPrices} from "@utils/prices";
-import { setPriceBorders, setChosenPrices, setProductsOnCtg, setDisplayedProducts, setSortType } from "../../SearchPageReducer";
+import { setPriceBorders, setChosenPrices, setProductsOnCtg, setDisplayedProducts, setSortType } from "@search_page/SearchPageReducer";
 
+/**
+	Этот компонент отвечает за фильтр "Категория товаров"
+	Используется в _Filters.tsx
+*/
 
 export const ProdCatFilter = () => {
 	const dispatch = useAppDispatch();
 	const productsServer = useAppSelector((state) => state.SearchPageReducer.productsServer);
-	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
-	// Используется в ProdCatFilter при выборе категории (option в select'е)
+	
 	// Фильтрация по выбранной пользователем категории (по нажатому селекту)
 	const selectCategory = (e) => {
 		const pressedCtgBtn = e.target.value;
@@ -34,7 +37,6 @@ export const ProdCatFilter = () => {
 		// При фильтровании по категории используется порядок по-умолчанию
 		// по умолчанию - это так, как прислал сервер.
 		dispatch(setDisplayedProducts(productsOnCtg));
-		// dispatch(setDefaultSort());
 		dispatch(setSortType("popular"));
 	};	
 

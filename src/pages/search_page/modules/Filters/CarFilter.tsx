@@ -2,6 +2,11 @@ import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { setUlParams, setSelectParams, getActiveCategory } from "./_FiltersReducer";
 import { UlCrafter, SelectCrafter } from "@src/utils/html_elems_craft";
 
+/**
+	Этот компонент отвечает за фильтр "Автомобили"
+	Используется в _Filters.tsx
+*/
+
 export const CarFilter = () => {
 	const dispatch = useAppDispatch();
 	const changeUlParams = (e): void => {
@@ -22,8 +27,6 @@ export const CarFilter = () => {
 				value: e.target.value,
 			})
 		);
-		// console.log(e.target.options[e.target.selectedIndex]);
-		// console.log(e.target.selectedIndex);
 	};
 
 	// Видимость
