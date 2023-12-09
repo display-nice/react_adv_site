@@ -1,6 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook";
-import { performSorting, setSortType } from "../SearchPageReducer";
-import { getCheckedFilters } from "./Filters/_FiltersReducer";
+import { performFiltration, setSortType } from "../SearchPageReducer";
 
 /**
 	Этот компонент отвечает за работу кнопок сортировки
@@ -19,14 +18,13 @@ import { getCheckedFilters } from "./Filters/_FiltersReducer";
 
 export const Sort = () => {
 	const dispatch = useAppDispatch();
-	const sortBy = useAppSelector(state => state.SearchPageReducer.sortBy);
-	const checkedFilters = useAppSelector(getCheckedFilters);
+	const sortBy = useAppSelector((state) => state.SearchPageReducer.sortBy);
 	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 
 	const showSorted = (e) => {
-		dispatch(setSortType(e.target.value))
-		dispatch(performSorting(checkedFilters))
-	}
+		dispatch(setSortType(e.target.value));
+		dispatch(performFiltration());
+	};
 
 	return (
 		<fieldset className="sorting__order">
@@ -40,7 +38,7 @@ export const Sort = () => {
 						value="popular"
 						id="sort-popular"
 						onChange={showSorted}
-						checked={sortBy === 'popular'}
+						checked={sortBy === "popular"}
 						disabled={favIsActive === true}
 					/>
 					<label htmlFor="sort-popular">Популярные</label>
@@ -53,7 +51,7 @@ export const Sort = () => {
 						value="cheap"
 						id="sort-cheap"
 						onChange={showSorted}
-						checked={sortBy === 'cheap'}
+						checked={sortBy === "cheap"}
 						disabled={favIsActive === true}
 					/>
 					<label htmlFor="sort-cheap">Дешёвые</label>
@@ -66,7 +64,7 @@ export const Sort = () => {
 						value="new"
 						id="sort-new"
 						onChange={showSorted}
-						checked={sortBy === 'new'}
+						checked={sortBy === "new"}
 						disabled={favIsActive === true}
 					/>
 					<label htmlFor="sort-new">Новые</label>

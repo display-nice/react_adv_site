@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setUlParams, getActiveCategory } from "./_FiltersReducer";
+import { setUlParams, getActiveCategory } from "@search_page/SearchPageReducer";
 import { UlCrafter } from "@src/utils/html_elems_craft";
 
 /**
@@ -21,13 +21,13 @@ export const LaptopFilter = () => {
 	};
 
 	// Видимость
-	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
+	const prodCatFilter = useAppSelector((state) => state.SearchPageReducer.prodCatFilter);
 	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__laptop";
 	if (activeFilter !== "Ноутбук" || activeFilter === "Все") filterClasses += " hidden";
 
 	// Тип ноутбука
-	const laptopTypeData = useAppSelector((state) => state.FiltersReducer.laptopFilter.laptopType);
+	const laptopTypeData = useAppSelector((state) => state.SearchPageReducer.laptopFilter.laptopType);
 	const laptopTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--laptop-ram ";
 	const laptopTypeCheckboxes = UlCrafter(
 		"checkbox",
@@ -37,13 +37,13 @@ export const LaptopFilter = () => {
 	);
 
 	// Минимальный объем оперативной памяти
-	const laptopRamData = useAppSelector((state) => state.FiltersReducer.laptopFilter.laptopRamValue);
+	const laptopRamData = useAppSelector((state) => state.SearchPageReducer.laptopFilter.laptopRamValue);
 	const laptopRamUlClasses = "filter__radiobuttons-list";
 	const laptopRamButtons = UlCrafter("radio", laptopRamData, laptopRamUlClasses, changeUlParams);
 
 	// Минимальная диагональ экрана
 	const laptopDiagonalData = useAppSelector(
-		(state) => state.FiltersReducer.laptopFilter.laptopDiagonal
+		(state) => state.SearchPageReducer.laptopFilter.laptopDiagonal
 	);
 	const laptopDiagonalUlClasses = "filter__radiobuttons-list";
 	const laptopDiagonalButtons = UlCrafter(
@@ -55,7 +55,7 @@ export const LaptopFilter = () => {
 
 	// Тип процессора
 	const laptopProcTypeData = useAppSelector(
-		(state) => state.FiltersReducer.laptopFilter.laptopProcType
+		(state) => state.SearchPageReducer.laptopFilter.laptopProcType
 	);
 	const laptopProcTypeClasses =
 		"filter__checkboxes-list filter__checkboxes-list--laptop-processor ";

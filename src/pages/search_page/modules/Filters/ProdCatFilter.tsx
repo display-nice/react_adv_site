@@ -1,8 +1,13 @@
-import { setActiveCategory } from "./_FiltersReducer";
 import { useAppSelector, useAppDispatch } from "@src/hook";
 import { SelectCrafter } from "@src/utils/html_elems_craft";
-import { findMinMaxPrices} from "@utils/prices";
-import { setPriceBorders, setChosenPrices, setProductsOnCtg, setDisplayedProducts, setSortType } from "@search_page/SearchPageReducer";
+import { findMinMaxPrices } from "@utils/prices";
+import {
+	setPriceBorders,
+	setChosenPrices,
+	setProductsAfterCtgSelect,
+	performFiltration,
+	setActiveCategory,
+} from "@search_page/SearchPageReducer";
 
 /**
 	Этот компонент отвечает за фильтр "Категория товаров"
@@ -11,36 +16,37 @@ import { setPriceBorders, setChosenPrices, setProductsOnCtg, setDisplayedProduct
 
 export const ProdCatFilter = () => {
 	const dispatch = useAppDispatch();
-	const productsServer = useAppSelector((state) => state.SearchPageReducer.productsServer);
-	
+	const productsFromServer = useAppSelector((state) => state.SearchPageReducer.productsFromServer);
+
 	// Фильтрация по выбранной пользователем категории (по нажатому селекту)
 	const selectCategory = (e) => {
 		const pressedCtgBtn = e.target.value;
-		let productsOnCtg;
+		let productsAfterCtgSelect;
 		if (pressedCtgBtn === "Все") {
-			productsOnCtg = productsServer;
+			productsAfterCtgSelect = productsFromServer;
 		} else {
-			productsOnCtg = productsServer.filter((product) => product["category"] === pressedCtgBtn);
+			productsAfterCtgSelect = productsFromServer.filter(
+				(product) => product["category"] === pressedCtgBtn
+			);
 		}
 
 		// Поиск минимального и максимального значений цен в выводимых на экран продуктах
 		// и дальнейшая их установка в стейт (т.е. идёт подготовка цен)
-		let minMaxPrices = findMinMaxPrices(productsOnCtg);
+		let minMaxPrices = findMinMaxPrices(productsAfterCtgSelect);
 		dispatch(setPriceBorders([minMaxPrices[0], minMaxPrices[1]]));
 		dispatch(setChosenPrices([minMaxPrices[0], minMaxPrices[1]]));
 
 		// Запись в стейт активной категории и продуктов по категории
 		// Продукты по категории дальше используются для фильтрации по кнопке "Показать"
 		dispatch(setActiveCategory(pressedCtgBtn));
-		dispatch(setProductsOnCtg(productsOnCtg));
+		dispatch(setProductsAfterCtgSelect(productsAfterCtgSelect));
 
-		// При фильтровании по категории используется порядок по-умолчанию
+		// При фильтрации по категории используется порядок по-умолчанию
 		// по умолчанию - это так, как прислал сервер.
-		dispatch(setDisplayedProducts(productsOnCtg));
-		dispatch(setSortType("popular"));
-	};	
+		dispatch(performFiltration());
+	};
 
-	const prodCatData = useAppSelector((state) => state.FiltersReducer.prodCatFilter.categories);
+	const prodCatData = useAppSelector((state) => state.SearchPageReducer.prodCatFilter.categories);
 	const prodCatFilter = SelectCrafter(prodCatData, selectCategory);
 
 	return (

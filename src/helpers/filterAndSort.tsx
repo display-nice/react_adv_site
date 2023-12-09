@@ -8,21 +8,20 @@ import { checkProduct } from "@helpers/productConditions";
 	Функции используются в SearchPageReducer.tsx и Sort.tsx
 */
 
-// Функция фильтрации
-export function filter(state, checkedFilters) {
-	const { productsServer, productsOnCtg, priceFilter } = state;
-	const activeCtg = checkedFilters["category"];
-	const selectedPrices = priceFilter.selectedPrices;
+export function filterAndSort(state, checkedFilters) {
+	const sortBy = state.sortBy;
+	const filteredProducts = filter(state, checkedFilters);
+	const sortedProducts = sort(sortBy, filteredProducts);
+	return sortedProducts;
+}
 
-	let filteredProducts = [];
-	if (activeCtg === "Все") {
-		filteredProducts = filterOutByPrices(productsServer);
-	} else {
-		const suitableForPrices = filterOutByPrices(productsOnCtg);
-		suitableForPrices.forEach((product) => {
-			if (checkProduct(checkedFilters, product)) filteredProducts.push(product);
-		});
-	}
+// ------------------------------- Фильтрация ------------------------------------
+function filter(state, checkedFilters) {
+	const { productsFromServer, productsAfterCtgSelect, priceFilter } = state;
+	const selectedPrices = priceFilter.selectedPrices;
+	// const activeCtg = state.activeCtg;
+	const activeCtg = checkedFilters["category"];
+	console.log("filter() activeCtg = ", activeCtg);
 
 	// Вспомогательная функция отфильтровки по ценам
 	function filterOutByPrices(products) {
@@ -31,13 +30,30 @@ export function filter(state, checkedFilters) {
 		);
 	}
 
+	// Непосредственно фильтрация (и по ценам, и по всем фильтрам)
+	let filteredProducts = [];
+	if (activeCtg === "Все") {
+		filteredProducts = filterOutByPrices(productsFromServer);
+	} else {
+		const suitableForPrices = filterOutByPrices(productsAfterCtgSelect);
+		suitableForPrices.forEach((product) => {
+			if (checkProduct(checkedFilters, product)) filteredProducts.push(product);
+		});
+	}
 	return filteredProducts;
 }
 
-// Функция сортировки
-export function sort(state, checkedFilters) {
-	const { sortBy, displayedProducts } = state;
-
+/**
+	----------------------------- Сортировка --------------------------------
+		Варианты сортировки:
+		1. Популярные.
+		Порядок по умолчанию. Данные в том порядке, в котором они пришли с сервера.
+		2. Сначала дешёвые.
+		Объявления, отсортированные по возрастанию цены от меньшей к большей.
+		3. Новые.
+		Сортировка по дате публикации объявления, от недавних к поздним.
+	*/
+function sort(sortBy, products) {
 	let sortedProducts;
 	switch (sortBy) {
 		case "popular":
@@ -51,30 +67,16 @@ export function sort(state, checkedFilters) {
 			break;
 	}
 
-	// Варианты сортировки:
-	// 1. Популярные.
-	// Порядок по умолчанию. Данные в том порядке, в котором они пришли с сервера.
 	function showPopular() {
-		let popularProducts = filter(state, checkedFilters);
-
-		return popularProducts;
+		return products;
 	}
-	// 2. Сначала дешёвые.
-	// Объявления, отсортированные по возрастанию цены от меньшей к большей.
 	function showCheap() {
-		// cheapFirstProducts - это массив
-		let cheapFirstProducts = displayedProducts.sort((a, b) => a.price - b.price);
-
+		let cheapFirstProducts = products.sort((a, b) => a.price - b.price); // массив
 		return cheapFirstProducts;
 	}
-	// 3. Новые.
-	// Сортировка по дате публикации объявления, от недавних к поздним.
 	function showNew() {
-		// newFirstProducts - это массив
-		let newFirstProducts = displayedProducts.sort((a, b) => b["publish-date"] - a["publish-date"]);
-
+		let newFirstProducts = products.sort((a, b) => b["publish-date"] - a["publish-date"]); // массив
 		return newFirstProducts;
 	}
-
 	return sortedProducts;
 }

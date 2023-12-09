@@ -26,7 +26,7 @@ export const db_dev_products = {
 			"filters": {
 				"type": "flat",
 				"area": 120,
-				"rooms-count": 6
+				"rooms-count": 2
 			}
 		},
 		{
@@ -235,7 +235,7 @@ export const db_dev_products = {
 		},
 		{
 			"id": 57,
-			"name": "BMW 5 серии б/у",
+			"name": "BMW 6 серии б/у",
 			"price": 3370000,
 			"coordinates": [55.653558, 37.586329],
 			"seller": {
@@ -259,7 +259,7 @@ export const db_dev_products = {
 				"http://192.168.0.2/react-adv-site/images_local/car_1_6.png"
 			],
 			"filters": {
-				"production-year": 2016,
+				"production-year": 2011,
 				"transmission": "auto",
 				"body-type": "sedan"
 			}
@@ -298,14 +298,14 @@ export const db_dev_products = {
 		},
 		{
 			"id": 48,
-			"name": "LADA (ВАЗ) 2121 (4x4)",
+			"name": "УАЗ Патриот",
 			"price": 620000,
 			"coordinates": [60.022396, 29.999607],
 			"seller": {
 				"fullname": "Семён Корж",
 				"rating": 4.2
 			},
-			"description": "Пробег 922 км. Юбилейная серия Luxe '40th Anniversary'. Состояние нового автомобиля. Установлен съемный фаркоп, бесшумные рычаги раздаточной коробки.",
+			"description": "Пробег 922 км. Состояние нового автомобиля. Установлен съемный фаркоп, бесшумные рычаги раздаточной коробки.",
 			"address": {
 				"city": "Санкт-Петербург",
 				"street": "ул. Центральная",
@@ -319,7 +319,7 @@ export const db_dev_products = {
 				"http://192.168.0.2/react-adv-site/images_local/car_3_3.png"
 			],
 			"filters": {
-				"production-year": 2017,
+				"production-year": 2019,
 				"transmission": "mechanic",
 				"body-type": "suv"
 			}
@@ -339,7 +339,7 @@ export const db_dev_products = {
 				"street": "ул. Львовская",
 				"building": "д.19 корпус 2"
 			},
-			"publish-date": "1524061214245",
+			"publish-date": "1603032000000",
 			"category": "Автомобиль",
 			"photos": [
 				"http://192.168.0.2/react-adv-site/images_local/car_4_1.png",
@@ -347,7 +347,7 @@ export const db_dev_products = {
 				"http://192.168.0.2/react-adv-site/images_local/car_4_3.png"
 			],
 			"filters": {
-				"production-year": 2018,
+				"production-year": 2020,
 				"transmission": "auto",
 				"body-type": "suv"
 			}
@@ -383,7 +383,7 @@ export const db_dev_products = {
 		{
 			"id": 10,
 			"name": "MacBook Pro 13 2011 года",
-			"price": 13000,
+			"price": 18000,
 			"coordinates": [53.446529, 41.807836],
 			"seller": {
 				"fullname": "Вася",

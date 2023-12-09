@@ -16,6 +16,7 @@ export const checkProduct = (filters, product) => {
 	const activeCtg = filters["category"];
 	switch (activeCtg) {
 		case "Недвижимость":
+			// console.log('Выбран кейс "Недвижимость"');
 			performCheckup = checkEstate;
 			break;
 		case "Ноутбук":
@@ -42,17 +43,14 @@ export const checkProduct = (filters, product) => {
 			// что пользователь не выбирал этот фильтр, либо выбирал значение "Любое",
 			// а значит этот фильтр не ограничивает нам выборку,
 			// поэтому этот product сразу нам подходит, получает true и цикл идёт к следующему фильтру
+			
 			let value = filters[key];
-			// ? дописать " || value === '-' " или нет? Для обработки случаев, когда присылают прочерк
-			// ? вроде где-то в фотоаппаратах такое было. аа, писать это надо не здесь, а внутри продуктовой проверки
 			if (value.length === 0) {
 				checkupFlags.push(true);
 				continue;
 			}
-			//
-			//
-			let oneFilterCheckupResult = performCheckup(key, value, product);
-			//
+			
+			let oneFilterCheckupResult = performCheckup(key, value, product);			
 			checkupFlags.push(oneFilterCheckupResult);
 		}
 	}

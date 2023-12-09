@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setUlParams, setSelectParams, getActiveCategory } from "./_FiltersReducer";
+import { setUlParams, setSelectParams, getActiveCategory } from "@search_page/SearchPageReducer";
 import { UlCrafter, SelectCrafter } from "@src/utils/html_elems_craft";
 
 /**
@@ -30,17 +30,17 @@ export const CarFilter = () => {
 	};
 
 	// Видимость
-	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
+	const prodCatFilter = useAppSelector((state) => state.SearchPageReducer.prodCatFilter);
 	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__car";
 	if (activeFilter !== "Автомобиль" || activeFilter === "Все") filterClasses += " hidden";
 
 	// Минимальный год выпуска
-	const minYearData = useAppSelector((state) => state.FiltersReducer.carFilter.minimalYear);
+	const minYearData = useAppSelector((state) => state.SearchPageReducer.carFilter.minimalYear);
 	const minimalYearFilter = SelectCrafter(minYearData, changeSelectParams);
 
 	// Коробка передач
-	const transmissionData = useAppSelector((state) => state.FiltersReducer.carFilter.transmission);
+	const transmissionData = useAppSelector((state) => state.SearchPageReducer.carFilter.transmission);
 	const transFilterUlClasses = "filter__radiobuttons-list";
 	const transmissionFilter = UlCrafter(
 		"radio",
@@ -50,7 +50,7 @@ export const CarFilter = () => {
 	);
 
 	// Тип кузова
-	const bodyTypeData = useAppSelector((state) => state.FiltersReducer.carFilter.bodyType);
+	const bodyTypeData = useAppSelector((state) => state.SearchPageReducer.carFilter.bodyType);
 	const bodyTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--car-body";
 	const bodyTypeFilter = UlCrafter("checkbox", bodyTypeData, bodyTypeUlClasses, changeUlParams);
 

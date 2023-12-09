@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
-import { setUlParams, setSelectParams, getActiveCategory } from "./_FiltersReducer";
+import { setUlParams, setSelectParams, getActiveCategory } from "@search_page/SearchPageReducer";
 import { UlCrafter, SelectCrafter } from "@src/utils/html_elems_craft";
 
 /**
@@ -30,13 +30,13 @@ export const CameraFilter = () => {
 	};
 
 	// Видимость
-	const prodCatFilter = useAppSelector((state) => state.FiltersReducer.prodCatFilter);
+	const prodCatFilter = useAppSelector((state) => state.SearchPageReducer.prodCatFilter);
 	const activeFilter = getActiveCategory(prodCatFilter);
 	let filterClasses = "filter__camera";
 	if (activeFilter !== "Фотоаппарат" || activeFilter === "Все") filterClasses += " hidden";
 
 	// Тип фотоаппарата
-	const cameraTypeData = useAppSelector((state) => state.FiltersReducer.cameraFilter.cameraType);
+	const cameraTypeData = useAppSelector((state) => state.SearchPageReducer.cameraFilter.cameraType);
 	const cameraTypeUlClasses = "filter__checkboxes-list filter__checkboxes-list--camera";
 	const cameraTypeFilter = UlCrafter(
 		"checkbox",
@@ -47,12 +47,12 @@ export const CameraFilter = () => {
 
 	// Минимальное разрешение матрицы
 	const resMatrixData = useAppSelector(
-		(state) => state.FiltersReducer.cameraFilter.resolutionMatrix
+		(state) => state.SearchPageReducer.cameraFilter.resolutionMatrix
 	);
 	const resMatrixFilter = SelectCrafter(resMatrixData, changeSelectParams);
 
 	// Минимальное разрешение видео
-	const resVideoData = useAppSelector((state) => state.FiltersReducer.cameraFilter.resolutionVideo);
+	const resVideoData = useAppSelector((state) => state.SearchPageReducer.cameraFilter.resolutionVideo);
 	const resVideoFilter = SelectCrafter(resVideoData, changeSelectParams);
 
 	return (

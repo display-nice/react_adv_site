@@ -103,7 +103,7 @@ export function translateChars(category, type, filter) {
 
 // Адаптирует названия переменных из состояния к соответствующим названиям
 // из базы данных по продуктам (json), приходящей с сервера
-// используется в _FiltersReducer.ts
+// используется в SearchPageReducer.ts
 export const dbKeysAdapter = (direction, value) => {			
 	const keyNames = {
 		category: 'category',
