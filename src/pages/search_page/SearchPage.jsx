@@ -11,6 +11,7 @@ import { Sort } from "@sp_modules/Sort";
 import { ProductList } from "@sp_modules/ProductList/_ProductList";
 import { ProductCardPopup } from "@sp_modules/ProductList/ProductCardPopup/ProductCardPopup";
 import { Spinner } from "@sp_modules/Spinner/Spinner";
+import { Hint } from "./modules/Hint/Hint";
 
 /**
 	Это главный компонент поисковой страницы, из него состоят всё это приложение
@@ -32,6 +33,7 @@ const PageContent = () => {
 
 	return (
 		<section className="onlineshop-app">
+			<Hint />
 			<h1 className="visually-hidden">Главная</h1>
 			<div className="onlineshop-app__blueline"></div>
 			<div className="onlineshop-app__wrapper">

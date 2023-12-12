@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { translateChars } from "@src/helpers/translators(adapters)";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 import { formatPublishDate } from "@src/utils/date";
+import { imgPathChanger } from "@src/utils/imgPathChanger";
 import { BtnFavCard } from "../BtnAddToFav";
 import { MapComponent } from "./Map";
 
@@ -98,7 +99,7 @@ export const ProductCardPopup = () => {
 									return (
 										<GalleryItem
 											key={"galleryItem_key_" + index}
-											photo={photo}
+											imgPath={photo}
 											index={index}
 											gai={galleryActiveItem}
 											setGai={setGalleryActiveItem}
@@ -138,15 +139,16 @@ export const ProductCardPopup = () => {
 	);
 };
 
-function GalleryItem({ photo, index, gai, setGai }) {
+function GalleryItem({ imgPath, index, gai, setGai }) {
 	// gai - это galleryActiveItem, переменная состояния в ProductCardPopup
 	const classes = gai === index ? "gallery__item gallery__item--active" : "gallery__item";
 	const changeGai = () => {
 		setGai(index);
 	};
+	const newPath = imgPathChanger(imgPath, '124px', 'jpg')
 	return (
 		<li className={classes} onClick={changeGai}>
-			<img src={photo} alt={"Фото №" + index} width="124" height="80" />
+			<img src={newPath} alt={"Фото №" + index} width="124" height="80" />
 		</li>
 	);
 }

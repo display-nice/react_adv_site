@@ -19,9 +19,7 @@ export function filterAndSort(state, checkedFilters) {
 function filter(state, checkedFilters) {
 	const { productsFromServer, productsAfterCtgSelect, priceFilter } = state;
 	const selectedPrices = priceFilter.selectedPrices;
-	// const activeCtg = state.activeCtg;
 	const activeCtg = checkedFilters["category"];
-	console.log("filter() activeCtg = ", activeCtg);
 
 	// Вспомогательная функция отфильтровки по ценам
 	function filterOutByPrices(products) {

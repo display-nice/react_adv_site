@@ -16,7 +16,6 @@ export const checkProduct = (filters, product) => {
 	const activeCtg = filters["category"];
 	switch (activeCtg) {
 		case "Недвижимость":
-			// console.log('Выбран кейс "Недвижимость"');
 			performCheckup = checkEstate;
 			break;
 		case "Ноутбук":

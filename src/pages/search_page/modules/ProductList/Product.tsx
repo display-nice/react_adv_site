@@ -7,6 +7,7 @@ import { addToFav, removeFromFav, setProductCard} from "@search_page/SearchPageR
 import { BtnFavList } from "./BtnAddToFav";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 import { formatPublishDate } from "@src/utils/date";
+import { imgPathChanger } from "@src/utils/imgPathChanger";
 
 /**
 	Этот компонент отвечает за показ лист-айтема <li></li>, одного продукта в списке продуктов
@@ -19,8 +20,8 @@ export const Product = ({ item }) => {
 	// Видна ли подсказка, какая колонка активна, какая ссылка на изображение
 	const [hintIsVisible, setHintIsVisible] = useState<boolean>(false);
 	const [activeColumn, setActiveColumn] = useState<boolean | number>(false);
-	const [imgLink, setImgLink] = useState<string>(item.photos[0]);
-	
+	const [imgLink, setImgLink] = useState<string>(imgPathChanger(item.photos[0], '320px', 'jpg'));
+	// const imgLink = '/visuals/img/products_images_local/520px/apt_1_1.jpg'
 	// Кнопка "избранные"
 	const favProducts = useAppSelector(state => state.SearchPageReducer.favProducts)
 	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === item["id"]))
@@ -28,10 +29,11 @@ export const Product = ({ item }) => {
 		isInFavorites === false ? dispatch(addToFav(item)) : dispatch(removeFromFav(item))
 	}
 
-	const activateColumn = (e, image) => {
+	const activateColumn = (e, imgPath) => {
 		const index = Number(e.target.dataset.index);
 		setActiveColumn(index);
-		setImgLink(image);
+		const newPath = imgPathChanger(imgPath, '320px', 'jpg')
+		setImgLink(newPath);
 		// Для пятой колонки показывается инфо-подсказка "+n фото"
 		if (index === 4) setHintIsVisible(true);
 	};
@@ -54,7 +56,7 @@ export const Product = ({ item }) => {
 	// Конструктор навигационных колонок для каждого фото.
 	// Количество колонок с подсвечивающимися плитками - не больше пяти;
 	// На пятой колонке (индекс = 4) показывается инфо-подсказка "+n фото"
-	const photoNav = item.photos.map((image, index) => {
+	const photoNav = item.photos.map((imgPath, index) => {
 		// Обработчики событий и классы присваиваются в зависимости от условий
 		let mouseEnterHandler;
 		let mouseLeaveHandler;
@@ -74,14 +76,14 @@ export const Product = ({ item }) => {
 				case 1:
 				case 2:
 				case 3:
-					mouseEnterHandler = (e) => activateColumn(e, image);
+					mouseEnterHandler = (e) => activateColumn(e, imgPath);
 					mouseLeaveHandler = (e) => deactivateColumn(e);
 					break;
 				case 4:
 					return (
 						<React.Fragment key={item.name + "_photo_" + index + "_fifth-column"}>
 							<div
-								onMouseEnter={(e) => activateColumn(e, image)}
+								onMouseEnter={(e) => activateColumn(e, imgPath)}
 								onMouseLeave={(e) => deactivateColumn(e)}
 								className={className + " product__navigation-column--fifth"}
 								data-index={index}
@@ -99,7 +101,7 @@ export const Product = ({ item }) => {
 		// Нам нужно не более пяти плиток (колонок) на изображении
 		else if (photosAmount >= 0 && photosAmount <= 5) {
 			mouseEnterHandler = (e) => {
-				activateColumn(e, image);
+				activateColumn(e, imgPath);
 			};
 			mouseLeaveHandler = (e) => {
 				deactivateColumn(e);
@@ -123,7 +125,7 @@ export const Product = ({ item }) => {
 			<BtnFavList favBtnActive={isInFavorites} toggleFavBtn={toggleFavBtn}/>
 
 			<div className="product__image" onClick={showProductCard}>
-				<img src={imgLink} width="318" height="220" alt={item.name} />
+				<img src={imgLink} width="320" height="209" alt={item.name} />				
 				<div className="product__image-navigation">{photoNav}</div>
 			</div>
 			<div className="product__content">

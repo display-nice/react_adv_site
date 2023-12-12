@@ -18,10 +18,10 @@ export const db_dev_products = {
 			"publish-date": "1576773899132",
 			"category": "Недвижимость",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/apt_1_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_1_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_1_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_1_4.png"
+				"./img/products_images/520px/apt_1_1.jpg",
+				"./img/products_images/520px/apt_1_2.jpg",
+				"./img/products_images/520px/apt_1_3.jpg",
+				"./img/products_images/520px/apt_1_4.jpg"
 			],
 			"filters": {
 				"type": "flat",
@@ -47,9 +47,9 @@ export const db_dev_products = {
 			"publish-date": "1582418062833",
 			"category": "Недвижимость",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/apt_2_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_2_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_2_3.png"
+				"./img/products_images/520px/apt_2_1.jpg",
+				"./img/products_images/520px/apt_2_2.jpg",
+				"./img/products_images/520px/apt_2_3.jpg"
 			],
 			"filters": {
 				"type": "flat",
@@ -75,13 +75,13 @@ export const db_dev_products = {
 			"publish-date": "1592033220171",
 			"category": "Недвижимость",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/apt_3_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_3_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_3_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_3_4.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_3_5.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_3_6.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_3_7.png"
+				"./img/products_images/520px/apt_3_1.jpg",
+				"./img/products_images/520px/apt_3_2.jpg",
+				"./img/products_images/520px/apt_3_3.jpg",
+				"./img/products_images/520px/apt_3_4.jpg",
+				"./img/products_images/520px/apt_3_5.jpg",
+				"./img/products_images/520px/apt_3_6.jpg",
+				"./img/products_images/520px/apt_3_7.jpg"
 			],
 			"filters": {
 				"type": "flat",
@@ -107,8 +107,8 @@ export const db_dev_products = {
 			"publish-date": "1557122399389",
 			"category": "Недвижимость",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/apt_4_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_4_2.png"
+				"./img/products_images/520px/apt_4_1.jpg",
+				"./img/products_images/520px/apt_4_2.jpg"
 			],
 			"filters": {
 				"type": "flat",
@@ -134,9 +134,9 @@ export const db_dev_products = {
 			"publish-date": "1608220822265",
 			"category": "Недвижимость",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/apt_5_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_5_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_5_3.png"
+				"./img/products_images/520px/apt_5_1.jpg",
+				"./img/products_images/520px/apt_5_2.jpg",
+				"./img/products_images/520px/apt_5_3.jpg"
 			],
 			"filters": {
 				"type": "apartment",
@@ -162,9 +162,9 @@ export const db_dev_products = {
 			"publish-date": "1607852845183",
 			"category": "Недвижимость",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/apt_6_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_6_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/apt_6_3.png"
+				"./img/products_images/520px/apt_6_1.jpg",
+				"./img/products_images/520px/apt_6_2.jpg",
+				"./img/products_images/520px/apt_6_3.jpg"
 			],
 			"filters": {
 				"type": "apartment",
@@ -190,13 +190,13 @@ export const db_dev_products = {
 			"publish-date": "1606107354116",
 			"category": "Недвижимость",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/house_1_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_1_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_1_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_1_4.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_1_5.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_1_6.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_1_7.png"
+				"./img/products_images/520px/house_1_1.jpg",
+				"./img/products_images/520px/house_1_2.jpg",
+				"./img/products_images/520px/house_1_3.jpg",
+				"./img/products_images/520px/house_1_4.jpg",
+				"./img/products_images/520px/house_1_5.jpg",
+				"./img/products_images/520px/house_1_6.jpg",
+				"./img/products_images/520px/house_1_7.jpg"
 			],
 			"filters": {
 				"type": "house",
@@ -222,10 +222,10 @@ export const db_dev_products = {
 			"publish-date": "1608189323184",
 			"category": "Недвижимость",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/house_2_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_2_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_2_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/house_2_4.png"
+				"./img/products_images/520px/house_2_1.jpg",
+				"./img/products_images/520px/house_2_2.jpg",
+				"./img/products_images/520px/house_2_3.jpg",
+				"./img/products_images/520px/house_2_4.jpg"
 			],
 			"filters": {
 				"type": "house",
@@ -251,12 +251,12 @@ export const db_dev_products = {
 			"publish-date": "1541068467135",
 			"category": "Автомобиль",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/car_1_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_1_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_1_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_1_4.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_1_5.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_1_6.png"
+				"./img/products_images/520px/car_1_1.jpg",
+				"./img/products_images/520px/car_1_2.jpg",
+				"./img/products_images/520px/car_1_3.jpg",
+				"./img/products_images/520px/car_1_4.jpg",
+				"./img/products_images/520px/car_1_5.jpg",
+				"./img/products_images/520px/car_1_6.jpg"
 			],
 			"filters": {
 				"production-year": 2011,
@@ -282,13 +282,13 @@ export const db_dev_products = {
 			"publish-date": "1589079707835",
 			"category": "Автомобиль",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/car_2_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_2_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_2_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_2_4.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_2_5.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_2_6.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_2_7.png"
+				"./img/products_images/520px/car_2_1.jpg",
+				"./img/products_images/520px/car_2_2.jpg",
+				"./img/products_images/520px/car_2_3.jpg",
+				"./img/products_images/520px/car_2_4.jpg",
+				"./img/products_images/520px/car_2_5.jpg",
+				"./img/products_images/520px/car_2_6.jpg",
+				"./img/products_images/520px/car_2_7.jpg"
 			],
 			"filters": {
 				"production-year": 2019,
@@ -314,9 +314,9 @@ export const db_dev_products = {
 			"publish-date": "1577705155596",
 			"category": "Автомобиль",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/car_3_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_3_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_3_3.png"
+				"./img/products_images/520px/car_3_1.jpg",
+				"./img/products_images/520px/car_3_2.jpg",
+				"./img/products_images/520px/car_3_3.jpg"
 			],
 			"filters": {
 				"production-year": 2019,
@@ -342,9 +342,9 @@ export const db_dev_products = {
 			"publish-date": "1603032000000",
 			"category": "Автомобиль",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/car_4_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_4_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_4_3.png"
+				"./img/products_images/520px/car_4_1.jpg",
+				"./img/products_images/520px/car_4_2.jpg",
+				"./img/products_images/520px/car_4_3.jpg"
 			],
 			"filters": {
 				"production-year": 2020,
@@ -370,9 +370,9 @@ export const db_dev_products = {
 			"publish-date": "1566579599795",
 			"category": "Автомобиль",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/car_5_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_5_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/car_5_3.png"
+				"./img/products_images/520px/car_5_1.jpg",
+				"./img/products_images/520px/car_5_2.jpg",
+				"./img/products_images/520px/car_5_3.jpg"
 			],
 			"filters": {
 				"production-year": 2008,
@@ -398,10 +398,10 @@ export const db_dev_products = {
 			"publish-date": "1578569567046",
 			"category": "Ноутбук",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/laptop_1_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_1_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_1_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_1_4.png"
+				"./img/products_images/520px/laptop_1_1.jpg",
+				"./img/products_images/520px/laptop_1_2.jpg",
+				"./img/products_images/520px/laptop_1_3.jpg",
+				"./img/products_images/520px/laptop_1_4.jpg"
 			],
 			"filters": {
 				"type": "-",
@@ -428,8 +428,8 @@ export const db_dev_products = {
 			"publish-date": "1566890933376",
 			"category": "Ноутбук",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/laptop_2_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_2_2.png"
+				"./img/products_images/520px/laptop_2_1.jpg",
+				"./img/products_images/520px/laptop_2_2.jpg"
 			],
 			"filters": {
 				"type": "-",
@@ -456,12 +456,12 @@ export const db_dev_products = {
 			"publish-date": "1595208829319",
 			"category": "Ноутбук",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/laptop_3_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_3_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_3_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_3_4.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_3_5.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_3_6.png"
+				"./img/products_images/520px/laptop_3_1.jpg",
+				"./img/products_images/520px/laptop_3_2.jpg",
+				"./img/products_images/520px/laptop_3_3.jpg",
+				"./img/products_images/520px/laptop_3_4.jpg",
+				"./img/products_images/520px/laptop_3_5.jpg",
+				"./img/products_images/520px/laptop_3_6.jpg"
 			],
 			"filters": {
 				"type": "gaming",
@@ -488,9 +488,9 @@ export const db_dev_products = {
 			"publish-date": "1583035655304",
 			"category": "Ноутбук",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/laptop_4_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_4_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_4_3.png"
+				"./img/products_images/520px/laptop_4_1.jpg",
+				"./img/products_images/520px/laptop_4_2.jpg",
+				"./img/products_images/520px/laptop_4_3.jpg"
 			],
 			"filters": {
 				"type": "home",
@@ -517,9 +517,9 @@ export const db_dev_products = {
 			"publish-date": "1607661945463",
 			"category": "Ноутбук",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/laptop_5_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_5_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/laptop_5_3.png"
+				"./img/products_images/520px/laptop_5_1.jpg",
+				"./img/products_images/520px/laptop_5_2.jpg",
+				"./img/products_images/520px/laptop_5_3.jpg"
 			],
 			"filters": {
 				"type": "ultra",
@@ -546,8 +546,8 @@ export const db_dev_products = {
 			"publish-date": "1580770800663",
 			"category": "Фотоаппарат",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/cam_1_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_1_2.png"
+				"./img/products_images/520px/cam_1_1.jpg",
+				"./img/products_images/520px/cam_1_2.jpg"
 			],
 			"filters": {
 				"type": "dslr",
@@ -573,8 +573,8 @@ export const db_dev_products = {
 			"publish-date": "1558596738466",
 			"category": "Фотоаппарат",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/cam_2_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_2_2.png"
+				"./img/products_images/520px/cam_2_1.jpg",
+				"./img/products_images/520px/cam_2_2.jpg"
 			],
 			"filters": {
 				"type": "digital",
@@ -600,12 +600,12 @@ export const db_dev_products = {
 			"publish-date": "1582638029924",
 			"category": "Фотоаппарат",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/cam_3_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_3_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_3_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_3_4.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_3_5.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_3_6.png"
+				"./img/products_images/520px/cam_3_1.jpg",
+				"./img/products_images/520px/cam_3_2.jpg",
+				"./img/products_images/520px/cam_3_3.jpg",
+				"./img/products_images/520px/cam_3_4.jpg",
+				"./img/products_images/520px/cam_3_5.jpg",
+				"./img/products_images/520px/cam_3_6.jpg"
 			],
 			"filters": {
 				"type": "dslr",
@@ -631,12 +631,12 @@ export const db_dev_products = {
 			"publish-date": "1583228237313",
 			"category": "Фотоаппарат",
 			"photos": [
-				"http://192.168.0.2/react-adv-site/images_local/cam_4_1.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_4_2.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_4_3.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_4_4.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_4_5.png",
-				"http://192.168.0.2/react-adv-site/images_local/cam_4_6.png"
+				"./img/products_images/520px/cam_4_1.jpg",
+				"./img/products_images/520px/cam_4_2.jpg",
+				"./img/products_images/520px/cam_4_3.jpg",
+				"./img/products_images/520px/cam_4_4.jpg",
+				"./img/products_images/520px/cam_4_5.jpg",
+				"./img/products_images/520px/cam_4_6.jpg"
 			],
 			"filters": {
 				"type": "mirrorless",
