@@ -129,8 +129,8 @@ export const Product = ({ item }) => {
 				<div className="product__image-navigation">{photoNav}</div>
 			</div>
 			<div className="product__content">
-				<h3 className="product__title" onClick={showProductCard}>
-					<a href="/#">{item.name}</a>
+				<h3 className="product__title-link" onClick={showProductCard}>
+					{item.name}
 				</h3>
 				<div className="product__price">{addThinSpacesToNumber(item.price)} ₽</div>
 				<div className="product__address">{item.address.city + ", " + item.address.street}</div>
