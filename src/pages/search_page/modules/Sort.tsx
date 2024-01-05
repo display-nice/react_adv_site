@@ -28,7 +28,7 @@ export const Sort = () => {
 
 	return (
 		<fieldset className="sorting__order">
-			<legend>Показать сначала:</legend>
+			<legend className="section-subtitle">Показать сначала</legend>
 			<ul className="sorting__order-list">
 				<li className="sorting__order-tab">
 					<input

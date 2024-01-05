@@ -58,7 +58,7 @@ export const EstateFilter = () => {
 
 	return (
 		<div className={filterClasses}>
-			<fieldset className="filter__type filter__type--estate">
+			<fieldset className="filter__type">
 				<legend>Тип недвижимости</legend>
 				{estateTypeBtns}
 			</fieldset>

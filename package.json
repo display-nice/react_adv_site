@@ -2,12 +2,13 @@
   "name": "react_adv_site",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",  
+  "homepage": ".",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.3.2",
     "gh-pages": "^5.0.0",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
@@ -17,6 +18,7 @@
     "react-redux": "^8.1.2",
     "react-scripts": "5.0.1",
     "react-slider": "^2.0.6",
+    "sass": "^1.69.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -24,7 +26,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "postbuild": "react-spa-prerender"
   },
   "eslintConfig": {
     "extends": [

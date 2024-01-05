@@ -1,0 +1,42 @@
+.breakpoints {
+	// border-left: 4px solid #333;
+	// border-right: 4px solid #333;
+	min-height: 50vh;
+	min-width: 280px;
+	@include media-breakpoint-up('xs') {
+		background-color: #fffadd;
+	}
+	@include media-breakpoint-up('s') {
+		background-color: #fed6bc;
+	}
+	@include media-breakpoint-up('m') {
+		background-color: #def7fe;
+	}
+	@include media-breakpoint-up('l') {
+		background-color: #e7ecff;
+	}
+	@include media-breakpoint-up('xl') {
+		background-color: #c6d8ff;
+	}
+
+	&::before {
+		display: block;		
+		text-align: center;
+		font-size: 50px;
+		@include media-breakpoint-up('xs') {
+			content: "XS, width < 576px"
+		}
+		@include media-breakpoint-up('s') {
+			content: "S, width ≥ 576px"
+		}
+		@include media-breakpoint-up('m') {
+			content: "M, width ≥ 768px"
+		}
+		@include media-breakpoint-up('l') {
+			content: "L, width ≥ 1200px"
+		}
+		@include media-breakpoint-up('xl') {
+			content: "XL, width ≥ 1500px"
+		}
+	}
+}

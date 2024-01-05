@@ -1,4 +1,5 @@
 @import "variables.css";
+@import "blocks/searchpage.css";
 @import "blocks/price-slider.css";
 @import "blocks/cookieConsent.css";
 @import "global/fonts.css";
@@ -6,15 +7,13 @@
 @import "global/utils.css";
 @import "global/typography.css";
 @import "vendor/normalize.css";
-@import "blocks/onlineshop-app.css";
 @import "blocks/title.css";
 @import "blocks/filter.css";
 @import "blocks/sorting.css";
 @import "blocks/results.css";
-@import "blocks/fav-add.css";
+@import "blocks/favs.css";
 @import "blocks/product.css";
-@import "blocks/favourites.css";
 @import "blocks/popup.css";
-@import "blocks/gallery.css";
+@import "blocks/popup-gallery.css";
 @import "blocks/chars.css";
 @import "blocks/seller.css";

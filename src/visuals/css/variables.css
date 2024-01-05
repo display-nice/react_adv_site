@@ -24,6 +24,25 @@
 	--bad-rating: #97a2b5;
 
 	--main-font: "Montserrat", "Helvetica", sans-serif;
+	/* зависимость шрифта от заданного для html typography.css значения */
+	/* --fs-btn-xs: 0.875rem;
+	--font-size-xs-header: calc(var(--font-size-base) * 0.875);
+	--font-size-sm: calc(var(--font-size-base) * 0.875);
+	--font-size-lg: calc(var(--font-size-base) * 1.125); */
+	/* --font-size-base: 16px;
+	--font-size-xs: calc(var(--font-size-base) * 0.75);
+	--font-size-xs-header: calc(var(--font-size-base) * 0.875);
+	--font-size-sm: calc(var(--font-size-base) * 0.875);
+	--font-size-lg: calc(var(--font-size-base) * 1.125); */
+
+	--padding-btn-xs: 7px 10px;
+	--padding-select-xs: 8px 0 5px 18px;
+	
+	--padding-btn-m: 9px 14px;
+	--padding-select-m: 10px 0 6px 20px;
+	--padding-btn-xl: 11px 16px;
+
+	--hearth-width-xs: 15px;
 
 	--animation: 0.155s ease-in-out;
 }

@@ -32,27 +32,23 @@ const PageContent = () => {
 	}
 
 	return (
-		<section className="onlineshop-app">
-			<Hint />
+		<section className="breakpoints searchpage">
+			{/* <Hint /> */}
 			<h1 className="visually-hidden">Главная</h1>
-			<div className="onlineshop-app__blueline"></div>
-			<div className="onlineshop-app__wrapper">
-				<section className="onlineshop-app__filter filter">
-					<h2 className="title filter__title">Фильтр</h2>
+			<div className="searchpage__topline"></div>
+			<div className="searchpage__container">
+				<section className="filter">
+					<h2 className="section-title">Фильтры</h2>
 					<Filters />
 				</section>
-				<section className="onlineshop-app__results results">
-					<div className="results__head">
-						<h2 className="title results__title">Результаты</h2>
-						<div className="results__sorting sorting">
-							<form className="sorting__form">
-								<Sort />
-								<Favorites />
-							</form>
-						</div>
-					</div>
-					<ProductList />
+				<section className="results">
+					<h2 className="section-title">Сортировка</h2>
+					<form className="sorting__form">
+						<Sort />
+						<Favorites />
+					</form>
 				</section>
+				<ProductList />
 			</div>
 			{/* Управление видимостью <ProductCardPopup/> */}
 			{prodCardIsVis && <ProductCardPopup />}
@@ -60,7 +56,7 @@ const PageContent = () => {
 				buttonText="Понятно"
 				containerClasses="CC_style"
 				contentClasses="CC_contentClasses"
-				buttonClasses="CC_buttonStyle"				
+				buttonClasses="CC_buttonStyle"
 			>
 				Избранные сохраняются в cookies
 			</CookieConsent>

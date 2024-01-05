@@ -9,7 +9,7 @@ import { useAppSelector, useAppDispatch } from "@src/hook";
 import { performFiltration } from "@search_page/SearchPageReducer";
 
 /**
-	Это компонент-агрегатор всех фильтров и кнопки "Показать"
+	Это компонент-агрегатор всех фильтров и кнопки "Применить"
 	Используется в SearchPageReducer.tsx
 */
 
@@ -17,8 +17,8 @@ export const Filters = () => {
 	const dispatch = useAppDispatch();
 	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
 
-	// Кнопка "Показать"
-	const Show = (e) => {
+	// Кнопка "Применить"
+	const Apply = (e) => {
 		e.preventDefault();
 		dispatch(performFiltration());
 	};
@@ -32,12 +32,12 @@ export const Filters = () => {
 			<LaptopFilter />
 			<CarFilter />
 			<button
-				onClick={Show}
+				onClick={Apply}
 				className="button filter__button"
 				type="submit"
 				disabled={favIsActive === true}
 			>
-				Показать
+				Применить
 			</button>
 		</form>
 	);
