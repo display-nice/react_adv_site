@@ -1,1 +1,0 @@
-"homepage": "https://wakadaka59.github.io/react_adv_site",
