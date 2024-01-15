@@ -65,6 +65,8 @@ const SearchPageSlice = createSlice({
 		},
 		sortBy: "popular", // Возможные значения: "popular", "cheap", "new"
 		favIsActive: false,
+		showFiltersXS: false,
+		showSortingXS: false,
 		favProducts: [],
 		prodCatFilter: {
 			categories: [
@@ -187,6 +189,14 @@ const SearchPageSlice = createSlice({
 		setSortType(state, action) {
 			state.sortBy = action.payload;
 		},
+		toggleShowFiltersXS(state) {
+			state.showFiltersXS = !state.showFiltersXS;
+			state.showSortingXS = false;
+		},
+		toggleShowSortingXS(state) {
+			state.showSortingXS = !state.showSortingXS;
+			state.showFiltersXS = false;
+		},
 		toggleFavIsActive(state) {
 			state.favIsActive = !state.favIsActive;
 		},
@@ -288,7 +298,7 @@ export const {
 	setPriceBorders,
 	performFiltration,
 	setSortType,
-	toggleFavIsActive,
+	toggleShowFiltersXS, toggleShowSortingXS, toggleFavIsActive,
 	addToFav,
 	removeFromFav,
 	setActiveCategory, setMinSquare, setUlParams, setSelectParams

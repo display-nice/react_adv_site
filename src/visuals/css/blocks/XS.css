@@ -1,0 +1,33 @@
+.xs__controls {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.xs__filter-btn, .xs__sorting-btn, .xs__favorites-btn {
+	display: flex;
+	flex-grow: 1;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	border: 0;
+	border-bottom: 2px solid var(--disabled-bg);
+	border-radius: 4px;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.xs__filter-btn, .xs__sorting-btn {
+	gap: clamp(4px, 6px, 10px);
+	padding: 4px 6px;
+}
+.xs__favorites-btn {
+	padding: 2px 8px;
+}
+
+.xs__filter-btn svg, .xs__sorting-btn svg, .xs__favorites-btn svg {
+	fill: var(--main-blue);
+	cursor: pointer;
+	transition: inherit;
+}

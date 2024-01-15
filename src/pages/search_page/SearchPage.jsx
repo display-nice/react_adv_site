@@ -5,11 +5,13 @@ import CookieConsent from "react-cookie-consent";
 import { useAppSelector } from "@src/hook";
 import { initializePage } from "./SearchPageReducer";
 
-import { Filters } from "@sp_modules/Filters/_Filters";
-import { Favorites } from "@sp_modules/Favorites";
-import { Sort } from "@sp_modules/Sort";
+import { XS } from "./modules/XS";
+import { Filters, FiltersXS } from "@sp_modules/Filters/_Filters";
+import { Favorites, FavoritesXS } from "@sp_modules/Favorites";
+import { Sort, SortXS } from "@sp_modules/Sort";
 import { ProductList } from "@sp_modules/ProductList/_ProductList";
 import { ProductCardPopup } from "@sp_modules/ProductList/ProductCardPopup/ProductCardPopup";
+
 import { Spinner } from "@sp_modules/Spinner/Spinner";
 import { Hint } from "./modules/Hint/Hint";
 
@@ -37,21 +39,25 @@ const PageContent = () => {
 			<h1 className="visually-hidden">Главная</h1>
 			<div className="searchpage__topline"></div>
 			<div className="searchpage__container">
-				<section className="filter">
+				{/* <XS_controls/> */}
+				<XS/>
+
+				{/* <section className="filter">
 					<h2 className="section-title">Фильтры</h2>
 					<Filters />
 				</section>
-				<section className="results">
+				<section className="sorting">
 					<h2 className="section-title">Сортировка</h2>
 					<form className="sorting__form">
 						<Sort />
 						<Favorites />
 					</form>
-				</section>
+				</section> */}
 				<ProductList />
 			</div>
 			{/* Управление видимостью <ProductCardPopup/> */}
 			{prodCardIsVis && <ProductCardPopup />}
+
 			<CookieConsent
 				buttonText="Понятно"
 				containerClasses="CC_style"

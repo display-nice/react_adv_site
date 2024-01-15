@@ -12,8 +12,8 @@
 @import "blocks/sorting.css";
 @import "blocks/results.css";
 @import "blocks/favs.css";
+@import "blocks/XS.css";
 @import "blocks/product.css";
-@import "blocks/popup.css";
-@import "blocks/popup-gallery.css";
-@import "blocks/chars.css";
-@import "blocks/seller.css";
+@import "blocks/popup/_popup.css";
+/* @import "blocks/popup-gallery.css"; */
+/* @import "blocks/seller.css"; */

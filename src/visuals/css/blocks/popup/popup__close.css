@@ -1,0 +1,27 @@
+/* ------------ кнопка закрытия попапа ------------- */
+.popup__close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	padding: 0;
+	border: none;
+	background: none;
+	cursor: pointer;
+ }
+ 
+ .popup__close svg {
+	fill: #4456B1;
+	transition: var(--animation);
+ }
+ 
+ .popup__close:hover svg{
+	fill: var(--light-blue);
+ }
+ 
+ .popup__close:active svg {
+	fill: var(--dark-blue);
+	outline: none;
+ }
+ .popup__close:active {
+	outline: none;
+ }

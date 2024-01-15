@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 
-import { addToFav, removeFromFav, setProductCard} from "@search_page/SearchPageReducer";
+import { addToFav, removeFromFav, setProductCard } from "@search_page/SearchPageReducer";
 import { BtnFavList } from "./BtnAddToFav";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 import { formatPublishDate } from "@src/utils/date";
@@ -20,19 +20,19 @@ export const Product = ({ item }) => {
 	// Видна ли подсказка, какая колонка активна, какая ссылка на изображение
 	const [hintIsVisible, setHintIsVisible] = useState<boolean>(false);
 	const [activeColumn, setActiveColumn] = useState<boolean | number>(false);
-	const [imgLink, setImgLink] = useState<string>(imgPathChanger(item.photos[0], '320px', 'jpg'));
+	const [imgLink, setImgLink] = useState<string>(imgPathChanger(item.photos[0], "320px", "jpg"));
 	// const imgLink = '/visuals/img/products_images_local/520px/apt_1_1.jpg'
 	// Кнопка "избранные"
-	const favProducts = useAppSelector(state => state.SearchPageReducer.favProducts)
-	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === item["id"]))
+	const favProducts = useAppSelector((state) => state.SearchPageReducer.favProducts);
+	const isInFavorites = Boolean(favProducts.find((product) => product["id"] === item["id"]));
 	const toggleFavBtn = () => {
-		isInFavorites === false ? dispatch(addToFav(item)) : dispatch(removeFromFav(item))
-	}
+		isInFavorites === false ? dispatch(addToFav(item)) : dispatch(removeFromFav(item));
+	};
 
 	const activateColumn = (e, imgPath) => {
 		const index = Number(e.target.dataset.index);
 		setActiveColumn(index);
-		const newPath = imgPathChanger(imgPath, '320px', 'jpg')
+		const newPath = imgPathChanger(imgPath, "320px", "jpg");
 		setImgLink(newPath);
 		// Для пятой колонки показывается инфо-подсказка "+n фото"
 		if (index === 4) setHintIsVisible(true);
@@ -121,13 +121,14 @@ export const Product = ({ item }) => {
 	});
 
 	return (
-		<li className="results__item product" key={item.name + "_key"}>
-			<BtnFavList favBtnActive={isInFavorites} toggleFavBtn={toggleFavBtn}/>
-
+		<li className="product" key={item.name + "_key"}>
+			
 			<div className="product__image" onClick={showProductCard}>
-				<img src={imgLink} width="320" height="209" alt={item.name} />				
+				<BtnFavList favBtnActive={isInFavorites} toggleFavBtn={toggleFavBtn} />
+				<img src={imgLink} alt={item.name} />
 				<div className="product__image-navigation">{photoNav}</div>
 			</div>
+
 			<div className="product__content">
 				<h3 className="product__title-link" onClick={showProductCard}>
 					{item.name}

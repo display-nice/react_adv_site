@@ -42,7 +42,7 @@ export const ProductCardPopup = () => {
 
 	// Меняет классы для рейтинга продавца в зависимости от этого рейтинга
 	function sellerClasses(rating) {
-		let classes = "popup__seller seller";
+		let classes = "popup__seller";
 		if (rating >= 4.8) {
 			classes += " seller--good";
 			return classes;
@@ -78,20 +78,17 @@ export const ProductCardPopup = () => {
 						/>
 					</svg>
 				</button>
-				<div className="popup__date">{formatPublishDate(cardData["publish-date"])}</div>
-				<h3 className="popup__title">{cardData["name"]}</h3>
-				<div className="popup__price">{addThinSpacesToNumber(cardData["price"])} ₽</div>
 				<div className="popup__columns">
 					<div className="popup__left">
+						<div className="popup__date">{formatPublishDate(cardData["publish-date"])}</div>
+						<h3 className="popup__title">{cardData["name"]}</h3>
+						<div className="popup__price">{addThinSpacesToNumber(cardData["price"])} ₽</div>
 						<div className="popup__gallery gallery">
 							<BtnFavCard favBtnActive={isInFavorites} toggleFavBtn={toggleFavBtn} />
 							<div className="gallery__main-pic">
 								<img
-									src={cardData["photos"][galleryActiveItem]}
-									srcSet="img/car-big-2x.jpg 2x"
-									width="520"
-									height="340"
-									alt="Ford Mustang 2020"
+									src={cardData["photos"][galleryActiveItem]}									
+									alt={cardData["name"]}
 								/>
 							</div>
 							<ul className="gallery__list">
@@ -108,16 +105,16 @@ export const ProductCardPopup = () => {
 								})}
 							</ul>
 						</div>
-						<ul className="popup__chars chars">
+						<ul className="popup__chars">
 							<Characteristics cardData={cardData} />
 						</ul>
 						<div className={sellerClasses(cardData["seller"]["rating"])}>
 							<h3>Продавец</h3>
-							<div className="seller__inner">
-								<a className="seller__name" href="/#">
+							<div className="popup__seller-inner">
+								<a className="popup__seller-name" href="/#">
 									{cardData["seller"]["fullname"]}
 								</a>
-								<div className="seller__rating">
+								<div className="popup__seller-rating">
 									<span>{cardData["seller"]["rating"]}</span>
 								</div>
 							</div>
@@ -145,7 +142,7 @@ function GalleryItem({ imgPath, index, gai, setGai }) {
 	const changeGai = () => {
 		setGai(index);
 	};
-	const newPath = imgPathChanger(imgPath, '124px', 'jpg')
+	const newPath = imgPathChanger(imgPath, "124px", "jpg");
 	return (
 		<li className={classes} onClick={changeGai}>
 			<img src={newPath} alt={"Фото №" + index} width="124" height="80" />
@@ -165,9 +162,9 @@ function Characteristics({ cardData }) {
 		let header = translateChars(cardData["category"], "header", filter);
 		let value = translateChars(cardData["category"], "value", filter);
 		return (
-			<li className="chars__item" key={"chars_key_" + index}>
-				<div className="chars__name">{header}</div>
-				<div className="chars__value">{value}</div>
+			<li className="popup__chars-item" key={"chars_key_" + index}>
+				<div className="popup__chars-name">{header}</div>
+				<div className="popup__chars-value">{value}</div>
 			</li>
 		);
 	});

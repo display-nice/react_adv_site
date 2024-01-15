@@ -1,28 +1,28 @@
-.favourites {
-  /* display: flex; */
+/* .favourites {
+  display: flex;
   padding-top: 30px;
-  /* flex-direction: column; */
-  /* align-items: center; */
-}
+  flex-direction: column;
+  align-items: center;
+} */
 
-.favourites p {
+/* .favourites p {
   width: 58%;
   margin: 0;
   margin-bottom: 20px;
   color: var(--disabled-blue);
   text-align: center;
-}
+} */
 
-.favourites__empty-message {
+/* .favourites__empty-message {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.75;
-}
+} */
 
-.favourites__notion {
+/* .favourites__empty-advice {
   font-weight: 400;
   line-height: 1.57;
-}
+} */
 
 
 .fav-add {

@@ -1,0 +1,19 @@
+.popup__map {
+	/* min-width: 300px;
+	 max-width: 370px; */
+	order: 2;
+	width: 300px;
+	height: 180px;
+	margin-bottom: 16px;
+	background-color: var(--disabled-bg);
+	border-radius: 4px;
+ }
+ .popup__map > div:first-child {
+	min-width: 300px !important;
+	max-width: 370px !important;
+	/* width: 300px ; */
+	/* height: 180px; */
+	margin-bottom: 16px;
+	background-color: var(--disabled-bg);
+	border-radius: 4px;
+ }

@@ -3,9 +3,9 @@
 }
 
 .filter__form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }
 
 .filter fieldset {
@@ -17,18 +17,19 @@
 }
 
 .filter label {
-  /* display: flex;
+	/* display: flex;
 	gap: 4px; */
 }
 .filter legend {
 	/* display: flex; */
-  /* gap: 4px; */
+	/* gap: 4px; */
 }
 
-.filter select {
+/* !!!! .xs__filters-popup select */
+.filter select, .xs__filters-popup select {
 	display: flex;
 	min-height: 38px;
-  padding: var(--padding-select-xs);
+	padding: var(--padding-select-xs);
 	border: 2px solid var(--disabled-bg);
 	background-color: var(--main-bg);
 	border-radius: 4px;
@@ -77,10 +78,13 @@
 	margin-bottom: 8px;
 }
 
-.filter__estate, .filter__camera, .filter__laptop, .filter__car {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.filter__estate,
+.filter__camera,
+.filter__laptop,
+.filter__car {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }
 
 .filter__type {
@@ -129,18 +133,18 @@
 }
 
 .filter__checkboxes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  transition: var(--animation);
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	transition: var(--animation);
 }
 .filter__radiobuttons-list {
-  display: flex;
-  /* flex-direction: column; */
-  /* gap: 10px; */
+	display: flex;
+	/* flex-direction: column; */
+	/* gap: 10px; */
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -232,16 +236,16 @@
 }
 
 .filter__checkboxes-list input:checked:hover + label:before {
-  background-color: var(--light-blue);
+	background-color: var(--light-blue);
 	border-color: var(--light-blue);
 }
 
 .filter__checkboxes-list input:checked:hover + label {
-  color: var(--light-blue);
+	color: var(--light-blue);
 }
 
 .filter__min-square {
-  /* margin-bottom: 15px; */
+	/* margin-bottom: 15px; */
 }
 
 .filter__min-square input {
@@ -254,7 +258,7 @@
 	border: 2px solid #e1e3ec;
 	border-radius: 4px;
 	background-color: var(--main-bg);
-  
+
 	appearance: none;
 	transition: var(--animation);
 	-moz-appearance: textfield;
@@ -262,7 +266,7 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  display: none;
+	display: none;
 	-webkit-appearance: none;
 	margin: 0;
 }
@@ -300,7 +304,6 @@ input::-webkit-inner-spin-button {
 	cursor: default;
 }
 
-
 .filter__radiobuttons label {
 	border: 2px solid #e1e3ec;
 	transition: var(--animation);
@@ -319,9 +322,9 @@ input::-webkit-inner-spin-button {
 }
 
 .filter__radiobuttons-item label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin: 0;
 	padding: 5px 10px;
 }
