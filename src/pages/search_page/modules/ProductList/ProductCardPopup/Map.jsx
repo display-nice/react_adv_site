@@ -56,12 +56,13 @@ export const MapComponent = ({ coords }) => {
 				</>
 			);
 		}
+		// Для MapContainer можно задать инлайн ширину и высоту
+		// style={{ height: "180px", width: "300px" }}
 		return (
 			<MapContainer
 				center={coords}
 				zoom={13}
 				scrollWheelZoom={true}
-				
 			>
 				<Map/>
 			</MapContainer>
