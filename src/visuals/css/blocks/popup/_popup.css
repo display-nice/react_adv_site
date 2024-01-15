@@ -8,6 +8,7 @@
   position: fixed;
   overflow: auto;
   display: block;
+  height: 100dvh;
   z-index: 3;
   top: 0;
   bottom: 0;
@@ -24,10 +25,10 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 40px;
-  bottom: 40px;
-  margin: 0 5px;
+  height: 90svh;
   max-width: 900px;
+  top: 4dvh;
+  margin: 0 5px;
   padding: 15px 5px;
   gap: 8px;
   background-color: var(--white);
@@ -38,7 +39,6 @@
   /* width: 896px; */
   /* margin: 0 auto; */
   /* height: calc(100vh - 120px); */
-  /* height: 90vh; */
 }
 
 .popup__columns {

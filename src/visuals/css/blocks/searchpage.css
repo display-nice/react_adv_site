@@ -1,6 +1,6 @@
 .searchpage {
 	min-width: 320px;
-	height: 100vh;
+	height: 100dvh;
 }
 
 .searchpage__topline {
@@ -38,7 +38,9 @@
 	grid-column: span 12;
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	/* align-self: center; */
+	/* justify-content: center; */
+	/* gap: 20px; */
 }
 
 .filter {
