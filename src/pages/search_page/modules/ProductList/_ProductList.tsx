@@ -22,7 +22,8 @@ export const ProductList = () => {
 			// Если есть что в избранных, то выводим их на экран
 			return (
 				<section className="results">
-					<ul className="results_ul">
+					<ul className="results__ul">
+						<h2 className="results__favheader">Избранные товары</h2>
 						{favProducts.map((item, index) => (
 							<Product key={item.name + "_product_key_" + index} item={item} />
 						))}

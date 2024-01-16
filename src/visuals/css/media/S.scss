@@ -1,4 +1,7 @@
 @media screen and (min-width: 576px) {
+	html {
+		font-size: 15px; /* Размер шрифта корневого элемента */
+	}
 	.xs__controls {
 		margin-left: 10%;
 		margin-right: 10%;

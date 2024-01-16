@@ -1,5 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@src/hook";
 import { performFiltration, setSortType, toggleShowSortingXS } from "../SearchPageReducer";
+import classNames from "classnames";
 
 /**
 	Этот компонент отвечает за работу кнопок сортировки
@@ -75,12 +76,19 @@ export const Sort = () => {
 };
 export const SortXS = () => {
 	const dispatch = useAppDispatch();
+	const showSortingXS = useAppSelector(state => state.SearchPageReducer.showSortingXS);
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
+	const btnClass = classNames({
+		"xs__control-btn": true,
+		"xs__control-btn--pressed": showSortingXS,
+		// "xs__control-btn--disabled": favIsActive
+	});
 	const handleClick = () => {
 		dispatch(toggleShowSortingXS())
 	}
 	return (
-		<button className="xs__sorting-btn" onClick={handleClick}>
-			<h2 className="xs__header-btn">Сортировка</h2>
+		<button className={btnClass} onClick={handleClick} disabled={favIsActive === true}>
+			<h2>Сортировка</h2>
 			<svg width="14" height="8" viewBox="0 0 14 8" xmlns="http://www.w3.org/2000/svg">
 				<path
 					fillRule="evenodd"

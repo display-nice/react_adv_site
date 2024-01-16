@@ -3,31 +3,78 @@
 	flex-wrap: wrap;
 	gap: 8px;
 }
-
-.xs__filter-btn, .xs__sorting-btn, .xs__favorites-btn {
+.xs__control-btn,
+.xs__favorites-btn {
 	display: flex;
 	flex-grow: 1;
 	justify-content: center;
 	align-items: center;
-	background-color: #fff;
+	background-color: var(--white);
 	border: 0;
-	border-bottom: 2px solid var(--disabled-bg);
+	border-bottom: 2px solid var(--disabled-blue);
 	border-radius: 4px;
 	cursor: pointer;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 }
-.xs__filter-btn, .xs__sorting-btn {
+
+/* -------------filters and sorting btns styles------------- */
+.xs__control-btn {
 	gap: clamp(4px, 6px, 10px);
 	padding: 4px 6px;
 }
-.xs__favorites-btn {
-	padding: 2px 8px;
+.xs__control-btn h2 {
+	font-size: clamp(1rem, 1.1rem, 1.2rem);
+	line-height: 1.6;
+	font-weight: 600;
+	letter-spacing: 0.01em;
+	/* text-transform: uppercase; */
+	color: var(--main-blue);
+	user-select: none;
+}
+.xs__control-btn svg {
+	fill: var(--main-blue);
 }
 
-.xs__filter-btn svg, .xs__sorting-btn svg, .xs__favorites-btn svg {
+/* pressed */
+.xs__control-btn--pressed {
+	background-color: var(--main-blue);
+	border-bottom-color: var(--main-blue);
+}
+
+.xs__control-btn--pressed h2 {
+	color: var(--white);
+}
+.xs__control-btn--pressed svg {
+	fill: var(--white);
+}
+
+/* disabled */
+.xs__control-btn:disabled {
+	background-color: var(--disabled-bg);
+	border-bottom-color: var(--disabled-bg);
+}
+.xs__control-btn:disabled h2 {
+	color: var(--disabled-blue);
+}
+.xs__control-btn:disabled svg {
+	fill: var(--disabled-blue);
+}
+
+/* ---------------favorites btn styles---------------- */
+.xs__favorites-btn {
+	padding: 2px 8px;
+	color: var(--main-blue);
+}
+
+.xs__favorites-btn--pressed {
+	background-color: var(--main-blue);
+	border-bottom-color: var(--main-blue);
+}
+
+.xs__favorites-btn--pressed > svg > path {
 	fill: var(--main-blue);
-	cursor: pointer;
-	transition: inherit;
+	color: var(--white);
+	background-color: var(--main-blue);
 }

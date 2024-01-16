@@ -22,6 +22,11 @@
 	gap: 20px;
 }
 
+.results__favheader {
+	color: var(--main-blue);
+	text-transform: uppercase;
+}
+
 .results__info {
 	display: flex;
 	flex-direction: column;

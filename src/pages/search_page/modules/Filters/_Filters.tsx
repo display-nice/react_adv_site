@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { ProdCatFilter } from "./ProdCatFilter";
 import { CameraFilter } from "./CameraFilter";
 import { CarFilter } from "./CarFilter";
@@ -45,12 +46,18 @@ export const Filters = () => {
 
 export const FiltersXS = () => {
 	const dispatch = useAppDispatch();
+	const showFiltersXS = useAppSelector(state => state.SearchPageReducer.showFiltersXS);
+	const favIsActive = useAppSelector((state) => state.SearchPageReducer.favIsActive);
+	const btnClass = classNames({
+		"xs__control-btn": true,
+		"xs__control-btn--pressed": showFiltersXS,
+	});
 	const handleClick = () => {
 		dispatch(toggleShowFiltersXS())
 	}
 	return (
-		<button className="xs__filter-btn" onClick={handleClick}>
-			<h2 className="xs__header-btn">Фильтры</h2>
+		<button className={btnClass} onClick={handleClick} disabled={favIsActive === true}>
+			<h2>Фильтры</h2>
 			<svg width="14" height="8" viewBox="0 0 14 8" xmlns="http://www.w3.org/2000/svg">
 				<path
 					fillRule="evenodd"

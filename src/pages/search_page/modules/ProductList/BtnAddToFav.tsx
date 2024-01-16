@@ -23,7 +23,8 @@ export const BtnFavCard = ({favBtnActive, toggleFavBtn}) => {
 
 const Btn = (classes, toggleFavBtn) => {
 
-	const handleClick = () => {
+	const handleClick = (e) => {
+		e.stopPropagation();
 		toggleFavBtn();
 	}
 
