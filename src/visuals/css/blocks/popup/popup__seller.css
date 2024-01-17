@@ -28,10 +28,6 @@
 	transition: var(--animation);
 }
 
-.popup__seller-name:hover {
-	color: var(--light-blue);
-}
-
 .popup__seller-name:active {
 	color: var(--dark-blue);
 }

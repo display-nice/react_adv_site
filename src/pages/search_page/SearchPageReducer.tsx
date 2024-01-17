@@ -172,7 +172,6 @@ const SearchPageSlice = createSlice({
 			state.displayedProducts = action.payload;
 		},
 		setProductCard(state, action) {
-			console.log('setProductCard', action.payload);
 			state.productCard.isVisible = action.payload.isVisible;
 			state.productCard.data = action.payload.data;
 		},
@@ -204,12 +203,10 @@ const SearchPageSlice = createSlice({
 			state.showFiltersXS = false;
 		},
 		addToFav(state, action) {
-			console.log('сработал addToFav');
 			state.favProducts.push(action.payload);
 			addToCookie("favorites", action.payload["id"]);
 		},
 		removeFromFav(state, action) {
-			console.log('сработал removeFromFav');
 			const i = state.favProducts.findIndex(
 				(favProduct) => favProduct["id"] === action.payload["id"]
 			);

@@ -1,0 +1,98 @@
+@media (hover: hover) {
+
+	// * favs
+	.fav-add:hover {
+		width: 26px;
+		height: 26px;
+		top: 25px;
+		left: 26px;
+	}
+	.fav-add:hover svg {
+		fill: var(--light-blue);
+		width: 26px;
+		height: 24px;
+	}
+
+	// * filters
+	.filter select:disabled:hover {
+		cursor: default;
+	}
+	.filter__button:hover {
+		background-color: var(--light-blue);
+		cursor: pointer;
+	}
+	.filter__checkboxes-list input:checked:hover + label:before {
+		background-color: var(--light-blue);
+		border-color: var(--light-blue);
+	}
+	.filter__checkboxes-list input:checked:hover + label {
+		color: var(--light-blue);
+	}
+	.filter__min-square input:hover {
+		border-color: var(--light-blue);
+		cursor: pointer;
+	}
+	.filter__min-square input:disabled:hover {
+		border-color: var(--disabled-bg);
+	}
+	.filter__radiobuttons input:disabled + label:hover {
+		border-color: var(--disabled-bg);
+	}
+	.filter__checkboxes-item label:hover::before {
+		border-color: var(--light-blue);
+	}
+	.filter__checkboxes-item label:hover {
+		color: var(--light-blue);
+	}
+	.filter__checkboxes-item input:disabled + label:hover::before {
+		border-color: var(--disabled-bg);
+	}
+	.filter__checkboxes-item input:checked:focus + label:hover::before {
+		border-color: var(--light-blue);
+	}
+	.filter__radiobuttons label:hover {
+		background-color: var(--light-blue);
+		color: #ffffff;
+		border-color: var(--light-blue);
+	}
+	.filter__checkboxes-list input:checked + label:hover {
+		color: var(--light-blue);
+	}
+	.product__title-link:hover {
+		color: var(--light-blue);
+		cursor: pointer;
+	}
+
+	// * sorting
+	.sorting__order-tab label:hover {
+		color: var(--white);
+		border-color: var(--light-blue);
+		background-color: var(--light-blue);
+	}
+	.sorting__order-tab input:disabled + label:hover {
+		border-color: var(--disabled-bg);
+	}
+	.sorting__order-tab input:checked:disabled + label:hover {
+		background-color: var(--disabled-bg);
+		border-color: var(--disabled-bg);
+	}
+	.sorting__favourites label:hover {
+		background-color: var(--light-blue);
+		color: var(--white);
+		border-color: var(--light-blue);
+	}
+	.sorting__favourites label:hover svg {
+		fill: var(--white);
+	}
+
+	// * popup
+	.popup__close:hover svg {
+		fill: var(--light-blue);
+	}
+	.gallery__item:hover {
+		filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25));
+	}
+	.popup__seller-name:hover {
+		color: var(--light-blue);
+	}
+}
