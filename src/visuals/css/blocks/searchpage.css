@@ -33,6 +33,10 @@
 	/* position: relative; */
 }
 
+.filter.m-controls, .sorting.m-controls {
+	display: none;
+}
+
 .xs {
 	grid-area: A;
 	grid-column: span 12;
@@ -41,6 +45,13 @@
 	/* align-self: center; */
 	/* justify-content: center; */
 	gap: 15px;
+}
+
+.m-filters {
+	display: none;
+}
+.m-sortfavs {
+	display: none;
 }
 
 .filter {

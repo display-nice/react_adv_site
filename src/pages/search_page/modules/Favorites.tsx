@@ -38,6 +38,7 @@ export const Favorites = () => {
 		<div className="sorting__favourites">
 			<h2 className="section-title">Избранные</h2>
 			{/* <span className="sorting__favourites-header">Избранные</span> */}
+			<div className="section-subtitle">Список избранных</div>
 			<div className="sorting__favourites-btn">
 				<input
 					className="visually-hidden"

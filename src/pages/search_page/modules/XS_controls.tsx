@@ -3,16 +3,7 @@ import { Sort, SortXS } from "./Sort";
 import { FavoritesXS } from "./Favorites";
 import { useAppSelector } from "@src/hook";
 
-// export const XS_controls = () => {
-// 	return (
-// 		<div className="xs__controls">
-// 			<FiltersXS />
-// 			<SortXS />
-// 			<FavoritesXS />
-// 		</div>
-// 	);
-// };
-export const XS = () => {
+export const XS_controls = () => {
 	const filtersVisibility = useAppSelector(state => state.SearchPageReducer.showFiltersXS);
 	const sortingVisibility = useAppSelector(state => state.SearchPageReducer.showSortingXS);
 	let filtersClasses = "filter";
