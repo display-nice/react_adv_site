@@ -18,13 +18,7 @@
 		line-height: 1.5;
 		color: var(--titles-color);
 	}
-	.popup__map {
-		order: 2;
-		width: 100%;
-		height: 22svh;
-	}
-	.popup__map > div:first-child {
-		width: 100%;
+	.popup__map, .popup__map > div:first-child {
 		height: 22svh;
 	}
 }

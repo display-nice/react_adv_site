@@ -33,7 +33,7 @@
 			content: "M, width ≥ 768px"
 		}
 		@include media-breakpoint-up('l') {
-			content: "L, width ≥ 1200px"
+			content: "L, width ≥ 1100px"
 		}
 		@include media-breakpoint-up('xl') {
 			content: "XL, width ≥ 1500px"

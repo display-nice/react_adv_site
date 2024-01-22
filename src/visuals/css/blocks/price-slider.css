@@ -10,7 +10,6 @@
 
 .rs-container {
 	height: 20px;
-	font-family: Arial, Helvetica, sans-serif;
 	position: relative;
 }
 
@@ -27,7 +26,6 @@
 	color: var(--disabled-blue);
 	background-color: transparent;
 	border: none;
-	font-family: var(--main-font);
 	font-size: 13px;
 }
 

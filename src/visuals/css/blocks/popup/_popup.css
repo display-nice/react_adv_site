@@ -7,7 +7,7 @@
 .popup {
   position: fixed;
   overflow: auto;
-  display: block;
+  display: flex;
   height: 100dvh;
   z-index: 3;
   top: 0;
@@ -22,13 +22,13 @@
 } */
 
 .popup__inner {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 90svh;
-  max-width: 900px;
-  top: 4dvh;
-  margin: 0 5px;
+  max-height: 86dvh;
+  /* max-width: 900px; */
+  /* top: 4dvh; */
+  margin: 4dvh 5px 10dvh 5px;
   padding: 15px 5px;
   gap: 8px;
   background-color: var(--white);
@@ -65,8 +65,8 @@
 .popup__right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   gap: 10px;
   /* width: 308px; */
   /* padding-left: 40px; */

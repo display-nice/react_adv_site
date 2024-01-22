@@ -57,7 +57,7 @@
 .filter {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	/* gap: 10px; */
 	padding-left: 0 !important;
 	padding-right: 0 !important;
 	/* grid-area: B;

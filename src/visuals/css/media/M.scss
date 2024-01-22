@@ -47,6 +47,7 @@
 	.results_ul {
 		// flex-grow: 1;
 	}
+
 	.product {
 		max-width: none;
 		flex-direction: row;
@@ -64,25 +65,55 @@
 		gap: 9px;
 		width: 55%;
 	}
+
+	.popup {
+		display: flex;
+		justify-content: center;
+	}
+	.popup__inner {
+		width: clamp(700px, 400px + 40vw, 900px);
+		margin-left: 0;
+		margin-right: 0;
+		// padding-left: 0;
+		// padding-right: 0;
+		// margin: 0 auto;
+		// min-width: 700px;
+		// max-width: 900px;
+		// margin: 0 30px;
+	}
+	.popup__map, .popup__map > div:first-child {		
+		height: min(260px, 25dvh);
+	}
+	
+
+	// * --------------------типографика-----------------------
+	// .filter__radiobuttons-item label {
+	// 	font-size: clamp(13px, 14px, 16px);
+	// }
+	.filter__button {
+	}
 	.product__title-link {
 		font-size: clamp(1.1rem, 2.15vw, 22px);
-		line-height: 1.0;
+		line-height: 1;
 	}
 	.product__price {
 		font-size: clamp(1.2rem, 2.35vw, 23px);
-		line-height: 1.0;
+		line-height: 1;
 	}
 	.product__address {
 		padding-left: 20px;
 		font-size: clamp(0.9rem, 1.75vw, 20px);
-		line-height: 1.0;
+		line-height: 1;
 	}
 	.product__address::before {
 		top: -1px;
 	}
 	.product__date {
-		font-size: clamp(0.9rem, 1.70vw, 14px);
+		font-size: clamp(0.9rem, 1.7vw, 14px);
 		margin: 0;
-		line-height: 1.0;
+		line-height: 1;
+	}
+	.popup__title {
+		font-size: clamp(24px, 3.2vw, 36px);
 	}
 }

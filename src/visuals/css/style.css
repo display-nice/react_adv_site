@@ -7,7 +7,6 @@
 @import "global/utils.css";
 @import "global/typography.css";
 @import "vendor/normalize.css";
-@import "blocks/title.css";
 @import "blocks/filter.css";
 @import "blocks/sorting.css";
 @import "blocks/results.css";

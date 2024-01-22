@@ -20,10 +20,10 @@
 	/* display: flex;
 	gap: 4px; */
 }
-.filter legend {
+/* .filter legend { */
 	/* display: flex; */
 	/* gap: 4px; */
-}
+/* } */
 
 /* !!!! .xs__filters-popup select */
 .filter select,
@@ -56,6 +56,7 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	gap: 8px;
 }
 
 .filter__select-wrapper svg {
@@ -85,7 +86,7 @@
 }
 
 .filter__type {
-	margin-bottom: 9px;
+	margin-bottom: 8px;
 }
 
 .filter__select-wrapper--min-resolution {
@@ -133,6 +134,11 @@
 	list-style: none;
 	transition: var(--animation);
 }
+.filter__radiobuttons {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
 .filter__radiobuttons-list {
 	display: flex;
 	/* flex-direction: column; */
@@ -162,19 +168,14 @@
 	width: 100%;
 }
 
-.filter__radiobuttons {
-	/* margin-bottom: 20px; */
+.filter__radiobuttons legend {
+
+	margin-bottom: 8px;
 }
 
 .filter__checkboxes-list label,
 .filter__radiobuttons label {
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 1.75;
-	color: var(--main-blue);
-
 	cursor: pointer;
-
 	user-select: none;
 }
 
@@ -188,13 +189,11 @@
 
 .filter__checkboxes-list label::before {
 	content: "";
-
 	position: absolute;
 	left: 0px;
 	display: block;
 	width: 24px;
 	height: 24px;
-
 	border: 2px solid #e1e3ec;
 	border-radius: 4px;
 	transition: var(--animation);
@@ -202,10 +201,8 @@
 
 .filter__checkboxes-list label::after {
 	content: "";
-
 	position: absolute;
 	left: 0px;
-
 	width: 24px;
 	height: 24px;
 	background-image: url("../../img/icon-tick.svg");
@@ -217,7 +214,6 @@
 
 .filter__checkboxes-list input:checked + label::before {
 	background-color: var(--dark-blue);
-
 	width: 24px;
 	height: 24px;
 	border-color: var(--dark-blue);
@@ -234,14 +230,12 @@
 .filter__min-square input {
 	display: block;
 	box-sizing: border-box;
-
 	width: 100%;
 	min-height: 42px;
 	padding-left: 15px;
 	border: 2px solid #e1e3ec;
 	border-radius: 4px;
 	background-color: var(--main-bg);
-
 	appearance: none;
 	transition: var(--animation);
 	-moz-appearance: textfield;
@@ -300,7 +294,8 @@ input::-webkit-inner-spin-button {
 	align-items: center;
 	justify-content: center;
 	margin: 0;
-	padding: 5px 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .filter__radiobuttons--rooms {
@@ -386,7 +381,6 @@ input::-webkit-inner-spin-button {
 	display: flex;
 	margin: 0;
 	padding: 0;
-
 	list-style: none;
 }
 

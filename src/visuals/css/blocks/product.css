@@ -74,28 +74,6 @@
 }
 
 /* --------------------Навигация на фото продукта в листе-------------------- */
-.product__image-more-photo {
-	position: absolute;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 24px;
-	line-height: 1.5;
-	font-weight: 600;
-	color: var(--white);
-	background-color: var(--popup-overlay);
-	border-radius: 4px 0px 0px 4px;
-}
-
-.product__image-more-photo--active {
-	display: flex;
-}
-
 .product__image-navigation {
 	display: none;
 	position: absolute;
@@ -124,4 +102,25 @@
 }
 .product__navigation-column--fifth {
 	z-index: 2;
+}
+.product__image-more-photo {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	line-height: 1.5;
+	font-weight: 600;
+	color: var(--white);
+	background-color: var(--popup-overlay);
+	border-radius: 4px 0px 0px 4px;
+}
+
+.product__image-more-photo--active {
+	display: flex;
 }
