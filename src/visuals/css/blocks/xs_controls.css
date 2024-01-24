@@ -2,6 +2,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
+	min-width: 370px;
 }
 .xs__control-btn,
 .xs__favorites-btn {
@@ -65,6 +66,7 @@
 
 /* ---------------favorites btn styles---------------- */
 .xs__favorites-btn {
+	min-width: 42px;
 	padding: 10px;
 	color: var(--main-blue);
 	box-shadow: 0px 1px 2px 0px var(--disabled-blue);

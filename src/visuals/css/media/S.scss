@@ -2,10 +2,6 @@
 	html {
 		font-size: 15px; /* Размер шрифта корневого элемента */
 	}
-	.xs__controls {
-		margin-left: 10%;
-		margin-right: 10%;
-	}
 	.popup__inner {
 		height: 80svh;
 		padding-left: 2%;
@@ -18,7 +14,17 @@
 		line-height: 1.5;
 		color: var(--titles-color);
 	}
-	.popup__map, .popup__map > div:first-child {
+	.popup__map,
+	.popup__map > div:first-child {
 		height: 22svh;
+	}
+
+	// * --------------------типографика для размера S и выше-----------------------
+
+	.popup__title {
+		font-size: clamp(24px, 20px + 0.6vw, 28px);
+	}
+	.popup__price {
+		font-size: clamp(22px, 21px + 0.6vw, 26px);
 	}
 }
