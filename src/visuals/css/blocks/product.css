@@ -29,7 +29,7 @@
 	/* justify-content: center; */
 	/* flex-wrap: wrap; */
 	gap: 6px;
-	padding: 0 clamp(8px, 13px, 18px);
+	padding: 0 13px;
 	/* min-width: 300px; */
 	/* max-width: 330px; */
 	/* padding: 30px 40px; */

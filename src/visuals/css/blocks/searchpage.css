@@ -1,6 +1,8 @@
 .searchpage {
 	min-width: 320px;
+	max-width: 1200px;
 	height: 100dvh;
+	margin: 0 auto;
 }
 
 .searchpage__topline {
@@ -15,22 +17,9 @@
 	grid-template-areas:
 		"A"
 		"D";
-	/* height: 100vh; */
 	width: 100%;
 	gap: 10px;
 	padding: 8px 8px;
-	/* grid-template-columns: repeat(24, 1fr);
-	grid-template-areas:
-	"A A A A   A A A A   B B B B   B B B B"
-	"A A A A   A A A A   B B B B   B B B B"
-	"C C C C   C C C C   C C C C   C C C C"
-	"C C C C   C C C C   C C C C   C C C C"; */
-	/* justify-content: stretch; */
-	/* width: 1200px; */
-	/* height: calc(100vh - 40px); */
-	/* padding: 2rem 5px 0; */
-	/* display: flex; */
-	/* position: relative; */
 }
 
 .filter.m-controls, .sorting.m-controls {
@@ -42,8 +31,6 @@
 	grid-column: span 12;
 	display: flex;
 	flex-direction: column;
-	/* align-self: center; */
-	/* justify-content: center; */
 	gap: 15px;
 }
 
@@ -57,61 +44,16 @@
 .filter {
 	display: flex;
 	flex-direction: column;
-	/* gap: 10px; */
 	padding-left: 0 !important;
 	padding-right: 0 !important;
-	/* grid-area: B;
-	grid-column: span 12; */
-	/* width: 550px; */
-	/* width: 348px; */
-	/* overflow-y: auto; */
-	/* -ms-overflow-style: none; */
-	/* scrollbar-width: none; */
-}
-
-.filter,
-.sorting {
-	/* height: 0; */
-	/* overflow: hidden; */
-	/* visibility: hidden; */
-	/* transition: height 0.2s linear, visibility 0.2s linear, opacity 0.2s linear; */
-	/* transition: all 0.2s linear; */
 }
 
 .filter.expand,
 .sorting.expand {
 	margin-top: 20px;
 	height: 100%;
-	/* visibility: visible; */
-}
-
-.sorting {
-	/* grid-area: C; */
-	/* grid-column: span 12; */
-	/* width: 550px; */
-	/* display: flex; */
-	/* flex-direction: column; */
-	/* padding-right: 0 !important; */
-	/* width: 922px; */
-	/* height: calc(100vh - 80px); */
-	/* padding-left: 64px; */
-	/* position: relative; */
-	/* overflow: hidden; */
 }
 .results {
-	/* width: 1100px; */
 	grid-area: D;
 	grid-column: span 12;
-	/* display: flex; */
-	/* flex-direction: column; */
-	/* margin: 0; */
-	/* margin-top: 16px;
-	padding: 0; */
-	/* flex-grow: 1; */
-	/* overflow-y: auto; */
-	/* -ms-overflow-style: none; */
-	/* scrollbar-width: none; */
-}
-
-@media screen and (min-width: 768px) {
 }

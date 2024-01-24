@@ -11,7 +11,6 @@
 	align-items: center;
 	background-color: var(--white);
 	border: 0;
-	border-bottom: 2px solid var(--disabled-blue);
 	border-radius: 4px;
 	cursor: pointer;
 	-webkit-appearance: none;
@@ -21,15 +20,15 @@
 
 /* -------------filters and sorting btns styles------------- */
 .xs__control-btn {
-	gap: clamp(4px, 6px, 10px);
-	padding: 4px 6px;
+	gap: 6px;
+	padding: 6px;
+	box-shadow: 0px 1px 2px 0px var(--disabled-blue);
 }
 .xs__control-btn h2 {
 	font-size: clamp(1rem, 1.1rem, 1.2rem);
 	line-height: 1.6;
 	font-weight: 600;
 	letter-spacing: 0.01em;
-	/* text-transform: uppercase; */
 	color: var(--main-blue);
 	user-select: none;
 }
@@ -41,6 +40,7 @@
 .xs__control-btn--pressed {
 	background-color: var(--main-blue);
 	border-bottom-color: var(--main-blue);
+	box-shadow: 0px 1px 2px 0px var(--white);
 }
 
 .xs__control-btn--pressed h2 {
@@ -54,6 +54,7 @@
 .xs__control-btn:disabled {
 	background-color: var(--disabled-bg);
 	border-bottom-color: var(--disabled-bg);
+	box-shadow: none;
 }
 .xs__control-btn:disabled h2 {
 	color: var(--disabled-blue);
@@ -64,13 +65,15 @@
 
 /* ---------------favorites btn styles---------------- */
 .xs__favorites-btn {
-	padding: 2px 8px;
+	padding: 10px;
 	color: var(--main-blue);
+	box-shadow: 0px 1px 2px 0px var(--disabled-blue);
 }
 
 .xs__favorites-btn--pressed {
 	background-color: var(--main-blue);
 	border-bottom-color: var(--main-blue);
+	box-shadow: 0px 1px 2px 0px var(--white);
 }
 
 .xs__favorites-btn--pressed > svg > path {

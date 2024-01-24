@@ -79,10 +79,12 @@ export const ProductCardPopup = () => {
 					</svg>
 				</button>
 				<div className="popup__columns">
-					<div className="popup__left">
+					<div className="popup__head">
 						<div className="popup__date">{formatPublishDate(cardData["publish-date"])}</div>
 						<h3 className="popup__title">{cardData["name"]}</h3>
 						<div className="popup__price">{addThinSpacesToNumber(cardData["price"])} ₽</div>
+					</div>
+					<div className="popup__left">
 						<div className="popup__gallery gallery">
 							<BtnFavCard favBtnActive={isInFavorites} toggleFavBtn={toggleFavBtn} />
 							<div className="gallery__main-pic">

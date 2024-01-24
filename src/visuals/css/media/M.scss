@@ -19,7 +19,6 @@
 		grid-area: A;
 		grid-column: span 4;
 		display: flex;
-		// flex-grow: 1;
 	}
 	.m-sortfavs {
 		display: flex;
@@ -34,20 +33,15 @@
 	.filter {
 		flex-grow: 1;
 	}
-	.sorting {
-		// flex-grow: 1;
-	}
 	.sorting__form {
 		flex-direction: row;
 	}
 	.results {
 		justify-content: flex-start;
-		// flex-grow: 1;
 	}
-	.results_ul {
-		// flex-grow: 1;
+	.results__ul {
+		margin-top: 0;
 	}
-
 	.product {
 		max-width: none;
 		flex-direction: row;
@@ -74,42 +68,32 @@
 		width: clamp(700px, 400px + 40vw, 900px);
 		margin-left: 0;
 		margin-right: 0;
-		// padding-left: 0;
-		// padding-right: 0;
-		// margin: 0 auto;
-		// min-width: 700px;
-		// max-width: 900px;
-		// margin: 0 30px;
 	}
 	.popup__map, .popup__map > div:first-child {		
 		height: min(260px, 25dvh);
 	}
 	
 
-	// * --------------------типографика-----------------------
-	// .filter__radiobuttons-item label {
-	// 	font-size: clamp(13px, 14px, 16px);
-	// }
-	.filter__button {
-	}
+	// * --------------------типографика для размера M и выше-----------------------
+	
 	.product__title-link {
-		font-size: clamp(1.1rem, 2.15vw, 22px);
+		font-size: clamp(16px, 2.15vw, 22px);
 		line-height: 1;
 	}
 	.product__price {
-		font-size: clamp(1.2rem, 2.35vw, 23px);
+		font-size: clamp(17px, 2.35vw, 23px);
 		line-height: 1;
 	}
 	.product__address {
 		padding-left: 20px;
-		font-size: clamp(0.9rem, 1.75vw, 20px);
+		font-size: clamp(14px, 1.75vw, 20px);
 		line-height: 1;
 	}
 	.product__address::before {
 		top: -1px;
 	}
 	.product__date {
-		font-size: clamp(0.9rem, 1.7vw, 14px);
+		font-size: clamp(11px, 1.4vw, 14px);
 		margin: 0;
 		line-height: 1;
 	}
