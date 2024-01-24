@@ -1,7 +1,4 @@
-.results {
-	display: flex;
-	justify-content: center;
-}
+
 /* .results__head {
 	display: flex;
 	flex-direction: column;
@@ -10,13 +7,9 @@
 	background-color: var(--main-bg);
 } */
 
-/* .results__sorting {
-  margin-bottom: 30px;
-} */
 .results__ul {
 	display: flex;
 	flex-direction: column;
-	/* margin-top: 2rem; */
 	padding: 0;
 	gap: 20px;
 }

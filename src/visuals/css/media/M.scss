@@ -14,7 +14,7 @@
 		width: 100%;
 		gap: 25px;
 		padding: 8px 8px;
-		justify-items: initial;
+		align-items: normal;
 	}
 	.m-filters {
 		grid-area: A;
@@ -34,12 +34,6 @@
 	.filter {
 		flex-grow: 1;
 	}
-	.sorting__form {
-		flex-direction: row;
-	}
-	.results {
-		justify-content: flex-start;
-	}
 	.results__ul {
 		margin-top: 0;
 	}
@@ -47,7 +41,6 @@
 		max-width: none;
 		flex-direction: row;
 	}
-
 	.product__image {
 		width: 45%;
 	}
