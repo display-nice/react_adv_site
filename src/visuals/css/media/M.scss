@@ -22,10 +22,10 @@
 		display: flex;
 	}
 	.m-sortfavs {
-		display: flex;
-		justify-content: space-between;
 		grid-area: B;
 		grid-column: span 8;
+		display: flex;
+		justify-content: space-between;
 	}
 	.results {
 		grid-area: C;
@@ -53,20 +53,19 @@
 		gap: 9px;
 		width: 55%;
 	}
-
 	.popup {
 		display: flex;
 		justify-content: center;
 	}
 	.popup__inner {
-		width: clamp(700px, 400px + 40vw, 900px);
-		margin-left: 0;
-		margin-right: 0;
+		width: clamp(500px, 200px + 45vw, 900px);
+		max-height: none;
+		height: 92dvh;
+		margin: 4dvh 0;
 	}
 	.popup__map, .popup__map > div:first-child {		
-		height: min(260px, 25dvh);
-	}
-	
+		height: max(180px, 25dvh);
+	}	
 
 	// * --------------------типографика для размера M и выше-----------------------
 	

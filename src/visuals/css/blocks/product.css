@@ -20,9 +20,6 @@
 	cursor: pointer;
 }
 
-.product__image img {
-}
-
 .product__content {
 	display: flex;
 	flex-direction: column;
@@ -60,7 +57,6 @@
 	align-items: center;
 	position: relative;
 	padding-left: 23px;
-	/* margin-bottom: 12px; */
 }
 
 .product__address::before {

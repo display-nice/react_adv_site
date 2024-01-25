@@ -1,13 +1,6 @@
 .xs__controls {
 	display: flex;
-	/* flex-grow: 1; */
-	/* flex-wrap: wrap; */
-	/* align-self: center; */
-	/* justify-content: center; */
 	gap: 8px;
-	/* width: 100%; */
-	/* min-width: 320px; */
-	/* max-width: 370px; */
 }
 .xs__control-btn,
 .xs__favorites-btn {

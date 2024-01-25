@@ -25,19 +25,19 @@
 	/* gap: 4px; */
 /* } */
 
-/* !!!! .xs__filters-popup select */
+
 .filter select,
 .xs__filters-popup select {
 	display: flex;
 	min-height: 38px;
 	padding: var(--padding-select-xs);
 	border: 2px solid var(--disabled-bg);
-	background-color: var(--main-bg);
 	border-radius: 4px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 	cursor: pointer;
+	background: white url('../../img/arrow-for-select.svg') no-repeat 93% 52%;
 }
 
 .filter select:disabled + svg {
@@ -49,22 +49,17 @@
 	outline: none;
 	border: 2px solid var(--light-blue);
 	padding: var(--padding-select-xs);
-	background-position: 90.5% 50%;
 }
 
 .filter__select-wrapper {
 	display: flex;
 	flex-direction: column;
-	position: relative;
 	gap: 8px;
 }
 
-.filter__select-wrapper svg {
-	position: absolute;
-	top: 64%;
-	right: 20px;
-	cursor: pointer;
-	fill: var(--main-blue);
+.filter__select-block {
+	display: flex;
+	position: relative;
 }
 
 .filter__range {
@@ -140,8 +135,6 @@
 }
 .filter__radiobuttons-list {
 	display: flex;
-	/* flex-direction: column; */
-	/* gap: 10px; */
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -182,7 +175,6 @@
 	position: relative;
 	display: flex;
 	align-items: center;
-	/* margin-bottom: 12px; */
 	padding-left: 35px;
 }
 
@@ -193,6 +185,7 @@
 	display: block;
 	width: 24px;
 	height: 24px;
+	background-color: #fff;
 	border: 2px solid #e1e3ec;
 	border-radius: 4px;
 	transition: var(--animation);
@@ -222,10 +215,6 @@
 	display: block;
 }
 
-.filter__min-square {
-	/* margin-bottom: 15px; */
-}
-
 .filter__min-square input {
 	display: block;
 	box-sizing: border-box;
@@ -234,7 +223,7 @@
 	padding-left: 15px;
 	border: 2px solid #e1e3ec;
 	border-radius: 4px;
-	background-color: var(--main-bg);
+	/* background-color: var(--main-bg); */
 	appearance: none;
 	transition: var(--animation);
 	-moz-appearance: textfield;
@@ -295,6 +284,7 @@ input::-webkit-inner-spin-button {
 	margin: 0;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	background-color: #fff;
 }
 
 .filter__radiobuttons--rooms {

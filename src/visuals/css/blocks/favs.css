@@ -1,33 +1,7 @@
-/* .favourites {
-  display: flex;
-  padding-top: 30px;
-  flex-direction: column;
-  align-items: center;
-} */
-
-/* .favourites p {
-  width: 58%;
-  margin: 0;
-  margin-bottom: 20px;
-  color: var(--disabled-blue);
-  text-align: center;
-} */
-
-/* .favourites__empty-message {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.75;
-} */
-
-/* .favourites__empty-advice {
-  font-weight: 400;
-  line-height: 1.57;
-} */
-
 .fav-add {
 	position: absolute;
-	top: 29px;
-	left: 29px;
+	top: 11%;
+	left: 9%;
 	padding: 0;
 	background-color: transparent;
 	border: none;
@@ -35,7 +9,7 @@
 	cursor: pointer;
 	transition: var(--animation);
 	width: 21px;
-	height: 19px;
+	height: 21px;
 }
 
 .fav-add svg {
@@ -48,8 +22,8 @@
 .fav-add__active {
 	width: 26px;
 	height: 26px;
-	top: 25px;
-	left: 26px;
+	top: 9.8%;
+	left: 8.5%;
 	outline: none;
 }
 

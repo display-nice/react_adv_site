@@ -35,32 +35,28 @@ const PageContent = () => {
 	}
 
 	return (
-		<section className="breakpoints searchpage">
-			{/* <Hint /> */}
-			<h1 className="visually-hidden">Главная</h1>
+		<>
 			<div className="searchpage__topline"></div>
-			<div className="searchpage__container">
-				<XS_controls/>
-				{/* <XS/> */}
-
-				<M_controls/>
-				
-				
-
-				<ProductList />
-			</div>
-			{/* Управление видимостью <ProductCardPopup/> */}
-			{prodCardIsVis && <ProductCardPopup />}
-
-			<CookieConsent
-				buttonText="Понятно"
-				containerClasses="CC_style"
-				contentClasses="CC_contentClasses"
-				buttonClasses="CC_buttonStyle"
-			>
-				Избранные сохраняются в cookies
-			</CookieConsent>
-		</section>
+			<section className="breakpoints searchpage">
+				{/* <Hint /> */}
+				<h1 className="visually-hidden">Главная</h1>
+				<div className="searchpage__container">
+					<XS_controls/>
+					<M_controls/>
+					<ProductList />
+				</div>
+				{/* Управление видимостью <ProductCardPopup/> */}
+				{prodCardIsVis && <ProductCardPopup />}
+				<CookieConsent
+					buttonText="Понятно"
+					containerClasses="CC_style"
+					contentClasses="CC_contentClasses"
+					buttonClasses="CC_buttonStyle"
+				>
+					Избранные сохраняются в cookies
+				</CookieConsent>
+			</section>
+		</>
 	);
 };
 

@@ -1,7 +1,7 @@
 /* ------------ кнопка закрытия попапа ------------- */
 .popup__close {
 	position: absolute;
-	z-index: 3;
+	z-index: 99;
 	top: 15px;
 	right: 15px;
 	padding: 3px;
@@ -14,7 +14,7 @@
 }
 
 .popup__close svg {
-	fill: #4456b1;
+	fill: var(--dark-blue);
 	transition: var(--animation);
 }
 

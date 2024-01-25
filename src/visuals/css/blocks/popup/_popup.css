@@ -21,8 +21,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  max-height: 86dvh;
-  margin: 4dvh 5px 10dvh 5px;
+  max-height: 90dvh;
+  margin: 5dvh 7px;
   padding: 15px 5px;
   gap: 8px;
   background-color: var(--white);
@@ -58,8 +58,6 @@
   display: flex;
   flex-direction: column;
   gap: clamp(8px, 12px, 15px);
-  /* width: 520px; */
-  /* overflow-y: auto; */
 }
 
 .popup__right {
