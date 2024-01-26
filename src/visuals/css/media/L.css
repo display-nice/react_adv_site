@@ -1,5 +1,4 @@
-@media screen and (min-width: 1150px) {
-	
+@media screen and (min-width: 1150px) {	
 	.searchpage__container {
 		grid-template-columns: repeat(13, 1fr);
 		gap: 35px;
@@ -8,10 +7,7 @@
 	.m-filters {
 		grid-column: span 4;
 	}
-	.m-sortfavs {
-		grid-column: span 9;
-	}
-	.results {
+	.m-sortfavs, .results  {
 		grid-column: span 9;
 	}
 	.product__content {
@@ -53,7 +49,7 @@
 	.popup__address {
 		order: 2;
 	}
-	.popup__map, .popup__map > div:first-child {
+	.popup__map {
 		order: 1;
 	}
 }

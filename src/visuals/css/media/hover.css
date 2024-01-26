@@ -1,6 +1,6 @@
 @media (hover: hover) {
 
-	// * favs
+	/* ------------------favs hovers----------------- */
 	.fav-add:hover {
 		width: 26px;
 		height: 26px;
@@ -13,7 +13,7 @@
 		height: 26px;
 	}
 
-	// * filters
+	/* ------------------filters hovers----------------- */
 	.filter select:disabled:hover {
 		cursor: default;
 	}
@@ -63,7 +63,7 @@
 		cursor: pointer;
 	}
 
-	// * sorting
+	/* ------------------sorting hovers----------------- */
 	.sorting__order-tab label:hover {
 		color: var(--white);
 		border-color: var(--light-blue);
@@ -85,7 +85,7 @@
 		fill: var(--white);
 	}
 
-	// * popup
+	/* ------------------popup hovers----------------- */
 	.popup__close:hover svg {
 		fill: var(--light-blue);
 	}

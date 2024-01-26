@@ -1,7 +1,6 @@
 import React from 'react'
 
-// import "@css/style.css"
-import "./visuals/scss/main.scss"
+import "@css/style.css"
 
 import { SearchPage } from "./pages/search_page/SearchPage"
 

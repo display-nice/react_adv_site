@@ -5,27 +5,19 @@
 	margin: 0;
 	padding: 0;
 	list-style: none;
- }
- 
- .popup__chars-name {
+}
+
+.popup__chars-name {
 	font-size: 14px;
 	line-height: 1.57;
 	letter-spacing: 0.02em;
 	font-weight: 600;
 	color: var(--disabled-blue);
- }
- 
- .popup__chars-value {
+}
+
+.popup__chars-value {
 	font-size: 20px;
 	line-height: 1.6;
 	font-weight: 600;
 	color: var(--titles-color);
- }
- 
- .popup__chars-item {
-	/* margin-bottom: 20px; */
- }
- 
- .popup__chars-item:not(:last-child) {
-	/* padding-right: 44px; */
- }
+}

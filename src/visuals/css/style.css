@@ -1,12 +1,12 @@
-@import "variables.css";
-@import "blocks/searchpage.css";
-@import "blocks/price-slider.css";
-@import "blocks/cookieConsent.css";
+@import "global/variables.css";
 @import "global/fonts.css";
 @import "global/reboot.css";
 @import "global/utils.css";
-@import "global/typography.css";
 @import "vendor/normalize.css";
+@import "blocks/typography.css";
+@import "blocks/searchpage.css";
+@import "blocks/price-slider.css";
+@import "blocks/cookieConsent.css";
 @import "blocks/filter.css";
 @import "blocks/sorting.css";
 @import "blocks/results.css";
@@ -14,3 +14,4 @@
 @import "blocks/xs_controls.css";
 @import "blocks/product.css";
 @import "blocks/popup/_popup.css";
+@import "./media/_media.css";

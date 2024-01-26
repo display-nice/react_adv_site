@@ -5,11 +5,8 @@ import CookieConsent from "react-cookie-consent";
 import { useAppSelector } from "@src/hook";
 import { initializePage } from "./SearchPageReducer";
 
-import { XS, XS_controls } from "./modules/XS_controls";
+import { XS_controls } from "./modules/XS_controls";
 import { M_controls } from "./modules/M_controls";
-import { Filters, FiltersXS } from "@sp_modules/Filters/_Filters";
-import { Favorites, FavoritesXS } from "@sp_modules/Favorites";
-import { Sort, SortXS } from "@sp_modules/Sort";
 import { ProductList } from "@sp_modules/ProductList/_ProductList";
 import { ProductCardPopup } from "@sp_modules/ProductList/ProductCardPopup/ProductCardPopup";
 
@@ -37,8 +34,8 @@ const PageContent = () => {
 	return (
 		<>
 			<div className="searchpage__topline"></div>
+			<Hint />
 			<section className="breakpoints searchpage">
-				{/* <Hint /> */}
 				<h1 className="visually-hidden">Главная</h1>
 				<div className="searchpage__container">
 					<XS_controls/>

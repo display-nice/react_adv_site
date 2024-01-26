@@ -1,8 +1,6 @@
 .visually-hidden:not(:focus):not(:active),
 input[type="checkbox"].visually-hidden,
 input[type="radio"].visually-hidden {
-  /* position: absolute; вызывало баг для радиокнопок в laptop */
-  /* position: fixed; */
   position: absolute; 
   width: 1px;
   height: 1px;

@@ -1,12 +1,3 @@
-
-/* .results__head {
-	display: flex;
-	flex-direction: column;
-	background-color: var(--main-bg);
-	z-index: 2;
-	background-color: var(--main-bg);
-} */
-
 .results__ul {
 	display: flex;
 	flex-direction: column;

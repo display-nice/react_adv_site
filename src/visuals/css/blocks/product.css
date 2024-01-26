@@ -23,23 +23,12 @@
 .product__content {
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
-	/* flex-wrap: wrap; */
 	gap: 6px;
 	padding: 0 13px;
-	/* min-width: 300px; */
-	/* max-width: 330px; */
-	/* padding: 30px 40px; */
-	/* background-color: #ffffff; */
 }
 
 .product__title-link {
 	transition: var(--animation);
-	/* overflow: hidden; */
-	/* text-overflow: ellipsis; */
-	/* white-space: nowrap; */
-	/* margin: 0 0 6px; */
-	/* display: block; */
 }
 
 .product__title-link:active,

@@ -107,6 +107,7 @@ export const Product = ({ item }) => {
 				deactivateColumn(e);
 			};
 		}
+		
 		return (
 			<div
 				key={item.name + "_photo_" + index}

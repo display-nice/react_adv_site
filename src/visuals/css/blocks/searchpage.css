@@ -1,3 +1,4 @@
+/* верхнеуровневая структура всей страницы (от размера XS и выше) */
 .searchpage {
 	min-width: 320px;
 	max-width: 1200px;
@@ -20,7 +21,8 @@
 	padding: 8px 8px;
 }
 
-.filter.m-controls, .sorting.m-controls {
+.filter.m-controls,
+.sorting.m-controls {
 	display: none;
 }
 

@@ -2,12 +2,6 @@
 	display: none;
 }
 
-.filter__form {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-}
-
 .filter fieldset {
 	margin-left: 0;
 	margin-right: 0;
@@ -16,28 +10,18 @@
 	border: none;
 }
 
-.filter label {
-	/* display: flex;
-	gap: 4px; */
-}
-/* .filter legend { */
-	/* display: flex; */
-	/* gap: 4px; */
-/* } */
-
-
 .filter select,
 .xs__filters-popup select {
 	display: flex;
 	min-height: 38px;
-	padding: var(--padding-select-xs);
+	padding: 8px 0 5px 18px;
 	border: 2px solid var(--disabled-bg);
 	border-radius: 4px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 	cursor: pointer;
-	background: white url('../../img/arrow-for-select.svg') no-repeat 93% 52%;
+	background: white url("../../img/arrow-for-select.svg") no-repeat 93% 52%;
 }
 
 .filter select:disabled + svg {
@@ -48,7 +32,7 @@
 .filter select:focus {
 	outline: none;
 	border: 2px solid var(--light-blue);
-	padding: var(--padding-select-xs);
+	padding: 8px 0 5px 18px;
 }
 
 .filter__select-wrapper {
@@ -71,6 +55,7 @@
 	margin-bottom: 8px;
 }
 
+.filter__form,
 .filter__estate,
 .filter__camera,
 .filter__laptop,
@@ -82,10 +67,6 @@
 
 .filter__type {
 	margin-bottom: 8px;
-}
-
-.filter__select-wrapper--min-resolution {
-	/* margin-bottom: 20px; */
 }
 
 .filter__button {
@@ -104,12 +85,7 @@
 	transition: 0.2s linear all;
 }
 
-.filter__button:active {
-	outline: none;
-	background-color: var(--dark-blue);
-}
-
-.filter__button:focus {
+.filter__button:focus, .filter__button:active {
 	outline: none;
 	background-color: var(--dark-blue);
 }
@@ -161,7 +137,6 @@
 }
 
 .filter__radiobuttons legend {
-
 	margin-bottom: 8px;
 }
 
@@ -223,7 +198,7 @@
 	padding-left: 15px;
 	border: 2px solid #e1e3ec;
 	border-radius: 4px;
-	/* background-color: var(--main-bg); */
+	background-color: var(--white);
 	appearance: none;
 	transition: var(--animation);
 	-moz-appearance: textfield;

@@ -15,9 +15,7 @@ body {
 }
 
 body {
-  /* min-width: 1280px; */
   background-color: var(--main-bg);
-  /* overflow: hidden; */
 }
 
 img,
