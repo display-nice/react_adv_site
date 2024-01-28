@@ -6,7 +6,6 @@ import { useAppSelector, useAppDispatch } from "@src/hook.ts";
 import { translateChars } from "@src/helpers/translators(adapters)";
 import { addThinSpacesToNumber } from "@src/utils/prices";
 import { formatPublishDate } from "@src/utils/date";
-import { imgPathChanger } from "@src/utils/imgPathChanger";
 import { BtnFavCard } from "../BtnAddToFav";
 import { MapComponent } from "./Map";
 
@@ -144,10 +143,9 @@ function GalleryItem({ imgPath, index, gai, setGai }) {
 	const changeGai = () => {
 		setGai(index);
 	};
-	const newPath = imgPathChanger(imgPath, "124px", "jpg");
 	return (
 		<li className={classes} onClick={changeGai}>
-			<img src={newPath} alt={"Фото №" + index} width="124" height="80" />
+			<img src={imgPath} alt={"Фото №" + index} width="124" height="80" />
 		</li>
 	);
 }
