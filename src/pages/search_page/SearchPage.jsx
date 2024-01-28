@@ -34,7 +34,7 @@ const PageContent = () => {
 	return (
 		<>
 			<div className="searchpage__topline"></div>
-			{/* <Hint /> */}
+			<Hint />
 			<section className="breakpoints searchpage">
 				<h1 className="visually-hidden">Главная</h1>
 				<div className="searchpage__container">
