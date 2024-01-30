@@ -27,6 +27,10 @@ export const Product = ({ item }) => {
 		isInFavorites === false ? dispatch(addToFav(item)) : dispatch(removeFromFav(item));
 	};
 
+	// Подсчёт общего количества фото в массиве "photos" у каждого продукта в БД
+	const photosAmount = item.photos.length;
+	let morePhotos = photosAmount > 5 ? photosAmount - 5 : null;
+
 	const changeColumnByMouse = (e, imgPath) => {
 		const index = Number(e.target.dataset.index);
 		setActiveColumn(index);
@@ -46,8 +50,17 @@ export const Product = ({ item }) => {
 				activeColumn - 1 < 0 ? (nextActiveColumn = 0) : (nextActiveColumn = activeColumn - 1);
 				break;
 			case "Left":
-				activeColumn + 1 > 4 ? (nextActiveColumn = 4) : (nextActiveColumn = activeColumn + 1);
-				break;
+				if (photosAmount > 5) {
+					activeColumn + 1 > 4
+						? (nextActiveColumn = activeColumn)
+						: (nextActiveColumn = activeColumn + 1);
+					break;
+				} else if (photosAmount >= 0 && photosAmount <= 5) {
+					activeColumn + 1 > photosAmount - 1
+						? (nextActiveColumn = activeColumn)
+						: (nextActiveColumn = activeColumn + 1);
+					break;
+				}
 		}
 		// Обновляем состояние и показ подсказки только если мы не пытались выйти за границы 0 и 4.
 		if (activeColumn !== nextActiveColumn) {
@@ -60,10 +73,6 @@ export const Product = ({ item }) => {
 	const showProductCard = () => {
 		dispatch(setProductCard({ isVisible: true, data: item }));
 	};
-
-	// Подсчёт общего количества фото в массиве "photos" у каждого продукта в БД
-	const photosAmount = item.photos.length;
-	let morePhotos = photosAmount > 5 ? photosAmount - 5 : null;
 
 	const swipeHandlers = useSwipeable({
 		onSwipedLeft: (eventData) => changeColumnBySwipe(eventData),
