@@ -11,6 +11,10 @@
 .rs-container {
 	height: 20px;
 	position: relative;
+	/* Radix-слайдер раскладывает трек и пальцы flexbox'ом */
+	display: flex;
+	align-items: center;
+	touch-action: none;
 }
 
 .rs-tooltip-container {
@@ -29,28 +33,33 @@
 	font-size: 13px;
 }
 
-.rs-colored-line {
-	position: absolute;
+/* Серая линия трека на всю ширину */
+.rs-track {
+	position: relative;
+	flex-grow: 1;
 	height: 10px;
-	top: 5px;
 	background-color: #eee;
 	border-radius: 3px;
-	border-color: var(--main-blue);
-	color: var(--white);
 }
 
-.rs-colored-line-1 {
+/* Синяя закрашенная часть трека между пальцами */
+.rs-colored-line {
+	position: absolute;
+	height: 100%;
+	top: 0;
 	background-color: var(--main-blue);
+	border-radius: 3px;
 }
-.rs-container.disabled > .rs-colored-line-1 {
+
+.rs-container.disabled > .rs-track {
 	background-color: var(--disabled-bg);
 	transition: all 0.2s linear;
 }
 
 /* --------------- pointer -------------  */
+/* Позиционирование пальца задаёт инлайн-стиль Radix, здесь только внешний вид */
 .rs-thumb {
-	position: absolute;
-	top: 0;
+	display: block;
 	height: 20px;
 	width: 30px;
 	background-color: #fff;
@@ -83,7 +92,7 @@
 	top: 5px;
 }
 
-.rs-container.disabled > .rs-thumb {
+.rs-container.disabled .rs-thumb {
 	background-color: var(--disabled-bg);
 	transition: all 0.2s linear;
 }

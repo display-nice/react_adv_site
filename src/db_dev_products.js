@@ -4,7 +4,7 @@ export const db_dev_products = {
 			"id": 77,
 			"name": "2-комн. квартира в центре",
 			"price": 30000000,
-			"coordinates": [59.938784, 30.323126],
+			"coordinates": [59.938835, 30.322454],
 			"seller": {
 				"fullname": "Бюро Семёна",
 				"rating": 4.7
@@ -33,7 +33,7 @@ export const db_dev_products = {
 			"id": 13,
 			"name": "1-комн. квартира в спальном районе",
 			"price": 10000000,
-			"coordinates": [60.028541, 30.339081],
+			"coordinates": [60.028306, 30.336214],
 			"seller": {
 				"fullname": "Игнат-Агент",
 				"rating": 4.2
@@ -42,7 +42,7 @@ export const db_dev_products = {
 			"address": {
 				"city": "Санкт-Петербург",
 				"street": "ул.Лиственная",
-				"building": "д.22"
+				"building": "д.18 к1"
 			},
 			"publish-date": "1582418062833",
 			"category": "Недвижимость",
@@ -120,7 +120,7 @@ export const db_dev_products = {
 			"id": 22,
 			"name": "Апартаменты для фрилансера",
 			"price": 3000000,
-			"coordinates": [56.034606, 92.890391],
+			"coordinates": [56.035783, 92.888392],
 			"seller": {
 				"fullname": "Марина Недвижимость",
 				"rating": 4.1
@@ -129,7 +129,7 @@ export const db_dev_products = {
 			"address": {
 				"city": "Красноярск",
 				"street": "ул. Шахтёров",
-				"building": "д.33Б"
+				"building": "д.31Б к3"
 			},
 			"publish-date": "1608220822265",
 			"category": "Недвижимость",

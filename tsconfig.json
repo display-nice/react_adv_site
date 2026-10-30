@@ -8,7 +8,9 @@
 	  "forceConsistentCasingInFileNames": true,
 	  "noFallthroughCasesInSwitch": true,
 	  "resolveJsonModule": true,
-	  "jsx": "react-jsx"
+	  "jsx": "react-jsx",
+	  "strict": false,
+	  "ignoreDeprecations": "6.0"
 	},
 	"include": ["src"]
  }

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CookieConsent from "react-cookie-consent";
+import { CookieConsent } from "@components/CookieConsent/CookieConsent";
 
 import { useAppSelector } from "@src/hook";
 import { initializePage } from "./SearchPageReducer";

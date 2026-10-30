@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { MapContainer, TileLayer, useMap, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -71,3 +71,4 @@ export const MapComponent = ({ coords }) => {
 	}, [coords])	
 	return memoizedMap
 };
+

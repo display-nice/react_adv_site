@@ -44,3 +44,15 @@ export function removeFromCookie(cookieName, valueToRemove) {
 		document.cookie = `${cookieName}=${encodeURIComponent(JSON.stringify(newArray))}; path=/`;
 	}
 }
+
+// Устанавливает куку со сроком хранения в days дней
+// Используется в компоненте CookieConsent (согласие на cookies)
+export function setCookie(cookieName, value, days) {
+	const expirationDate = new Date();
+	expirationDate.setTime(expirationDate.getTime() + days * 24 * 60 * 60 * 1000);
+	// secure-флаг ставим только на https, иначе браузер отклонит куку
+	const secure = window.location.protocol === "https:" ? "; secure" : "";
+	document.cookie = `${cookieName}=${encodeURIComponent(
+		value
+	)}; path=/; expires=${expirationDate.toUTCString()}; SameSite=Lax${secure}`;
+}
